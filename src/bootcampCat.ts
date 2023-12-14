@@ -1,7 +1,8 @@
 import { Image } from './common';
 
 export interface BootcampCategory {
-  id: string;
+  id?: string;
+  _id?: string;
   name: string;
   description: string;
   image: Image;

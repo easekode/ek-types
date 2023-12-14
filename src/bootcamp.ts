@@ -8,7 +8,8 @@ import { ToolsTechnologies } from './toolsTechnologies';
 import { WebUser } from './user';
 
 export interface Bootcamp {
-  id: string;
+  id?: string;
+  _id?: string;
   title: string;
   images?: Image[];
   description: string;

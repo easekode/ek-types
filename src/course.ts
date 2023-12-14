@@ -23,6 +23,7 @@ export interface Subject {
 }
 export interface Course {
   id?: string;
+  _id?: string;
   title: string;
   images?: Image[];
   shortDescription?: string;
