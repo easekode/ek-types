@@ -1,6 +1,7 @@
 import { Image } from './common';
 
 export interface User {
+  id?: string;
   name?: string;
   desgination?: string;
   profilePic?: Image;
