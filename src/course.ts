@@ -39,6 +39,7 @@ export interface Course {
   pricings?: Pricing[];
 }
 export interface MasterClass {
+  id?: string;
   title: string;
   description: string;
   startDateTime: string;
