@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "importHelpers": false,
+    "module": "commonjs",
+    "outDir": "build",
+    "rootDirs": [
+      "./src",
+      "./test"
+    ],
+    "strict": true,
+    "target": "es2017"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "test"
+  ]
+}

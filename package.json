@@ -1,0 +1,28 @@
+{
+  "name": "eke-types",
+  "version": "1.0.0",
+  "description": "types in ek proejct",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "commit": "git-cz",
+    "prepack": "rm -rf build && tsc"
+  },
+  "author": "ek",
+  "license": "MIT",
+  "files": [
+    "build/**/*"
+  ],
+  "devDependencies": {
+    "git-cz": "^4.9.0",
+    "typescript": "^2.7.2"
+  },
+  "depDependencies": {
+    "commitizen": "^4.3.0"
+  },
+  "dependencies": {
+    "eke-types": "^1.2.0"
+  }
+}
