@@ -1,15 +1,14 @@
-import { IAssessmentQuestion } from './assessmentQuestion';
-
-export interface IAssessment {
-	assessmentTitle: string;
-	assessmentDescription: string;
-	questions: IAssessmentQuestion[];
-	isNegativeScoring: boolean;
-	level: Level;
-}
+import { AssessmentQuestion } from './assessmentQuestion';
 
 export enum Level {
-	EASY = 'EASY',
-	MEDIUM = 'MEDIUM',
-	HARD = 'HARD',
+  EASY = 'EASY',
+  MEDIUM = 'MEDIUM',
+  HARD = 'HARD',
+}
+export interface Assessment {
+  assessmentTitle: string;
+  assessmentDescription: string;
+  questions: AssessmentQuestion[];
+  isNegativeScoring: boolean;
+  level: Level;
 }
