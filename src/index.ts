@@ -15,5 +15,4 @@ export * from './bootcampCat';
 export * from './address';
 export * from './pricing';
 export * from './assessment';
-export * from './assessmentQuestion';
 export * from './questionBank';
