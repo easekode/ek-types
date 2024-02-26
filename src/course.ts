@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { Image } from './common';
 import { Banner } from './page';
 import { Pricing } from './pricing';
@@ -7,23 +8,28 @@ import { ToolsTechnologies } from './toolsTechnologies';
 import { WebUser } from './user';
 
 export interface Topic {
+  slNo: number;
+  code: string;
   name: string;
 }
 export interface Chapter {
+  slNo: number;
+  code: string;
   name: string;
   topics: Topic[];
 }
 export interface Subject {
+  slNo: number;
+  code: string;
   title: string;
   chapters: Chapter[];
 }
-export interface Subject {
-  title: string;
-  chapters: Chapter[];
-}
+
 export interface Course {
   id?: string;
   _id?: string;
+  slNo: number;
+  code: string;
   title: string;
   images?: Image[];
   shortDescription?: string;
@@ -37,6 +43,17 @@ export interface Course {
   banner?: Banner[];
   seoHead?: SEOHead;
   pricings?: Pricing[];
+}
+
+export interface NewCourse {
+  title: string;
+  shortDescription: string;
+  mediumDescription: string;
+  longDescription: string;
+  durationInMonths: number;
+  subjects: ObjectId[];
+  code: string;
+  slNo: number;
 }
 export interface MasterClass {
   id?: string;
