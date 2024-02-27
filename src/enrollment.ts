@@ -13,3 +13,18 @@ export interface IEnrollment extends Document {
   enrollmentDate: Date;
   status?: EnrollmentStatus;
 }
+
+export interface NewEnrollment {
+  student?: ObjectId;
+  course: ObjectId;
+  enrollmentDate: Date;
+}
+
+export interface BulkEnrollmentRow {
+  studentCode?: string;
+  studentName?: string;
+  studentEmail?: string;
+  courseCode: string;
+  enrollmentDate: Date;
+  enrollmentStatus: EnrollmentStatus;
+}

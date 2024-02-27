@@ -27,7 +27,7 @@ export interface Subject {
 
 export interface Course {
   id?: string;
-  _id?: string;
+  _id?: ObjectId;
   slNo: number;
   code: string;
   title: string;
