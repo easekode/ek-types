@@ -16,3 +16,4 @@ export * from './address';
 export * from './pricing';
 export * from './assessment';
 export * from './questionBank';
+export * from './enrollment';
