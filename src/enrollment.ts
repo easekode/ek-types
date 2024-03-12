@@ -1,4 +1,4 @@
-import { Date, ObjectId } from 'mongoose';
+import { Date, Schema, Types } from 'mongoose';
 
 export enum EnrollmentStatus {
   ENROLLED = 'ENROLLED',
@@ -8,15 +8,15 @@ export enum EnrollmentStatus {
 }
 
 export interface IEnrollment extends Document {
-  student: ObjectId;
-  course: ObjectId;
+  student: Types.ObjectId;
+  course: Types.ObjectId;
   enrollmentDate: Date;
   status?: EnrollmentStatus;
 }
 
 export interface NewEnrollment {
-  student?: ObjectId;
-  course: ObjectId;
+  student?: Schema.Types.ObjectId;
+  course: Schema.Types.ObjectId;
   enrollmentDate: Date;
 }
 

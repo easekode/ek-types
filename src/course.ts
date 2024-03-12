@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 import { Image } from './common';
 import { Banner } from './page';
 import { Pricing } from './pricing';
@@ -27,7 +27,7 @@ export interface Subject {
 
 export interface Course {
   id?: string;
-  _id?: ObjectId;
+  _id?: Types.ObjectId;
   slNo: number;
   code: string;
   title: string;
@@ -51,10 +51,31 @@ export interface NewCourse {
   mediumDescription: string;
   longDescription: string;
   durationInMonths: number;
-  subjects: ObjectId[];
+  subjects: Types.ObjectId[];
   code: string;
   slNo: number;
 }
+
+export interface NewSubject {
+  title: string;
+  chapters: Schema.Types.ObjectId[];
+  code: string;
+  slNo: number;
+}
+
+export interface NewChapter {
+  title: string;
+  topics: Schema.Types.ObjectId[];
+  code: string;
+  slNo: number;
+}
+
+export interface NewTopic {
+  title: string;
+  code: string;
+  slNo: number;
+}
+
 export interface MasterClass {
   id?: string;
   title: string;
