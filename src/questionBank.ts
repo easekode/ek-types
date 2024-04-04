@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Level } from './assessment';
+import { Level } from './exam';
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'multiple_choice',
@@ -15,7 +15,7 @@ export enum QuestionType {
   IMAGE_BASED = 'image_based',
 }
 
-export interface NewQuestion {
+/* export interface NewQuestion {
   type: QuestionType; // Type of question
   questionText: string; // Text of the question
   options?: string[]; // Array of options (for multiple choice, ranking, and multiple response questions)
@@ -34,8 +34,17 @@ export interface NewQuestion {
   subject?: Schema.Types.ObjectId; // Subject ID
   chapter?: Schema.Types.ObjectId; // Chapter ID
   topic?: Schema.Types.ObjectId; // Topic ID
+} */
+export interface NewQuestion {
+  type: QuestionType; // Type of question
+  questionText: string; // Text of the question
+  options?: string[]; // Array of options (for multiple choice, ranking, and multiple response questions)
+  level?: Level; // Level of the question
+  score?: number; // Score for the question
+  subject?: Schema.Types.ObjectId; // Subject ID
+  chapter?: Schema.Types.ObjectId; // Chapter ID
+  topic?: Schema.Types.ObjectId; // Topic ID
 }
-
 export interface QuestionBank extends NewQuestion, Document {
   question: string;
   subject?: Schema.Types.ObjectId;
@@ -43,6 +52,21 @@ export interface QuestionBank extends NewQuestion, Document {
   topic?: Schema.Types.ObjectId;
 }
 
+export interface SuggestQuestionInput {
+  course?: string;
+  chapter?: string;
+  subject?: string;
+  topic?: string;
+  level?: Level;
+  questionCount?: number;
+}
+
+/* export interface NewExam {
+  examTitle: string;
+  examDescription: string;
+  questions: NewQuestion[];
+  isNegativeScoring: boolean;
+} */
 /*
 const multipleChoiceQuestion: Question = {
   type: QuestionType.MULTIPLE_CHOICE,
