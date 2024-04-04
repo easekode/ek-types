@@ -2,8 +2,7 @@
   "name": "eke-types",
   "version": "1.0.0",
   "description": "types in ek proejct",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
