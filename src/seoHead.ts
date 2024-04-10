@@ -7,3 +7,10 @@ export interface SEOHead {
   url?: string;
   keyword?: string;
 }
+
+/* {
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  openGraph?: string;
+} */

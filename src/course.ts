@@ -24,6 +24,7 @@ export interface Subject {
   title: string;
   chapters: Chapter[];
 }
+export type DurationUnit = 'hours' | 'days' | 'weeks' | 'months';
 
 export interface Course {
   id?: string;
@@ -35,7 +36,8 @@ export interface Course {
   shortDescription?: string;
   mediumDescription?: string;
   longDescription?: string;
-  durationInMonths?: number;
+  duration?: number;
+  durationUnit?: string;
   subjects?: Subject[];
   toolsAndTechnologies?: ToolsTechnologies[];
   projects?: ProjectDetail[];
