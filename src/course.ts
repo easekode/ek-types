@@ -36,47 +36,30 @@ export interface Course {
   shortDescription?: string;
   mediumDescription?: string;
   longDescription?: string;
-  duration?: number;
-  durationUnit?: string;
+
   subjects?: Subject[];
   toolsAndTechnologies?: ToolsTechnologies[];
   projects?: ProjectDetail[];
   instructors?: WebUser[];
   banner?: Banner[];
+  duration?: number;
+  durationUnit?: string;
   seoHead?: SEOHead;
   pricings?: Pricing[];
 }
 
-export interface NewCourse {
-  title: string;
-  shortDescription: string;
-  mediumDescription: string;
-  longDescription: string;
-  durationInMonths: number;
-  subjects: Types.ObjectId[];
-  code: string;
-  slNo: number;
-}
+export type NewSubject = Omit<Subject, 'id' | '_id' | 'chapters'> & {
+  chapters: NewChapter[];
+};
+export type NewCourse = Omit<Course, 'id' | '_id' | 'subjects'> & {
+  subjects: NewSubject[];
+};
 
-export interface NewSubject {
-  title: string;
-  chapters: Schema.Types.ObjectId[];
-  code: string;
-  slNo: number;
-}
+export type NewChapter = Omit<Chapter, 'id' | '_id' | 'topics'> & {
+  topics: NewTopic[];
+};
 
-export interface NewChapter {
-  title: string;
-  topics: Schema.Types.ObjectId[];
-  code: string;
-  slNo: number;
-}
-
-export interface NewTopic {
-  title: string;
-  code: string;
-  slNo: number;
-}
+export type NewTopic = Omit<Topic, 'id' | '_id'>;
 
 export interface MasterClass {
   id?: string;
