@@ -13,7 +13,7 @@
   },
   "include": [
     "src/**/*"
-  ],
+, "../ekr-example/src/rcnode/types/lookup.ts", "../ekr-example/src/rcnode/types/routeNames.ts", "../ekr-example/src/rcnode/types/apiResponse.ts"  ],
   "exclude": [
     "node_modules",
     "build",

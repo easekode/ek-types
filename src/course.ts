@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose';
+import { Types } from 'mongoose';
 import { Image } from './common';
 import { Banner } from './page';
 import { Pricing } from './pricing';
