@@ -3,7 +3,7 @@ import { QueryStringType } from './pagination';
 
 export interface RequestInput {
   query?: QueryStringType;
-  body?: Record<string, any>;
+  body?: any;
   params?: Record<string, any>;
   user?: any;
 }

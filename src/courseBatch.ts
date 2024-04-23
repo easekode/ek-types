@@ -2,6 +2,7 @@ import { Types } from 'mongoose';
 import { ActiveStatus } from './common';
 import { QueryStringType } from './pagination';
 import { IUser } from './user';
+import { NewEvent } from './event';
 export enum FeedbackPurpose {
   COURSE_BATCH = 'batch',
   COURSE_BATCH_SESSION = 'session',
@@ -67,6 +68,10 @@ export interface ICourseBatch extends Document {
   status?: CourseBatchStatus;
 }
 
+export interface NewBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
+  event: NewEvent;
+}
+
 export interface IStudentBatchAssociation extends Document {
   user: Types.ObjectId;
   batch: Types.ObjectId;
@@ -110,18 +115,6 @@ export interface IFeedbackQuery {
 }
 
 //this event can be mapped to calender to present (in the UI)
-export interface IEvent extends Document {
-  title: string;
-  batch?: Types.ObjectId;
-  session?: Types.ObjectId;
-  purpose: EventPurpose;
-  startDateTime: Date;
-  endDateTime: Date;
-  description?: string;
-  mode: EventMode;
-  status: EventStatus;
-  cancellationReason: string;
-}
 
 export interface IStudentBatchAssocQuery {
   query?: {
