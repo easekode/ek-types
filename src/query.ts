@@ -1,9 +1,9 @@
 import { Model, PipelineStage } from 'mongoose';
 import { QueryStringType } from './pagination';
 
-export interface RequestInput {
+export interface RequestInput<T> {
   query?: QueryStringType;
-  body?: any;
+  body?: T;
   params?: Record<string, any>;
   user?: any;
 }
@@ -13,7 +13,6 @@ export interface GetAggregateResultInput {
   searchFields?: string[];
   lookupWithProject?: PipelineStage[];
   Service: Model<any>;
-  additionalFilters?: PipelineStage[];
   mainPipeline?: PipelineStage[];
 }
 
