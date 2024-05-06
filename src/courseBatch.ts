@@ -91,7 +91,7 @@ export interface ICourseBatchSession extends Document {
   duration: number;
   status?: SessionStatus;
   startDateTime: Date;
-  sessionFrequency: SessionFrequency;
+  feedback?: Types.ObjectId[];
 }
 
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>;
