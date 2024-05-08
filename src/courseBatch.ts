@@ -101,8 +101,31 @@ export interface IFeedback extends Document {
   session?: Types.ObjectId;
   purpose: FeedbackPurpose;
   comment?: string;
-  rating: number;
+  rating?: number;
+  feedbackByTopics?: [
+    {
+      topic: Types.ObjectId;
+      rating?: number;
+      isChecked?: boolean;
+    }
+  ];
 }
+
+export type NewFeedback = Omit<IFeedback, keyof Document>;
+
+/* const newFeedback: NewFeedback = {
+ 
+  feedbacks: [
+    {
+      topic: '123', // Teacher engagement rating topic
+      rating: 4, // 1-5
+    },
+    {
+      topic: '1234', // Teacher engagement rating topic
+      rating: 5, // 1-5
+    },
+  ],
+}; */
 
 export interface IFeedbackQuery {
   query?: {
