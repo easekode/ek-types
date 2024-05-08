@@ -153,6 +153,22 @@ export interface ICourseBatchTracker extends Document {
   subject: Types.ObjectId;
   chapter: Types.ObjectId;
   topic: Types.ObjectId;
+  course: {
+    courseId: Types.ObjectId;
+    subjects: {
+      subjectId: Types.ObjectId;
+      chapters: {
+        name: string;
+        topics: {
+          name: string;
+          completed: boolean;
+        }[];
+        completed: boolean;
+      }[];
+      completed: boolean;
+    }[];
+    completed: boolean;
+  };
   status:
     | CourseBatchTrackerStatus.IN_PROGRESS
     | CourseBatchTrackerStatus.COMPLETED;
@@ -165,4 +181,13 @@ export interface NewBatchAssnBodyType {
   emails?: string[];
   studentIds?: Types.ObjectId[];
   batchId: Types.ObjectId;
+}
+
+export interface UpdateCourseBatchTrackerInput {
+  batchId: string;
+  courseId: string;
+  subjectId: string;
+  chapterName: string;
+  topicName: string;
+  completed: boolean;
 }
