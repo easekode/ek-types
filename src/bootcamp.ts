@@ -1,5 +1,5 @@
 import { Image } from './common';
-import { Course, Schedule, Subject } from './course';
+import { Course, Schedule } from './course';
 import { Banner } from './page';
 import { Pricing } from './pricing';
 import { ProjectDetail } from './projectDetail';
@@ -23,7 +23,6 @@ export interface Bootcamp {
   schedules?: Schedule[];
   banner?: Banner[];
   seoHead?: SEOHead;
-  subjects?: Subject[];
   toolsAndTechnologies?: ToolsTechnologies[];
   instructors?: WebUser[];
   projects?: ProjectDetail[];

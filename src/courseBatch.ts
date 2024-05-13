@@ -46,6 +46,7 @@ export enum CourseBatchStatus {
 }
 
 export enum CourseBatchTrackerStatus {
+  NOT_STARTED = 'NOT_STARTED',
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETED = 'COMPLETED',
 }
@@ -87,7 +88,7 @@ export interface ICourseBatchSessionAttendance {
 export interface ICourseBatchSession extends Document {
   slNo?: number;
   name: string;
-  batch: Types.ObjectId;
+  batchId: Types.ObjectId;
   duration: number;
   status?: SessionStatus;
   startDateTime: Date;
@@ -97,18 +98,16 @@ export interface ICourseBatchSession extends Document {
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>;
 export interface IFeedback extends Document {
   user: Types.ObjectId;
-  batch?: Types.ObjectId;
-  session?: Types.ObjectId;
+  batchId?: Types.ObjectId;
+  sessionId?: Types.ObjectId;
   purpose: FeedbackPurpose;
   comment?: string;
   rating?: number;
-  feedbackByTopics?: [
-    {
-      topic: Types.ObjectId;
-      rating?: number;
-      isChecked?: boolean;
-    }
-  ];
+  feedbackByTopics?: {
+    topic: Types.ObjectId;
+    rating?: number;
+    isChecked?: boolean;
+  }[];
 }
 
 export type NewFeedback = Omit<IFeedback, keyof Document>;
@@ -161,17 +160,21 @@ export interface ICourseBatchTracker extends Document {
         name: string;
         topics: {
           name: string;
-          completed: boolean;
+          status: CourseBatchTrackerStatus;
         }[];
-        completed: boolean;
+        status: CourseBatchTrackerStatus;
       }[];
-      completed: boolean;
+      status: CourseBatchTrackerStatus;
     }[];
-    completed: boolean;
+    status: CourseBatchTrackerStatus;
   };
-  status:
-    | CourseBatchTrackerStatus.IN_PROGRESS
-    | CourseBatchTrackerStatus.COMPLETED;
+  status: CourseBatchTrackerStatus;
+  stats: {
+    totalChapters: number;
+    completedChapters: number;
+    ratings: number;
+    completedSessions: number;
+  };
   instructor: IUser;
   startDate: Date;
   endDate: Date;

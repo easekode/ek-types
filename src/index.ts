@@ -28,3 +28,5 @@ export * from './roles';
 export * from './auth';
 export * from './event';
 export * from './feedback';
+export * from './company';
+export * from './dashboard';

@@ -6,6 +6,18 @@ import { ProjectDetail } from './projectDetail';
 import { SEOHead } from './seoHead';
 import { ToolsTechnologies } from './toolsTechnologies';
 import { WebUser } from './user';
+export enum CourseStatus {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  ARCHIVED = 'ARCHIVED',
+}
+
+export enum DurationUnit {
+  HOURS = 'hours',
+  DAYS = 'days',
+  WEEKS = 'weeks',
+  MONTHS = 'months',
+}
 
 export interface Topic {
   slNo: number;
@@ -18,13 +30,12 @@ export interface Chapter {
   name: string;
   topics: Topic[];
 }
-export interface Subject {
+/* export interface Subject {
   slNo: number;
   code: string;
   title: string;
   chapters: Chapter[];
-}
-export type DurationUnit = 'hours' | 'days' | 'weeks' | 'months';
+} */
 
 export interface Course {
   id?: string;
@@ -36,8 +47,9 @@ export interface Course {
   shortDescription?: string;
   mediumDescription?: string;
   longDescription?: string;
+  status?: CourseStatus;
 
-  subjects?: Subject[];
+  chapters?: Chapter[];
   toolsAndTechnologies?: ToolsTechnologies[];
   projects?: ProjectDetail[];
   instructors?: WebUser[];
@@ -46,13 +58,16 @@ export interface Course {
   durationUnit?: string;
   seoHead?: SEOHead;
   pricings?: Pricing[];
+  publishedAt?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-export type NewSubject = Omit<Subject, 'id' | '_id' | 'chapters'> & {
+/* export type NewSubject = Omit<Subject, 'id' | '_id' | 'chapters'> & {
   chapters: NewChapter[];
-};
+}; */
 export type NewCourse = Omit<Course, 'id' | '_id' | 'subjects'> & {
-  subjects: NewSubject[];
+  chapters: NewChapter[];
 };
 
 export type NewChapter = Omit<Chapter, 'id' | '_id' | 'topics'> & {
