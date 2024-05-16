@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 import { Image } from './common';
 import { Banner } from './page';
 import { Pricing } from './pricing';
@@ -39,7 +39,7 @@ export interface Chapter {
 
 export interface Course {
   id?: string;
-  _id?: Types.ObjectId;
+  _id?: Schema.Types.ObjectId;
   slNo: number;
   code: string;
   title: string;

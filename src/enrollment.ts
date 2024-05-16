@@ -8,8 +8,8 @@ export enum EnrollmentStatus {
 }
 
 export interface IEnrollment extends Document {
-  student: Types.ObjectId;
-  course: Types.ObjectId;
+  student: Schema.Types.ObjectId;
+  course: Schema.Types.ObjectId;
   enrollmentDate: Date;
   status?: EnrollmentStatus;
 }

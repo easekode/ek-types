@@ -14,7 +14,7 @@ export interface User {
 export type WebUser = User;
 
 // import type { AccountStatus, ICommonFields, ITokenResponse } from './common';
-import type { Types, Model } from 'mongoose';
+import type { Types, Model, Schema } from 'mongoose';
 
 export enum Gender {
   MALE = 'MALE',
@@ -65,8 +65,8 @@ export interface IUser
     IPersonalInfo,
     IEnrollmentDetails,
     StudentDetails {
-  _id?: Types.ObjectId;
-  roles?: Types.ObjectId[] | string[];
+  _id?: Schema.Types.ObjectId;
+  roles?: Schema.Types.ObjectId[] | string[];
   isAdmin?: boolean;
   lastLoggedIn?: Date;
   isAccountVerified?: boolean;

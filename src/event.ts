@@ -1,10 +1,10 @@
-import { Types } from 'mongoose';
+import { Schema } from 'mongoose';
 import { EventMode, EventPurpose, EventStatus } from './courseBatch';
 
 export interface IEvent extends Document {
   title: string;
-  batch?: Types.ObjectId;
-  session?: Types.ObjectId;
+  batch?: Schema.Types.ObjectId;
+  session?: Schema.Types.ObjectId;
   purpose: EventPurpose;
   startDate: Date;
   endDate: Date;

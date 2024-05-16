@@ -30,3 +30,4 @@ export * from './event';
 export * from './feedback';
 export * from './company';
 export * from './dashboard';
+export * from './otp';

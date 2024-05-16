@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import { ActiveStatus } from './common';
 import { QueryStringType } from './pagination';
 import { IUser } from './user';
@@ -62,10 +62,10 @@ export enum SessionFrequency {
 export interface ICourseBatch extends Document {
   name: string;
   code: string;
-  course: Types.ObjectId;
-  instructors?: Types.ObjectId[];
-  currentInstructor?: Types.ObjectId;
-  event?: Types.ObjectId;
+  course: Schema.Types.ObjectId;
+  instructors?: Schema.Types.ObjectId[];
+  currentInstructor?: Schema.Types.ObjectId;
+  event?: Schema.Types.ObjectId;
   status?: CourseBatchStatus;
 }
 
@@ -74,37 +74,37 @@ export interface NewBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
 }
 
 export interface IStudentBatchAssociation extends Document {
-  user: Types.ObjectId;
-  batch: Types.ObjectId;
+  user: Schema.Types.ObjectId;
+  batch: Schema.Types.ObjectId;
   status?: CourseBatchAssnStatus;
 }
 
 export interface ICourseBatchSessionAttendance {
-  _id?: Types.ObjectId;
-  user: Types.ObjectId;
-  session: Types.ObjectId;
+  _id?: Schema.Types.ObjectId;
+  user: Schema.Types.ObjectId;
+  session: Schema.Types.ObjectId;
 }
 
 export interface ICourseBatchSession extends Document {
   slNo?: number;
   name: string;
-  batchId: Types.ObjectId;
+  batchId: Schema.Types.ObjectId;
   duration: number;
   status?: SessionStatus;
   startDateTime: Date;
-  feedback?: Types.ObjectId[];
+  feedback?: Schema.Types.ObjectId[];
 }
 
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>;
 export interface IFeedback extends Document {
-  user: Types.ObjectId;
-  batchId?: Types.ObjectId;
-  sessionId?: Types.ObjectId;
+  user: Schema.Types.ObjectId;
+  batchId?: Schema.Types.ObjectId;
+  sessionId?: Schema.Types.ObjectId;
   purpose: FeedbackPurpose;
   comment?: string;
   rating?: number;
   feedbackByTopics?: {
-    topic: Types.ObjectId;
+    topic: Schema.Types.ObjectId;
     rating?: number;
     isChecked?: boolean;
   }[];
@@ -148,14 +148,14 @@ export interface IStudentBatchAssocQuery {
 }
 
 export interface ICourseBatchTracker extends Document {
-  batch: Types.ObjectId;
-  subject: Types.ObjectId;
-  chapter: Types.ObjectId;
-  topic: Types.ObjectId;
+  batch: Schema.Types.ObjectId;
+  subject: Schema.Types.ObjectId;
+  chapter: Schema.Types.ObjectId;
+  topic: Schema.Types.ObjectId;
   course: {
-    courseId: Types.ObjectId;
+    courseId: Schema.Types.ObjectId;
     subjects: {
-      subjectId: Types.ObjectId;
+      subjectId: Schema.Types.ObjectId;
       chapters: {
         name: string;
         topics: {
@@ -182,8 +182,8 @@ export interface ICourseBatchTracker extends Document {
 
 export interface NewBatchAssnBodyType {
   emails?: string[];
-  studentIds?: Types.ObjectId[];
-  batchId: Types.ObjectId;
+  studentIds?: Schema.Types.ObjectId[];
+  batchId: Schema.Types.ObjectId;
 }
 
 export interface UpdateCourseBatchTrackerInput {
