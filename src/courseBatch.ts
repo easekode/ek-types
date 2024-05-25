@@ -59,6 +59,18 @@ export enum SessionFrequency {
   WEEKDAYS = 'WEEKDAYS',
 }
 
+interface CourseProgressSchema {
+  courseId: Schema.Types.ObjectId;
+  chapters: {
+    name: string;
+    topics: {
+      name: string;
+      status: CourseBatchTrackerStatus;
+    }[];
+    status: CourseBatchTrackerStatus;
+  }[];
+  status: CourseBatchTrackerStatus;
+}
 export interface ICourseBatch extends Document {
   name: string;
   code: string;
@@ -66,6 +78,7 @@ export interface ICourseBatch extends Document {
   instructors?: Schema.Types.ObjectId[];
   currentInstructor?: Schema.Types.ObjectId;
   event?: Schema.Types.ObjectId;
+  courseProgress?: CourseProgressSchema;
   status?: CourseBatchStatus;
 }
 
