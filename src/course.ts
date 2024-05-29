@@ -23,12 +23,14 @@ export interface Topic {
   slNo: number;
   code: string;
   name: string;
+  exams?: Schema.Types.ObjectId[];
 }
 export interface Chapter {
   slNo: number;
   code: string;
   name: string;
   topics: Topic[];
+  exams?: Schema.Types.ObjectId[];
 }
 /* export interface Subject {
   slNo: number;

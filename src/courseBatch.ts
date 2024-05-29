@@ -62,8 +62,12 @@ export enum SessionFrequency {
 interface CourseProgressSchema {
   courseId: Schema.Types.ObjectId;
   chapters: {
+    _id?: Schema.Types.ObjectId;
+
     name: string;
     topics: {
+      _id?: Schema.Types.ObjectId;
+
       name: string;
       status: CourseBatchTrackerStatus;
     }[];
@@ -105,7 +109,14 @@ export interface ICourseBatchSession extends Document {
   duration: number;
   status?: SessionStatus;
   startDateTime: Date;
+  endDateTime?: Date;
+  teacherId: Schema.Types.ObjectId;
   feedback?: Schema.Types.ObjectId[];
+  notes?: string;
+}
+
+export interface NewCourseBatchSession {
+  batchId: string;
 }
 
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>;
@@ -123,6 +134,12 @@ export interface IFeedback extends Document {
   }[];
 }
 
+export interface CourseProgressUpdateType {
+  batchId: string;
+  chapterId?: string;
+  topicId?: string;
+  status?: CourseBatchTrackerStatus;
+}
 export type NewFeedback = Omit<IFeedback, keyof Document>;
 
 /* const newFeedback: NewFeedback = {
