@@ -6,11 +6,12 @@ export enum Level {
 }
 
 export interface IExam extends Document {
+  _id: Schema.Types.ObjectId;
   title: string;
   description: string;
   /* questions: IExamQuestion[]
  isNegativeScoring: boolean */
- createdBy: Schema.Types.ObjectId;
+  createdBy: Schema.Types.ObjectId;
   level: Level;
   tags: string[];
   surveyJson: string;
@@ -24,10 +25,10 @@ export interface IExamTracker extends Document {
   questionId?: Schema.Types.ObjectId;
   instructorId: Schema.Types.ObjectId;
   isChecked?: boolean;
-  surveyData?: object;
   batchId?: Schema.Types.ObjectId;
   remarks?: string;
   score?: number;
+  surveyData?: object;
   surveyJson?: string;
   attempted?: boolean;
 }

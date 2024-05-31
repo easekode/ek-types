@@ -55,8 +55,8 @@ export interface QuestionBank extends NewQuestion, Document {
 export interface SuggestQuestionInput {
   course?: string;
   chapter?: string;
-  subject?: string;
-  topic?: string;
+  // subject?: string;
+  topics?: string;
   level?: Level;
   questionCount?: number;
 }

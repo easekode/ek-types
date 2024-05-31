@@ -6,6 +6,7 @@ import { ProjectDetail } from './projectDetail';
 import { SEOHead } from './seoHead';
 import { ToolsTechnologies } from './toolsTechnologies';
 import { WebUser } from './user';
+import { IExam } from './exam';
 export enum CourseStatus {
   DRAFT = 'DRAFT',
   PUBLISHED = 'PUBLISHED',
@@ -30,7 +31,8 @@ export interface Chapter {
   code: string;
   name: string;
   topics: Topic[];
-  exams?: Schema.Types.ObjectId[];
+  examIds?: Schema.Types.ObjectId[];
+  exams?: IExam[];
 }
 /* export interface Subject {
   slNo: number;
