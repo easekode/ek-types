@@ -31,3 +31,4 @@ export * from './feedback';
 export * from './company';
 export * from './dashboard';
 export * from './otp';
+export * from './mongodb';
