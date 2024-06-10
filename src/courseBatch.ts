@@ -3,6 +3,7 @@ import { ActiveStatus } from './common';
 import { QueryStringType } from './pagination';
 import { IUser } from './user';
 import { NewEvent } from './event';
+import { Course } from './course';
 export enum FeedbackPurpose {
   COURSE_BATCH = 'batch',
   COURSE_BATCH_SESSION = 'session',
@@ -78,7 +79,7 @@ interface CourseProgressSchema {
 export interface ICourseBatch extends Document {
   name: string;
   code: string;
-  course: Schema.Types.ObjectId;
+  courseId: Schema.Types.ObjectId;
   instructors?: Schema.Types.ObjectId[];
   currentInstructor?: Schema.Types.ObjectId;
   event?: Schema.Types.ObjectId;
@@ -113,6 +114,10 @@ export interface ICourseBatchSession extends Document {
   teacherId: Schema.Types.ObjectId;
   feedback?: Schema.Types.ObjectId[];
   notes?: string;
+}
+
+export interface ICourseBatchSessionClient extends ICourseBatch {
+  course: Course;
 }
 
 export interface NewCourseBatchSession {
