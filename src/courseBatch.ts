@@ -1,8 +1,7 @@
 import { Document, Schema } from 'mongoose';
-import { ActiveStatus } from './common';
 import { QueryStringType } from './pagination';
 import { IUser } from './user';
-import { NewEvent } from './event';
+import { IEvent, NewEvent } from './event';
 import { Course } from './course';
 export enum FeedbackPurpose {
   COURSE_BATCH = 'batch',
@@ -79,10 +78,14 @@ interface CourseProgressSchema {
 export interface ICourseBatch extends Document {
   name: string;
   code: string;
-  courseId: Schema.Types.ObjectId;
-  instructors?: Schema.Types.ObjectId[];
-  currentInstructor?: Schema.Types.ObjectId;
-  event?: Schema.Types.ObjectId;
+  courseId?: Schema.Types.ObjectId;
+  course?: Course;
+  instructorIds?: Schema.Types.ObjectId[];
+  instructors?: IUser[];
+  currentInstructorId?: Schema.Types.ObjectId;
+  currentInstructor?: IUser;
+  eventId?: Schema.Types.ObjectId;
+  event?: IEvent;
   courseProgress?: CourseProgressSchema;
   status?: CourseBatchStatus;
 }
@@ -92,14 +95,16 @@ export interface NewBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
 }
 
 export interface IStudentBatchAssociation extends Document {
-  user: Schema.Types.ObjectId;
-  batch: Schema.Types.ObjectId;
+  userId?: Schema.Types.ObjectId;
+  user?: IUser;
+  batchId?: Schema.Types.ObjectId;
+  batch?: ICourseBatch;
   status?: CourseBatchAssnStatus;
 }
 
 export interface ICourseBatchSessionAttendance {
   _id?: Schema.Types.ObjectId;
-  user: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
   session: Schema.Types.ObjectId;
 }
 

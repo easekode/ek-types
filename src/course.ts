@@ -5,7 +5,7 @@ import { Pricing } from './pricing';
 import { ProjectDetail } from './projectDetail';
 import { SEOHead } from './seoHead';
 import { ToolsTechnologies } from './toolsTechnologies';
-import { WebUser } from './user';
+import { IUser, WebUser } from './user';
 import { IExam } from './exam';
 export enum CourseStatus {
   DRAFT = 'DRAFT',
@@ -24,7 +24,8 @@ export interface Topic {
   slNo: number;
   code: string;
   name: string;
-  exams?: Schema.Types.ObjectId[];
+  examIds?: Schema.Types.ObjectId[];
+  exams?: IExam[];
 }
 export interface Chapter {
   slNo: number;
@@ -34,13 +35,6 @@ export interface Chapter {
   examIds?: Schema.Types.ObjectId[];
   exams?: IExam[];
 }
-/* export interface Subject {
-  slNo: number;
-  code: string;
-  title: string;
-  chapters: Chapter[];
-} */
-
 export interface Course {
   id?: string;
   _id?: Schema.Types.ObjectId;
@@ -56,7 +50,8 @@ export interface Course {
   chapters?: Chapter[];
   toolsAndTechnologies?: ToolsTechnologies[];
   projects?: ProjectDetail[];
-  instructors?: WebUser[];
+  instructors?: IUser[];
+  instructorIds?: Schema.Types.ObjectId[];
   banner?: Banner[];
   duration?: number;
   durationUnit?: string;
@@ -67,9 +62,6 @@ export interface Course {
   updatedAt?: Date;
 }
 
-/* export type NewSubject = Omit<Subject, 'id' | '_id' | 'chapters'> & {
-  chapters: NewChapter[];
-}; */
 export type NewCourse = Omit<Course, 'id' | '_id' | 'subjects'> & {
   chapters: NewChapter[];
 };
@@ -95,6 +87,7 @@ export interface MasterClass {
   image?: Image;
   instructors?: WebUser[];
 }
+
 export interface Schedule {
   startDate: string;
   days: string[];
