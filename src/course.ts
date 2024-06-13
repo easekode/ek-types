@@ -46,6 +46,7 @@ export interface Course {
   mediumDescription?: string;
   longDescription?: string;
   status?: CourseStatus;
+  authorId?: Schema.Types.ObjectId;
 
   chapters?: Chapter[];
   toolsAndTechnologies?: ToolsTechnologies[];
