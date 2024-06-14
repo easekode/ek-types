@@ -88,6 +88,12 @@ export interface ICourseBatch extends Document {
   event?: IEvent;
   courseProgress?: CourseProgressSchema;
   status?: CourseBatchStatus;
+  stats?: {
+    totalChapters: number;
+    completedChapters: number;
+    ratings: number;
+    completedSessions: number;
+  };
 }
 
 export interface NewBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
