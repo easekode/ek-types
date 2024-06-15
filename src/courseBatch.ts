@@ -96,7 +96,7 @@ export interface ICourseBatch extends Document {
  }
 }
 
-export interface NewBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
+export interface NewCourseBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
  event: NewEvent
 }
 

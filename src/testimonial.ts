@@ -1,6 +1,6 @@
-import { User } from './user';
+import { IUser } from './user'
 
 export interface Testimonial {
-  message?: string;
-  user?: User;
+ message?: string
+ user?: IUser
 }
