@@ -1,6 +1,6 @@
 import { Model, Schema } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
-import { ITokenResponse } from './auth'
+import { LoginResponse } from './auth'
 
 export enum Gender {
  MALE = 'MALE',
@@ -57,7 +57,7 @@ export interface IUserMethods {
  isAllowed(): boolean
  isAccBlocked(): boolean
  transform(fieldsToInclude: IUserKeys[]): TransformedUser
- generateAuthToken(): ITokenResponse
+ generateAuthToken(): LoginResponse
  hasRole(role: string): boolean
  hasScope(scope: string): boolean
  isEmailTaken(email: string): Promise<boolean>

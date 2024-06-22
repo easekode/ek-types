@@ -1,6 +1,6 @@
 import { TransformedUser } from './user'
 
-export interface ITokenResponse {
+export interface LoginResponse {
  type: string // Typically "Bearer" for JWT
  accessToken: string
  expiresIn: number | string // Expiration time in seconds
@@ -13,11 +13,6 @@ export interface ILoginWithCredInput {
  email: string
  password: string
  deviceToken?: string
-}
-
-export interface ILoginResult {
- user: unknown
- token: ITokenResponse
 }
 
 export interface IRegisterInput {
