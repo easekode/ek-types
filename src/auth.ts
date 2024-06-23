@@ -9,13 +9,13 @@ export interface LoginResponse {
  profile?: TransformedUser // Optional user profile
 }
 
-export interface ILoginWithCredInput {
+export interface LoginBody {
  email: string
  password: string
  deviceToken?: string
 }
 
-export interface IRegisterInput {
+export interface RegisterBody {
  email: string
  password: string
  mobile?: string
