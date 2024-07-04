@@ -1,30 +1,35 @@
-import { Date, Schema, Types } from 'mongoose';
+import { Date, Schema, Types } from 'mongoose'
+import { IUser } from './user'
+import { Course } from './course'
 
 export enum EnrollmentStatus {
-  ENROLLED = 'ENROLLED',
-  NOT_ENROLLED = 'NOT_ENROLLED',
-  PENDING = 'PENDING',
-  CANCELED = 'CANCELED',
+ ENROLLED = 'ENROLLED',
+ NOT_ENROLLED = 'NOT_ENROLLED',
+ PENDING = 'PENDING',
+ CANCELED = 'CANCELED'
 }
 
 export interface IEnrollment extends Document {
-  student: Schema.Types.ObjectId;
-  course: Schema.Types.ObjectId;
-  enrollmentDate: Date;
-  status?: EnrollmentStatus;
+ studentId: Schema.Types.ObjectId
+ student?: IUser
+ courseId: Schema.Types.ObjectId
+ course?: Course
+ enrollmentDate: Date
+ status?: EnrollmentStatus
 }
 
 export interface NewEnrollment {
-  student?: Schema.Types.ObjectId;
-  course: Schema.Types.ObjectId;
-  enrollmentDate: Date;
+ studentId: Schema.Types.ObjectId
+ courseId: Schema.Types.ObjectId
+ batchId?: Schema.Types.ObjectId
+ enrollmentDate: Date
 }
 
 export interface BulkEnrollmentRow {
-  studentCode?: string;
-  studentName?: string;
-  studentEmail?: string;
-  courseCode: string;
-  enrollmentDate: Date;
-  enrollmentStatus: EnrollmentStatus;
+ studentCode?: string
+ studentName?: string
+ studentEmail?: string
+ courseCode: string
+ enrollmentDate: Date
+ enrollmentStatus: EnrollmentStatus
 }

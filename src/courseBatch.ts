@@ -125,6 +125,7 @@ export interface ICourseBatchSession extends Document {
  teacherId: Schema.Types.ObjectId
  feedback?: Schema.Types.ObjectId[]
  notes?: string
+ meetingLink?: string
 }
 
 export interface ICourseBatchSessionClient extends ICourseBatch {

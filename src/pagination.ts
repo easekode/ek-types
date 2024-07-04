@@ -1,5 +1,5 @@
 export interface FilterType {
-  [key: string]: string[] | number[];
+ [key: string]: string[] | number[]
 }
 
 /*
@@ -11,35 +11,35 @@ q: show me interface for the above filters string
 
 */
 export interface QueryStringType {
-  page?: number;
-  limit?: number;
-  keyword?: string;
-  sortField?: string;
-  sortDir?: number; // 1 or -1
-  filters?: string;
-  fromDate?: string;
-  toDate?: string;
-  id?: string;
+ page?: number
+ limit?: number
+ keyword?: string
+ sortField?: string
+ sortDir?: number // 1 or -1
+ filters?: string
+ fromDate?: string
+ toDate?: string
+ id?: string
 }
 export interface IGetPaginationParamsResult {
-  page: number;
-  limit: number;
-  keyword: string;
-  skip: number;
-  sort: { [key: string]: number };
-  filters: unknown[];
+ page: number
+ limit: number
+ keyword: string
+ skip: number
+ sort: { [key: string]: number }
+ filters: unknown[]
 }
 
 export interface IGetPaginationParams {
-  page?: number;
-  limit?: number;
-  keyword?: string;
-  sortField?: string;
-  sortDir?: number;
-  filters?: string;
+ page?: number
+ limit?: number
+ keyword?: string
+ sortField?: string
+ sortDir?: number
+ filters?: string
 }
 
 export interface PaginatedResult<T> {
-  data: T[];
-  total: number;
+ data: T[]
+ totalResult: number
 }

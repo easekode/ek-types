@@ -7,6 +7,7 @@ import { SEOHead } from './seoHead'
 import { ToolsTechnologies } from './toolsTechnologies'
 import { IUser } from './user'
 import { IExam } from './exam'
+import { Category } from './category'
 export enum CourseStatus {
  DRAFT = 'DRAFT',
  PUBLISHED = 'PUBLISHED',
@@ -41,12 +42,17 @@ export interface Course {
  slNo: number
  code: string
  title: string
+ bannerImage?: Image
+ coverImage?: Image
  images?: Image[]
- shortDescription?: string
+ description?: string
  mediumDescription?: string
  longDescription?: string
  status?: CourseStatus
  authorId?: Schema.Types.ObjectId
+
+ categoryId?: Schema.Types.ObjectId
+ category?: Category
 
  chapters?: Chapter[]
  toolsAndTechnologies?: ToolsTechnologies[]
