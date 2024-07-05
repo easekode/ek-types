@@ -118,11 +118,13 @@ export interface ICourseBatchSession extends Document {
  slNo?: number
  name: string
  batchId: Schema.Types.ObjectId
+ batch?: ICourseBatch
  duration: number
  status?: SessionStatus
  startDateTime: Date
  endDateTime?: Date
  teacherId: Schema.Types.ObjectId
+ teacher?: IUser
  feedback?: Schema.Types.ObjectId[]
  notes?: string
  meetingLink?: string
