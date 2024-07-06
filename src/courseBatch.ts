@@ -108,10 +108,25 @@ export interface IStudentBatchAssociation extends Document {
  status?: CourseBatchAssnStatus
 }
 
+export enum SessionAttendanceStatus {
+ PRESENT = 'PRESENT',
+ ABSENT = 'ABSENT',
+ LATE = 'LATE',
+ NOT_APPLICABLE = 'NOT_APPLICABLE'
+}
+
 export interface ICourseBatchSessionAttendance {
  _id?: Schema.Types.ObjectId
  userId: Schema.Types.ObjectId
+ user?: IUser
  sessionId: Schema.Types.ObjectId
+ session?: ICourseBatchSession
+ status: SessionAttendanceStatus
+}
+
+export interface NewAttendance {
+ sessionId: Schema.Types.ObjectId
+ status: SessionAttendanceStatus
 }
 
 export interface ICourseBatchSession extends Document {

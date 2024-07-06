@@ -22,8 +22,18 @@ interface Leaderboard {
  user: IUser
  score: number
 }
+
+export interface AttendanceStat {
+ present: number
+ absent: number
+}
 export interface StudentDashboardResponse {
  score: number
+ attendance: AttendanceStat
+ exam: {
+  totalExams: number
+  totalExamsCompleted: number
+ }
  scoreTimeline: ScoreTimeline[]
  sessions: ICourseBatchSession[]
  exams: IExamTracker[]
