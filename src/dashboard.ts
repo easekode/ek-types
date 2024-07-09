@@ -1,8 +1,8 @@
 import { ICourseBatchSession, NewCourseBatchSession } from './courseBatch'
-import { IExam, IExamTracker } from './exam'
+import { IExamTracker } from './exam'
 import { IUser } from './user'
 
-export interface TeacherDashboardResponse {
+export interface TeacherDashboardData {
  totalCourses: number
  totalBatches: number
  totalStudents: number
@@ -11,6 +11,9 @@ export interface TeacherDashboardResponse {
  totalRatings: number
  recentlyJoinedStudents: any[]
  recentBatches: any[]
+}
+export interface TeacherDashboardResponse {
+ data: TeacherDashboardData
 }
 
 interface ScoreTimeline {
@@ -28,6 +31,10 @@ export interface AttendanceStat {
  absent: number
 }
 export interface StudentDashboardResponse {
+ data: StudentDashboardData
+}
+
+export interface StudentDashboardData {
  score: number
  attendance: AttendanceStat
  exam: {
