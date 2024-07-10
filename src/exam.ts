@@ -21,6 +21,12 @@ export interface IExam extends Document {
 
 export type NewExam = Omit<IExam, keyof Document | 'createdBy'>
 
+export enum ExamTrackerStatus {
+ NOT_STARTED = 'NOT_STARTED',
+ SKIPPED = 'SKIPPED',
+ STARTED = 'STARTED'
+}
+
 export interface IExamTracker extends Document {
  examId: Schema.Types.ObjectId
  exam?: IExam
@@ -35,7 +41,7 @@ export interface IExamTracker extends Document {
  score?: number
  surveyData?: object
  surveyJson?: string
- attempted?: boolean
+ status?: ExamTrackerStatus
 }
 
 export interface NewExamTrackersInput {
