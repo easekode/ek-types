@@ -23,8 +23,9 @@ export type NewExam = Omit<IExam, keyof Document | 'createdBy'>
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',
- SKIPPED = 'SKIPPED',
- STARTED = 'STARTED'
+ CANCELLED = 'CANCELLED',
+ IN_PROGRESS = 'IN_PROGRESS',
+ COMPLETED = 'COMPLETED'
 }
 
 export interface IExamTracker extends Document {

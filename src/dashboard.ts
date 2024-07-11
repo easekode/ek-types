@@ -16,12 +16,12 @@ export interface TeacherDashboardResponse {
  data: TeacherDashboardData
 }
 
-interface ScoreTimeline {
+export interface ScoreTimeline {
  score: number
  date: Date
 }
 
-interface Leaderboard {
+export interface Leaderboard {
  user: IUser
  score: number
 }
