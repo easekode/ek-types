@@ -51,9 +51,3 @@ export interface ApiResponse<T> {
  error: unknown
  errors: unknown
 }
-
-export interface ResponseInput<T> {
- status?: number
- message?: string
- data?: T
-}
