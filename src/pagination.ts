@@ -43,3 +43,17 @@ export interface PaginatedResult<T> {
  data: T[]
  totalResult: number
 }
+
+export interface ApiResponse<T> {
+ success: boolean
+ message: string
+ data: T
+ error: unknown
+ errors: unknown
+}
+
+export interface ResponseInput<T> {
+ status?: number
+ message?: string
+ data?: T
+}
