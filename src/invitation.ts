@@ -16,7 +16,12 @@ export enum InvitationPurpose {
  BATCH = 'BATCH'
 }
 
+export interface StudentAcceptRejectInvitationBody {
+ code: string
+ status: InvitationStatus
+}
 export interface IInvitation {
+ _id?: Schema.Types.ObjectId
  courseId?: Schema.Types.ObjectId
  batchId?: Schema.Types.ObjectId
  userId?: Schema.Types.ObjectId
