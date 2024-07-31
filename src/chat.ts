@@ -20,3 +20,27 @@ export interface IChatMessage {
  groupId?: Schema.Types.ObjectId
  readByUsers?: Schema.Types.ObjectId[]
 }
+
+export enum GroupActionTypes {
+ JOIN = 'JOIN',
+ LEAVE = 'LEAVE',
+ INVITE = 'INVITE',
+ REMOVE_MEMBER = 'REMOVE_MEMBER'
+}
+
+export enum GroupMemberRole {
+ ADMIN = 'ADMIN',
+ MEMBER = 'MEMBER'
+}
+export interface GroupMember {
+ userId: Schema.Types.ObjectId
+ role: GroupMemberRole
+ joinedAt: Date
+}
+
+export interface IGroup {
+ groupId: Schema.Types.ObjectId
+ groupName: string
+ description: string
+ members: GroupMember[]
+}
