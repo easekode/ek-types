@@ -34,7 +34,7 @@ export interface Chapter {
  name: string
  topics: Topic[]
  examIds?: Schema.Types.ObjectId[]
- exams?: IExam[]
+ exams?: IExam[] // Assessment ===
 }
 export interface Course {
  id?: string

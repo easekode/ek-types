@@ -1,8 +1,9 @@
 import { Document, Schema } from 'mongoose'
-import { QueryStringType } from './pagination'
+import { PaginatedResult, QueryStringType } from './pagination'
 import { IUser } from './user'
 import { IEvent, NewEvent } from './event'
 import { Course } from './course'
+import { IInvitation } from './invitation'
 export enum FeedbackPurpose {
  COURSE_BATCH = 'batch',
  COURSE_BATCH_SESSION = 'session',
@@ -145,6 +146,11 @@ export interface ICourseBatchSession extends Document {
  meetingLink?: string
 }
 
+export interface TeacherCourseBatchResponse {
+ batch: ICourseBatch
+ pendingInvites: IInvitation[]
+ members: PaginatedResult<IUser>
+}
 export interface ICourseBatchSessionClient extends ICourseBatch {
  course: Course
 }
