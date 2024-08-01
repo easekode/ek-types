@@ -149,7 +149,7 @@ export interface ICourseBatchSession extends Document {
 export interface TeacherCourseBatchResponse {
  batch: ICourseBatch
  pendingInvites: IInvitation[]
- members: PaginatedResult<IUser>
+ members: PaginatedResult<any>
 }
 export interface ICourseBatchSessionClient extends ICourseBatch {
  course: Course
