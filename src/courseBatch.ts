@@ -174,12 +174,6 @@ export interface IFeedback extends Document {
  }[]
 }
 
-export interface CourseProgressUpdateType {
- batchId: string
- chapterId?: string
- topicId?: string
- status?: CourseBatchTrackerStatus
-}
 export type NewFeedback = Omit<IFeedback, keyof Document>
 
 /* const newFeedback: NewFeedback = {
@@ -263,4 +257,18 @@ export interface UpdateCourseBatchTrackerInput {
  chapterName: string
  topicName: string
  completed: boolean
+}
+
+export interface CourseProgressUpdateType {
+ batchId: string
+ status: CourseBatchTrackerStatus
+ chaptersCovered?: {
+  chapterId: string
+  topicIds: string[]
+ }[]
+}
+
+export interface EndSessionBody {
+ sessionId: string
+ progress: CourseProgressUpdateType
 }
