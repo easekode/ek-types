@@ -1,6 +1,7 @@
 import { Model, Schema } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
+import { RoleNames } from './roles'
 
 export enum Gender {
  MALE = 'MALE',
@@ -81,4 +82,12 @@ export type IUserAndMethods = IUser & IUserMethods
 export interface IUserModel extends Model<IUser, object, IUserMethods> {
  isEmailTaken(email: string): Promise<boolean>
  isMobileTaken(mobile: string): Promise<boolean>
+}
+
+export interface CreateUserBody {
+ email: string
+ mobile?: string
+ password: string
+ name: string
+ roleId: string
 }
