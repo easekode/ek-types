@@ -1,5 +1,6 @@
 import type { Schema } from 'mongoose'
 import { IUser } from './user'
+import { FileType } from './common'
 
 export enum MessageTypes {
  TEXT = 'TEXT',
@@ -8,10 +9,11 @@ export enum MessageTypes {
  IMAGE = 'IMAGE',
  DOCUMENT = 'DOCUMENT'
 }
+
 export interface IChatMessage {
  senderId?: Schema.Types.ObjectId
  sender?: IUser
- receiverId?: Schema.Types.ObjectId
+ receiverId?: Schema.Types.ObjectId | string
  receiver?: IUser
  body: string
  conversationId?: Schema.Types.ObjectId
@@ -19,6 +21,9 @@ export interface IChatMessage {
  messageType: MessageTypes
  groupId?: Schema.Types.ObjectId
  readByUsers?: Schema.Types.ObjectId[]
+ file?: FileType
+ createdAt?: Date
+ updatedAt?: Date
 }
 
 export enum GroupActionTypes {
