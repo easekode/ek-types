@@ -262,7 +262,7 @@ export interface UpdateCourseBatchTrackerInput {
 }
 
 export interface CourseProgressUpdateType {
- // batchId: string;
+ batchId: string
  status: CourseBatchTrackerStatus
  chaptersCovered?: {
   chapterId: string
