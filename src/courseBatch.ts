@@ -273,4 +273,5 @@ export interface CourseProgressUpdateType {
 export interface EndSessionBody {
  sessionId: string
  progress: CourseProgressUpdateType
+ notes: string
 }
