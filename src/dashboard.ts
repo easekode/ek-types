@@ -1,5 +1,6 @@
-import { ICourseBatchSession, NewCourseBatchSession } from './courseBatch'
+import { ICourseBatch, ICourseBatchSession, NewCourseBatchSession } from './courseBatch'
 import { IExamTracker } from './exam'
+import { PaginatedResult } from './pagination'
 import { IUser } from './user'
 
 export interface TeacherDashboardData {
@@ -45,4 +46,10 @@ export interface StudentDashboardData {
  sessions: ICourseBatchSession[]
  exams: IExamTracker[]
  leaderboard: Leaderboard[]
+}
+
+export interface StudentDashbaordResponse {
+ members: PaginatedResult<IUser>
+ sessions: PaginatedResult<ICourseBatchSession>
+ batch: ICourseBatch
 }
