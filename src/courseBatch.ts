@@ -163,9 +163,12 @@ export interface NewCourseBatchSession {
 
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>
 export interface IFeedback extends Document {
- user: Schema.Types.ObjectId
+ user?: IUser
+ userId?: Schema.Types.ObjectId
  batchId?: Schema.Types.ObjectId
+ batch?: ICourseBatch
  sessionId?: Schema.Types.ObjectId
+ session?: ICourseBatchSession
  purpose: FeedbackPurpose
  comment?: string
  rating?: number

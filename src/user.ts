@@ -75,6 +75,7 @@ export interface IUser extends ICommonFields, IPersonalInfo, IEnrollmentDetails,
  password?: string
  scopes?: string[]
  isProfileComplete?: boolean
+ deviceToken?: string[]
 }
 
 export type IUserAndMethods = IUser & IUserMethods
