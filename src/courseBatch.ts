@@ -173,7 +173,8 @@ export interface IFeedback extends Document {
  comment?: string
  rating?: number
  feedbackByTopics?: {
-  topic: Schema.Types.ObjectId
+  topicId: Schema.Types.ObjectId
+  topic?: string
   rating?: number
   isChecked?: boolean
  }[]
