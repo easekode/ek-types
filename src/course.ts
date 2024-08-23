@@ -100,3 +100,8 @@ export interface Schedule {
  days: string[]
  timings: string[]
 }
+
+export interface SuggestCourseInput {
+ title: string
+ description: string
+}
