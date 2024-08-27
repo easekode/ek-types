@@ -177,6 +177,7 @@ export interface IFeedback extends Document {
   topic?: string
   rating?: number
   isChecked?: boolean
+  comment?: string
  }[]
 }
 
