@@ -2,6 +2,7 @@ import { Model, Schema } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
 import { RoleNames } from './roles'
+import { Course } from './course'
 
 export enum Gender {
  MALE = 'MALE',
@@ -58,14 +59,31 @@ export interface IUserMethods {
  isAllowed(): boolean
  isAccBlocked(): boolean
  transform(fieldsToInclude: IUserKeys[]): TransformedUser
- generateAuthToken(): LoginResponse
+ getLoginResponse(): LoginResponse
  hasRole(role: string): boolean
  hasScope(scope: string): boolean
  isEmailTaken(email: string): Promise<boolean>
  isMobileTaken(mobile: string): Promise<boolean>
 }
 
-export interface IUser extends ICommonFields, IPersonalInfo, IEnrollmentDetails, StudentDetails {
+export interface Certificate {
+ name: string
+ url: string
+ issuedBy: string
+ issuedOn: Date
+ expiresOn: Date
+ certificateId: string
+}
+export interface Certificates {
+ certificate?: Certificate[]
+}
+
+export interface IUser
+ extends ICommonFields,
+  IPersonalInfo,
+  IEnrollmentDetails,
+  StudentDetails,
+  Certificates {
  _id?: Schema.Types.ObjectId
  roles?: Schema.Types.ObjectId[] | string[]
  isAdmin?: boolean
@@ -91,4 +109,8 @@ export interface CreateUserBody {
  password: string
  name: string
  roleId: string
+}
+
+export interface CompleteProfile extends IUser {
+ enrolledCourses: Course[]
 }
