@@ -3,6 +3,9 @@ import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
 import { RoleNames } from './roles'
 import { Course } from './course'
+import { IEnrollment } from './enrollment'
+import { ICourseBatch } from './courseBatch'
+import { Certificate } from './certificate'
 
 export enum Gender {
  MALE = 'MALE',
@@ -21,13 +24,6 @@ export interface IAddress {
  location?: {
   type: string
   coordinates: number[]
- }
-}
-
-export interface IEnrollmentDetails {
- enrollment?: {
-  enrollId: string
-  date: Date
  }
 }
 
@@ -66,24 +62,7 @@ export interface IUserMethods {
  isMobileTaken(mobile: string): Promise<boolean>
 }
 
-export interface Certificate {
- name: string
- url: string
- issuedBy: string
- issuedOn: Date
- expiresOn: Date
- certificateId: string
-}
-export interface Certificates {
- certificate?: Certificate[]
-}
-
-export interface IUser
- extends ICommonFields,
-  IPersonalInfo,
-  IEnrollmentDetails,
-  StudentDetails,
-  Certificates {
+export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails {
  _id?: Schema.Types.ObjectId
  roles?: Schema.Types.ObjectId[] | string[]
  isAdmin?: boolean
@@ -111,6 +90,8 @@ export interface CreateUserBody {
  roleId: string
 }
 
-export interface CompleteProfile extends IUser {
- enrolledCourses: Course[]
+export interface CompleteProfile {
+ profile: IUser
+ enrollments?: IEnrollment[]
+ certificates?: Certificate[]
 }
