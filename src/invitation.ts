@@ -1,4 +1,7 @@
 import { Schema } from 'mongoose'
+import { Course } from './course'
+import { ICourseBatch } from './courseBatch'
+import { IUser } from './user'
 
 export enum InvitationStatus {
  PENDING = 'pending',
@@ -23,8 +26,11 @@ export interface StudentAcceptRejectInvitationBody {
 export interface IInvitation {
  _id?: Schema.Types.ObjectId
  courseId?: Schema.Types.ObjectId
+ course?: Course
  batchId?: Schema.Types.ObjectId
+ batch?: ICourseBatch
  userId?: Schema.Types.ObjectId
+ user?: IUser
  email?: string
  code?: string
  purpose?: InvitationPurpose
