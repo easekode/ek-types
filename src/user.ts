@@ -6,6 +6,7 @@ import { Course } from './course'
 import { IEnrollment } from './enrollment'
 import { ICourseBatch } from './courseBatch'
 import { Certificate } from './certificate'
+import { PaginatedResult } from './pagination'
 
 export enum Gender {
  MALE = 'MALE',
@@ -92,6 +93,6 @@ export interface CreateUserBody {
 
 export interface CompleteProfile {
  profile: IUser
- enrollments?: IEnrollment[]
- certificates?: Certificate[]
+ enrollments?: PaginatedResult<IEnrollment>
+ certificates?: PaginatedResult<Certificate>
 }
