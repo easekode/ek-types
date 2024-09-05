@@ -51,3 +51,8 @@ export interface ApiResponse<T> {
  error: unknown
  errors: unknown
 }
+
+export const defaultPaginationParams: IGetPaginationParams = {
+ page: 1,
+ limit: 10
+}
