@@ -97,6 +97,7 @@ export interface ICourseBatch extends Document {
   ratings: number
   completedSessions: number
  }
+ totalStudents?: number
 }
 
 export interface NewCourseBatch extends Omit<ICourseBatch, keyof Document | 'event'> {
