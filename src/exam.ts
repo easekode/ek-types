@@ -8,7 +8,7 @@ export enum Level {
 }
 
 export interface IExam extends Document {
- _id: Schema.Types.ObjectId
+ _id?: Schema.Types.ObjectId
  title: string
  description: string
  /* questions: IExamQuestion[]
