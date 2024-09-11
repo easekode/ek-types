@@ -22,7 +22,7 @@ export interface NewEnrollment {
  studentId: Schema.Types.ObjectId
  courseId: Schema.Types.ObjectId
  batchId?: Schema.Types.ObjectId
- enrollmentDate: Date
+ enrollmentDate?: Date
 }
 
 export interface BulkEnrollmentRow {
