@@ -74,6 +74,8 @@ export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails {
  scopes?: string[]
  isProfileComplete?: boolean
  deviceToken?: string[]
+ createdAt?: Date
+ updatedAt?: Date
 }
 
 export type IUserAndMethods = IUser & IUserMethods
