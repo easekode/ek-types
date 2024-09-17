@@ -13,8 +13,8 @@ export interface IExam extends Document {
  description: string
  /* questions: IExamQuestion[]
  isNegativeScoring: boolean */
- createdBy: Schema.Types.ObjectId
- level: Level
+ createdById?: Schema.Types.ObjectId
+ level?: Level
  tags: string[]
  surveyJson: string
 }
