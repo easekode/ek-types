@@ -14,12 +14,13 @@ export interface IExam extends Document {
  /* questions: IExamQuestion[]
  isNegativeScoring: boolean */
  createdById?: Schema.Types.ObjectId
+ createdBy?: IUser
  level?: Level
  tags: string[]
  surveyJson: string
 }
 
-export type NewExam = Omit<IExam, keyof Document | 'createdBy'>
+export type NewExam = Omit<IExam, keyof Document | 'createdById'> & { title: string }
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',
