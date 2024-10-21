@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Level } from './exam';
+import { ExamType, Level } from './exam';
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'multiple_choice',
@@ -13,10 +13,6 @@ export enum QuestionType {
   MULTIPLE_RESPONSE = 'multiple_response',
   SCENARIO_BASED = 'scenario_based',
   IMAGE_BASED = 'image_based',
-}
-export enum ExamType {
-  EXAM = 'Exam',
-  QUIZ = 'Quiz',
 }
 
 /* export interface NewQuestion {
