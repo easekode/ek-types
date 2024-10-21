@@ -26,7 +26,9 @@ export interface IExam extends Document {
  type: ExamType
 }
 
-export type NewExam = Omit<IExam, keyof Document | 'createdById'> & { title: string }
+export type NewExam = Omit<IExam, keyof Document | 'createdById'> & {
+ title: string
+}
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',
