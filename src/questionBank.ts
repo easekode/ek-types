@@ -14,7 +14,7 @@ export enum QuestionType {
   SCENARIO_BASED = 'scenario_based',
   IMAGE_BASED = 'image_based',
 }
-export enum SuggestionType {
+export enum ExamType {
   EXAM = 'Exam',
   QUIZ = 'Quiz',
 }
@@ -63,7 +63,7 @@ export interface SuggestQuestionInput {
   topics?: string;
   level?: Level;
   questionCount?: number;
-  type?: SuggestionType;
+  type?: ExamType;
 }
 
 /* export interface NewExam {
