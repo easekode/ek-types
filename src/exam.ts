@@ -7,6 +7,11 @@ export enum Level {
  HARD = 'HARD'
 }
 
+export enum ExamType {
+ EXAM = 'EXAM',
+ QUIZ = 'QUIZ'
+}
+
 export interface IExam extends Document {
  _id?: Schema.Types.ObjectId
  title: string
@@ -18,6 +23,7 @@ export interface IExam extends Document {
  level?: Level
  tags: string[]
  surveyJson: string
+ type: ExamType
 }
 
 export type NewExam = Omit<IExam, keyof Document | 'createdById'> & { title: string }
