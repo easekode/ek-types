@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose'
 import { IUser } from './user'
-import { ICourseBatch } from './courseBatch'
+import { ICourseBatch, ICourseBatchSession } from './courseBatch'
 export enum Level {
  EASY = 'EASY',
  MEDIUM = 'MEDIUM',
@@ -8,8 +8,8 @@ export enum Level {
 }
 
 export enum ExamType {
- EXAM = 'EXAM',
- QUIZ = 'QUIZ'
+ EXAM = 'Exam',
+ QUIZ = 'Quiz'
 }
 
 export interface IExam extends Document {
@@ -48,6 +48,8 @@ export interface IExamTracker extends Document {
  isChecked?: boolean
  batchId?: Schema.Types.ObjectId
  batch?: ICourseBatch
+ sessionId?: Schema.Types.ObjectId
+ session?: ICourseBatchSession
  remarks?: string
  score?: number
  surveyData?: object
@@ -68,3 +70,8 @@ export interface NewAnswerInput {
 }
 
 export type NewExamTracker = Omit<IExamTracker, keyof Document>
+
+export type ExistingQuiz = {
+ quiz: IExam
+ isShared?: boolean
+}
