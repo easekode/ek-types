@@ -55,6 +55,7 @@ export interface IExamTracker extends Document {
  surveyData?: object
  surveyJson?: string
  status?: ExamTrackerStatus
+ examCode?: string
 }
 
 export interface NewExamTrackersInput {
