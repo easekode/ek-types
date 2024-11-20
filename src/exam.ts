@@ -1,6 +1,7 @@
 import { Schema } from 'mongoose'
 import { IUser } from './user'
 import { ICourseBatch, ICourseBatchSession } from './courseBatch'
+import { Course } from './course'
 export enum Level {
  EASY = 'EASY',
  MEDIUM = 'MEDIUM',
@@ -16,6 +17,8 @@ export interface IExam extends Document {
  _id?: Schema.Types.ObjectId
  title: string
  description: string
+ courseId?: Schema.Types.ObjectId
+ course?: Course
  /* questions: IExamQuestion[]
  isNegativeScoring: boolean */
  createdById?: Schema.Types.ObjectId

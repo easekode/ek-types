@@ -52,6 +52,11 @@ export enum CourseBatchTrackerStatus {
  COMPLETED = 'COMPLETED'
 }
 
+export enum ExamShareStatus {
+ NOT_SHARED = 'NOT_SHARED',
+ SHARED = 'SHARED'
+}
+
 export enum SessionFrequency {
  DAILY = 'DAILY',
  WEEKLY = 'WEEKLY',
