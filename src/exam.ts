@@ -79,3 +79,9 @@ export type ExistingQuiz = {
  quiz: IExam
  isShared?: boolean
 }
+
+export interface UpdateExamStatusInput {
+ batchId: string
+ examId: string
+ status: string
+}

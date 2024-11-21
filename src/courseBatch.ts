@@ -4,6 +4,7 @@ import { IUser } from './user'
 import { IEvent, NewEvent } from './event'
 import { Course } from './course'
 import { IInvitation } from './invitation'
+import { IExam } from './exam'
 export enum FeedbackPurpose {
  COURSE_BATCH = 'batch',
  COURSE_BATCH_SESSION = 'session',
@@ -76,6 +77,11 @@ export interface ChapterProgress {
  name: string
  topics: TopicProgress[]
  status: CourseBatchTrackerStatus
+ examIdStatus: {
+  examId: Schema.Types.ObjectId
+  exam?: IExam
+  status: ExamShareStatus
+ }[]
 }
 
 export interface CourseProgressSchema {
