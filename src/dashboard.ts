@@ -53,3 +53,11 @@ export interface StudentDashbaordResponse {
  sessions: PaginatedResult<ICourseBatchSession>
  batch: ICourseBatch
 }
+
+export interface AdminDashboardData {
+ totalCourses: number
+ totalBatches: number
+ totalStudents: number
+ totalTeachers: number
+ totalEarnings: number
+}
