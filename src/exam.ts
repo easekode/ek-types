@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose'
 import { IUser } from './user'
-import { ICourseBatch, ICourseBatchSession } from './courseBatch'
+import { ExamShareStatus, ICourseBatch, ICourseBatchSession } from './courseBatch'
 import { Course } from './course'
 export enum Level {
  EASY = 'EASY',
@@ -77,7 +77,7 @@ export type NewExamTracker = Omit<IExamTracker, keyof Document>
 
 export type ExistingQuiz = {
  quiz: IExam
- isShared?: boolean
+ shared?: ExamShareStatus
 }
 
 export interface UpdateExamStatusInput {
