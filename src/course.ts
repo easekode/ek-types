@@ -42,8 +42,8 @@ export interface Course {
  slNo: number
  code: string
  title: string
- bannerImage?: Image
- coverImage?: Image
+ cardImage?: Image
+ heroImage?: Image
  images?: Image[]
  description?: string
  mediumDescription?: string
