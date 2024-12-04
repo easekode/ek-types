@@ -175,26 +175,6 @@ export interface NewCourseBatchSession {
 }
 
 export type CourseBatchSessionType = Omit<ICourseBatchSession, keyof Document>
-export interface IFeedback extends Document {
- user?: IUser
- userId?: Schema.Types.ObjectId
- batchId?: Schema.Types.ObjectId
- batch?: ICourseBatch
- sessionId?: Schema.Types.ObjectId
- session?: ICourseBatchSession
- purpose: FeedbackPurpose
- comment?: string
- rating?: number
- feedbackByTopics?: {
-  topicId: Schema.Types.ObjectId
-  topic?: string
-  rating?: number
-  isChecked?: boolean
-  comment?: string
- }[]
-}
-
-export type NewFeedback = Omit<IFeedback, keyof Document>
 
 /* const newFeedback: NewFeedback = {
  
