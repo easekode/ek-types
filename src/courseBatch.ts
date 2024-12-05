@@ -157,6 +157,7 @@ export interface ICourseBatchSession extends Document {
  teacherId: Schema.Types.ObjectId
  teacher?: IUser
  feedback?: Schema.Types.ObjectId[]
+ averageRating?: number
  notes?: string
  meetingLink?: string
 }
