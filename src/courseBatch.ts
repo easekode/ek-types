@@ -90,7 +90,7 @@ export interface CourseProgressSchema {
  status: CourseBatchTrackerStatus
 }
 export interface ICourseBatch extends Document {
- _id?: Schema.Types.ObjectId
+ //  _id?: Schema.Types.ObjectId
  name: string
  code: string
  courseId?: Schema.Types.ObjectId
