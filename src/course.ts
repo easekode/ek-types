@@ -23,14 +23,14 @@ export enum DurationUnit {
 
 export interface Topic {
  slNo: number
- //  code: string
+ code?: string
  name: string
  examIds?: Schema.Types.ObjectId[]
  exams?: IExam[]
 }
 export interface Chapter {
  slNo: number
- //  code: string
+ code?: string
  name: string
  topics: Topic[]
  examIds?: Schema.Types.ObjectId[]
