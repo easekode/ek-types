@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, Document } from 'mongoose'
 import { IUser } from './user'
 import { FeedbackPurpose, ICourseBatch, ICourseBatchSession } from './courseBatch'
 
