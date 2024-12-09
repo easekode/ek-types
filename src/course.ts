@@ -69,15 +69,7 @@ export interface Course {
  updatedAt?: Date
 }
 
-export type NewCourse = Omit<Course, 'id' | '_id' | 'subjects'> & {
- chapters: NewChapter[]
-}
-
-export type NewChapter = Omit<Chapter, 'id' | '_id' | 'topics'> & {
- topics: NewTopic[]
-}
-
-export type NewTopic = Omit<Topic, 'id' | '_id'>
+export type NewCourse = Partial<Course>
 
 export interface MasterClass {
  id?: string
@@ -105,3 +97,61 @@ export interface SuggestCourseInput {
  title: string
  description: string
 }
+
+export interface CourseDetailsGenInput {
+ title: string
+ description: string
+}
+
+export interface ChaptersAndTopicsGenInput {
+ title: string
+ description: string
+}
+
+export interface AdditionalChaptersGenInput {
+ course: NewCourse
+ //  existingChapters: Chapter[]
+}
+
+export interface TopicsGenInput {
+ course: NewCourse
+ chapter: NewChapter
+}
+export interface AdditionalTopicsGenInput {
+ course: NewCourse
+ chapter: NewChapter
+}
+
+export type SuggestCourseGenType =
+ | CourseDetailsGenInput
+ | ChaptersAndTopicsGenInput
+ | AdditionalChaptersGenInput
+ | TopicsGenInput
+ | AdditionalTopicsGenInput
+
+export type ContentGenType =
+ | 'course'
+ | 'chapters'
+ | 'additionalChapters'
+ | 'topics'
+ | 'additionalTopics'
+ | 'courseDescription'
+
+export type NewChapter = Partial<Chapter>
+export type NewTopic = Partial<Topic>
+
+export type AdditionalChapters = NewChapter[]
+export type AdditionalTopics = NewTopic[]
+
+export interface CourseContentGenInput {
+ payload: SuggestCourseGenType
+ operation: ContentGenType
+}
+
+type DummyString = string
+export type GenerateCourseResult = Partial<
+ Record<
+  ContentGenType,
+  NewChapter | NewTopic | NewCourse | AdditionalChapters | AdditionalTopics | DummyString
+ >
+>
