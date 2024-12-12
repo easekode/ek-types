@@ -20,7 +20,6 @@ export enum FeedbackType {
 }
 
 export interface IFeedback extends Document {
- _id?: Schema.Types.ObjectId
  userId?: Schema.Types.ObjectId
  user?: IUser
  batchId?: Schema.Types.ObjectId
