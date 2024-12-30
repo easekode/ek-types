@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, Types } from 'mongoose'
 import { Course } from './course'
 import { IUser, IUserModel } from './user'
 
@@ -17,10 +17,10 @@ export enum CertificateStatus {
  REVOKED = 'REVOKED'
 }
 export interface Certificate {
- _id?: Schema.Types.ObjectId // Unique identifier for the certificate
- learnerId: Schema.Types.ObjectId // ID of the learner
+ _id?: Types.ObjectId // Unique identifier for the certificate
+ learnerId: Types.ObjectId // ID of the learner
  learner?: IUser
- courseId: Schema.Types.ObjectId // ID of the course
+ courseId: Types.ObjectId // ID of the course
  course?: Course
  courseTitle: string // Title of the course
  completionDate: Date // Date when the course was completed

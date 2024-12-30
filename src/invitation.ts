@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Document, Schema, Types } from 'mongoose'
 import { Course } from './course'
 import { ICourseBatch } from './courseBatch'
 import { IUser } from './user'
@@ -23,13 +23,12 @@ export interface StudentAcceptRejectInvitationBody {
  code: string
  status: InvitationStatus
 }
-export interface IInvitation {
- _id?: Schema.Types.ObjectId
- courseId?: Schema.Types.ObjectId
+export interface IInvitation extends Document {
+ courseId?: Types.ObjectId
  course?: Course
- batchId?: Schema.Types.ObjectId
+ batchId?: Types.ObjectId
  batch?: ICourseBatch
- userId?: Schema.Types.ObjectId
+ userId?: Types.ObjectId
  user?: IUser
  email?: string
  code?: string

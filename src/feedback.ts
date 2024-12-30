@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose'
+import { Document, Types } from 'mongoose'
 import { IUser } from './user'
 import { FeedbackPurpose, ICourseBatch, ICourseBatchSession } from './courseBatch'
 
@@ -20,17 +20,17 @@ export enum FeedbackType {
 }
 
 export interface IFeedback extends Document {
- userId?: Schema.Types.ObjectId
+ userId?: Types.ObjectId
  user?: IUser
- batchId?: Schema.Types.ObjectId
+ batchId?: Types.ObjectId
  batch?: ICourseBatch
- sessionId?: Schema.Types.ObjectId
+ sessionId?: Types.ObjectId
  session?: ICourseBatchSession
  purpose: FeedbackPurpose
  comment?: string
  rating?: number
  feedbackByTopics?: {
-  topicId: Schema.Types.ObjectId
+  topicId: Types.ObjectId
   topic?: FeedbackTopic
   rating?: number
   isChecked?: boolean

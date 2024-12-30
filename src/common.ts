@@ -1,4 +1,4 @@
-import type { Schema } from 'mongoose'
+import type { Schema, Types } from 'mongoose'
 export interface Image {
  file?: string
  name: string
@@ -24,6 +24,6 @@ export enum AccountStatus {
  BLOCKED = 'BLOCKED'
 }
 export interface ICommonFields {
- createdBy?: Schema.Types.ObjectId
- lastUpdatedBy?: Schema.Types.ObjectId
+ createdBy?: Types.ObjectId
+ lastUpdatedBy?: Types.ObjectId
 }

@@ -1,4 +1,4 @@
-import { Model, Schema } from 'mongoose'
+import { Model, Schema, Document, Types } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
 import { RoleNames } from './roles'
@@ -63,9 +63,8 @@ export interface IUserMethods {
  isMobileTaken(mobile: string): Promise<boolean>
 }
 
-export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails {
- _id?: Schema.Types.ObjectId
- roles?: Schema.Types.ObjectId[] | string[]
+export interface IUser extends Document, ICommonFields, IPersonalInfo, StudentDetails {
+ roles?: Types.ObjectId[] | string[]
  isAdmin?: boolean
  lastLoggedIn?: Date
  isAccountVerified?: boolean

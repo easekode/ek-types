@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, Types } from 'mongoose'
 
 export enum OtpPurpose {
  LOGIN = 'LOGIN',
@@ -8,7 +8,7 @@ export enum OtpPurpose {
 export interface IOtp extends Document {
  otp?: string
  purpose: OtpPurpose
- userId?: Schema.Types.ObjectId
+ userId?: Types.ObjectId
  email?: string
  createdAt?: Date
  updatedAt?: Date
