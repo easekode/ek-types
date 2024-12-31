@@ -3,6 +3,7 @@ import { IUser } from './user'
 import { ExamShareStatus, ICourseBatch, ICourseBatchSession } from './courseBatch'
 import { Course } from './course'
 import { z } from 'zod'
+import { FileTypeSchema } from './common'
 
 export enum QuestionType {
  MULTIPLE_CHOICE = 'multiple_choice',
@@ -35,7 +36,8 @@ export const NewQuestionSchema = z.object({
  title: z.string(), // Text of the question
  choices: z.array(z.string()), // Array of options (for multiple choice, ranking, and multiple response questions)
  correctAnswers: z.array(z.string()), // Correct answer for the question and it's mandatory
- score: z.number().optional().default(1)
+ score: z.number().optional().default(1),
+ file: FileTypeSchema.optional()
 })
 
 export type NewQuestion = z.infer<typeof NewQuestionSchema>

@@ -1,4 +1,5 @@
 import type { Schema, Types } from 'mongoose'
+import { z } from 'zod'
 export interface Image {
  file?: string
  name: string
@@ -6,12 +7,14 @@ export interface Image {
  url?: string
 }
 
-export interface FileType {
- file?: string
- name: string
- url?: string
- alt?: string
-}
+export const FileTypeSchema = z.object({
+ file: z.string().optional(),
+ name: z.string(),
+ url: z.string().optional(),
+ alt: z.string().optional()
+})
+
+export type FileType = z.infer<typeof FileTypeSchema>
 
 export enum ActiveStatus {
  INACTIVE = 'INACTIVE',
