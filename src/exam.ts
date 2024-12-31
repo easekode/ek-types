@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { FileTypeSchema } from './common'
 
 export enum QuestionType {
+ RADIO_GROUP = 'radio_group',
  MULTIPLE_CHOICE = 'multiple_choice',
  SHORT_ANSWER = 'short_answer',
  FILL_IN_THE_BLANK = 'fill_in_the_blank',
