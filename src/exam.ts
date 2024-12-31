@@ -80,20 +80,7 @@ export const NewExamSchema = z.object({
 })
 
 export type NewExam = z.infer<typeof NewExamSchema>
-export interface IExam extends Document {
- title: string
- description: string
- courseId?: Types.ObjectId
- course?: Course
- /* questions: IExamQuestion[]
- isNegativeScoring: boolean */
- createdById?: Types.ObjectId
- createdBy?: IUser
- level?: Level
- tags: string[]
- questions: NewQuestion[]
- type: ExamType
-}
+export type IExam = NewExam & Document
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',
