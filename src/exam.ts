@@ -72,7 +72,11 @@ export const NewExamSchema = z.object({
  level: z.enum(Object.values(Level) as [Level, ...Level[]]),
  tags: z.array(z.string()),
  questions: z.array(NewQuestionSchema),
- type: z.nativeEnum(ExamType)
+ type: z.nativeEnum(ExamType),
+ maxTimeToFinish: z.number().optional().default(0),
+ maxTimeToFinishPage: z.number().optional().default(0),
+ showTimerPanel: z.boolean().optional().default(false),
+ showProgressPanel: z.boolean().optional().default(false)
 })
 
 export type NewExam = z.infer<typeof NewExamSchema>
