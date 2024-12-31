@@ -121,8 +121,7 @@ export interface NewExamTrackersInput {
 export type AnsweredQuestions = Record<string, string[]>
 export interface NewAnswerInput {
  answers: AnsweredQuestions // answers submitted by the student
- examCode: Types.ObjectId
- batchId: Types.ObjectId
+ examCode: string
 }
 
 export type NewExamTracker = Omit<IExamTracker, keyof Document>
