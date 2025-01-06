@@ -76,7 +76,8 @@ export const NewExamSchema = z.object({
  maxTimeToFinish: z.number().optional().default(0),
  maxTimeToFinishPage: z.number().optional().default(0),
  showTimerPanel: z.boolean().optional().default(false),
- showProgressPanel: z.boolean().optional().default(false)
+ showProgressPanel: z.boolean().optional().default(false),
+ createdById: z.instanceof(Types.ObjectId).optional()
 })
 
 export type NewExam = z.infer<typeof NewExamSchema>
