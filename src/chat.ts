@@ -1,4 +1,4 @@
-import type { Schema } from 'mongoose'
+import type { Schema, Types } from 'mongoose'
 import { IUser } from './user'
 import { FileType } from './common'
 
@@ -11,16 +11,16 @@ export enum MessageTypes {
 }
 
 export interface IChatMessage {
- senderId?: Schema.Types.ObjectId
+ senderId?: Types.ObjectId
  sender?: IUser
- receiverId?: Schema.Types.ObjectId | string
+ receiverId?: Types.ObjectId | string
  receiver?: IUser
  body: string
- conversationId?: Schema.Types.ObjectId
+ conversationId?: Types.ObjectId
  isRead?: boolean
  messageType: MessageTypes
- groupId?: Schema.Types.ObjectId
- readByUsers?: Schema.Types.ObjectId[]
+ groupId?: Types.ObjectId
+ readByUsers?: Types.ObjectId[]
  file?: FileType
  createdAt?: Date
  updatedAt?: Date
@@ -38,13 +38,13 @@ export enum GroupMemberRole {
  MEMBER = 'MEMBER'
 }
 export interface GroupMember {
- userId: Schema.Types.ObjectId
+ userId: Types.ObjectId
  role: GroupMemberRole
  joinedAt: Date
 }
 
 export interface IGroup {
- groupId: Schema.Types.ObjectId
+ groupId: Types.ObjectId
  groupName: string
  description: string
  members: GroupMember[]

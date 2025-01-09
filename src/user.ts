@@ -79,8 +79,7 @@ export interface ClientInfo {
  isClientRegistration?: boolean
 }
 
-export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails, ClientInfo {
- _id?: Schema.Types.ObjectId
+export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails, StudentDetails, ClientInfo {
  roles?: Schema.Types.ObjectId[] | string[]
  isAdmin?: boolean
  lastLoggedIn?: Date

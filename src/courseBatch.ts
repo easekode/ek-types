@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import { Document, Schema, Types } from 'mongoose'
 import { PaginatedResult, QueryStringType } from './pagination'
 import { IUser } from './user'
 import { IEvent, NewEvent } from './event'
@@ -67,39 +67,39 @@ export enum SessionFrequency {
 }
 
 export interface TopicProgress {
- _id?: Schema.Types.ObjectId
+ _id?: Types.ObjectId
 
  name: string
  status: CourseBatchTrackerStatus
 }
 export interface ChapterProgress {
- _id?: Schema.Types.ObjectId
+ _id?: Types.ObjectId
  name: string
  topics: TopicProgress[]
  status: CourseBatchTrackerStatus
  examIdStatus: {
-  examId: Schema.Types.ObjectId
+  examId: Types.ObjectId
   exam?: IExam
   status: ExamShareStatus
  }[]
 }
 
 export interface CourseProgressSchema {
- courseId: Schema.Types.ObjectId
+ courseId: Types.ObjectId
  chapters: ChapterProgress[]
  status: CourseBatchTrackerStatus
 }
 export interface ICourseBatch extends Document {
- //  _id?: Schema.Types.ObjectId
+ //  _id?: Types.ObjectId
  name: string
  code: string
- courseId?: Schema.Types.ObjectId
+ courseId?: Types.ObjectId
  course?: Course
- instructorIds?: Schema.Types.ObjectId[]
+ instructorIds?: Types.ObjectId[]
  instructors?: IUser[]
- currentInstructorId?: Schema.Types.ObjectId
+ currentInstructorId?: Types.ObjectId
  currentInstructor?: IUser
- eventId?: Schema.Types.ObjectId
+ eventId?: Types.ObjectId
  event?: IEvent
  courseProgress?: CourseProgressSchema
  status?: CourseBatchStatus
@@ -117,9 +117,9 @@ export interface NewCourseBatch extends Omit<ICourseBatch, keyof Document | 'eve
 }
 
 export interface IStudentBatchAssociation extends Document {
- userId?: Schema.Types.ObjectId
+ userId?: Types.ObjectId
  user?: IUser
- batchId?: Schema.Types.ObjectId
+ batchId?: Types.ObjectId
  batch?: ICourseBatch
  status?: CourseBatchAssnStatus
 }
@@ -132,31 +132,31 @@ export enum SessionAttendanceStatus {
 }
 
 export interface ICourseBatchSessionAttendance {
- _id?: Schema.Types.ObjectId
- userId: Schema.Types.ObjectId
+ _id?: Types.ObjectId
+ userId: Types.ObjectId
  user?: IUser
- sessionId: Schema.Types.ObjectId
+ sessionId: Types.ObjectId
  session?: ICourseBatchSession
  status: SessionAttendanceStatus
 }
 
 export interface NewAttendance {
- sessionId: Schema.Types.ObjectId
+ sessionId: Types.ObjectId
  status: SessionAttendanceStatus
 }
 
 export interface ICourseBatchSession extends Document {
  slNo?: number
  name: string
- batchId: Schema.Types.ObjectId
+ batchId: Types.ObjectId
  batch?: ICourseBatch
  duration: number
  status?: SessionStatus
  startDateTime: Date
  endDateTime?: Date
- teacherId: Schema.Types.ObjectId
+ teacherId: Types.ObjectId
  teacher?: IUser
- feedback?: Schema.Types.ObjectId[]
+ feedback?: Types.ObjectId[]
  averageRating?: number
  notes?: string
  meetingLink?: string
@@ -213,14 +213,14 @@ export interface IStudentBatchAssocQuery {
 }
 
 export interface ICourseBatchTracker extends Document {
- batch: Schema.Types.ObjectId
- subject: Schema.Types.ObjectId
- chapter: Schema.Types.ObjectId
- topic: Schema.Types.ObjectId
+ batch: Types.ObjectId
+ subject: Types.ObjectId
+ chapter: Types.ObjectId
+ topic: Types.ObjectId
  course: {
-  courseId: Schema.Types.ObjectId
+  courseId: Types.ObjectId
   subjects: {
-   subjectId: Schema.Types.ObjectId
+   subjectId: Types.ObjectId
    chapters: {
     name: string
     topics: {
@@ -247,8 +247,8 @@ export interface ICourseBatchTracker extends Document {
 
 export interface NewBatchAssnBodyType {
  emails?: string[]
- studentIds?: Schema.Types.ObjectId[]
- batchId: Schema.Types.ObjectId
+ studentIds?: Types.ObjectId[]
+ batchId: Types.ObjectId
 }
 
 export interface UpdateCourseBatchTrackerInput {
