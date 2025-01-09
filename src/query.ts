@@ -2,7 +2,7 @@ import { Model, PipelineStage } from 'mongoose'
 import { QueryStringType } from './pagination'
 import { IUser } from './user'
 
-export interface RequestInput<T> {
+export interface RequestInput<T = null> {
  //  query?: QueryStringType
  query?: Record<string, any>
  body?: T
