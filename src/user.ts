@@ -1,4 +1,4 @@
-import { Model, Schema } from 'mongoose'
+import { Model, Schema, Document, Types } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
 import { IEnrollment } from './enrollment'
@@ -79,8 +79,8 @@ export interface ClientInfo {
  isClientRegistration?: boolean
 }
 
-export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails, StudentDetails, ClientInfo {
- roles?: Schema.Types.ObjectId[] | string[]
+export interface IUser extends Document, ICommonFields, IPersonalInfo, StudentDetails, StudentDetails, ClientInfo {
+ roles?: Types.ObjectId[] | string[]
  isAdmin?: boolean
  lastLoggedIn?: Date
  isAccountVerified?: boolean
