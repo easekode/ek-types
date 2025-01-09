@@ -1,10 +1,7 @@
 import { Model, Schema } from 'mongoose'
 import { AccountStatus, ICommonFields, Image } from './common'
 import { LoginResponse } from './auth'
-import { RoleNames } from './roles'
-import { Course } from './course'
 import { IEnrollment } from './enrollment'
-import { ICourseBatch } from './courseBatch'
 import { Certificate } from './certificate'
 import { PaginatedResult } from './pagination'
 
@@ -13,6 +10,19 @@ export enum Gender {
  FEMALE = 'FEMALE',
  TRANSGENDER = 'TRANSGENDER',
  NOT_SAY = 'RATHER NOT SAY'
+}
+
+export interface IAddress {
+ address?: string
+ city?: string
+ country?: string
+ state?: string
+ landmark?: string
+ pinCode?: string
+ location?: {
+  type: string
+  coordinates: number[]
+ }
 }
 
 export interface IAddress {
@@ -61,9 +71,15 @@ export interface IUserMethods {
  hasScope(scope: string): boolean
  isEmailTaken(email: string): Promise<boolean>
  isMobileTaken(mobile: string): Promise<boolean>
+ hasRoleById(roleId: string): boolean
 }
 
-export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails {
+export interface ClientInfo {
+ companyId?: Schema.Types.ObjectId
+ isClientRegistration?: boolean
+}
+
+export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails, ClientInfo {
  _id?: Schema.Types.ObjectId
  roles?: Schema.Types.ObjectId[] | string[]
  isAdmin?: boolean
@@ -76,6 +92,8 @@ export interface IUser extends ICommonFields, IPersonalInfo, StudentDetails {
  deviceToken?: string[]
  createdAt?: Date
  updatedAt?: Date
+ //to store any temporary data of the user which will get processed later
+ signUpData?: string
 }
 
 export type IUserAndMethods = IUser & IUserMethods
