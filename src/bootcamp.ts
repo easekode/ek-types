@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, Types } from 'mongoose'
 import { Image } from './common'
 import { Course, Schedule } from './course'
 import { Banner } from './page'
@@ -24,7 +24,7 @@ export interface Bootcamp {
  banner?: Banner[]
  seoHead?: SEOHead
  toolsAndTechnologies?: ToolsTechnologies[]
- instructors?: Schema.Types.ObjectId[]
+ instructors?: Types.ObjectId[]
  projects?: ProjectDetail[]
  startDate?: string
  startTime?: string

@@ -1,4 +1,4 @@
-import type { Schema, Model } from 'mongoose'
+import type { Schema, Model, Types } from 'mongoose'
 export interface IRole {
  name: string
  description?: string
@@ -6,7 +6,7 @@ export interface IRole {
 }
 
 export interface IRoleModel extends Model<IRole> {
- getRoleIdsBySlug(slugArr: string[]): Promise<Schema.Types.ObjectId[]>
+ getRoleIdsBySlug(slugArr: string[]): Promise<Types.ObjectId[]>
 }
 
 export type RoleDefinitionValue = {

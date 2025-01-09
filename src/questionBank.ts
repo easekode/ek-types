@@ -1,19 +1,5 @@
-import { Schema } from 'mongoose';
-import { ExamType, Level } from './exam';
-
-export enum QuestionType {
-  MULTIPLE_CHOICE = 'multiple_choice',
-  SHORT_ANSWER = 'short_answer',
-  FILL_IN_THE_BLANK = 'fill_in_the_blank',
-  MATCHING = 'matching',
-  ESSAY = 'essay',
-  RANKING = 'ranking',
-  SCALE = 'scale',
-  YES_NO = 'yes_no',
-  MULTIPLE_RESPONSE = 'multiple_response',
-  SCENARIO_BASED = 'scenario_based',
-  IMAGE_BASED = 'image_based',
-}
+import { Schema, Document } from 'mongoose'
+import { ExamType, Level } from './exam'
 
 /* export interface NewQuestion {
   type: QuestionType; // Type of question
@@ -31,36 +17,10 @@ export enum QuestionType {
   negativeScore?: number; // Negative score for wrong answer
   level?: Level; // Level of the question
   score?: number; // Score for the question
-  subject?: Schema.Types.ObjectId; // Subject ID
-  chapter?: Schema.Types.ObjectId; // Chapter ID
-  topic?: Schema.Types.ObjectId; // Topic ID
+  subject?: Types.ObjectId; // Subject ID
+  chapter?: Types.ObjectId; // Chapter ID
+  topic?: Types.ObjectId; // Topic ID
 } */
-export interface NewQuestion {
-  type: QuestionType; // Type of question
-  questionText: string; // Text of the question
-  options?: string[]; // Array of options (for multiple choice, ranking, and multiple response questions)
-  level?: Level; // Level of the question
-  score?: number; // Score for the question
-  subject?: Schema.Types.ObjectId; // Subject ID
-  chapter?: Schema.Types.ObjectId; // Chapter ID
-  topic?: Schema.Types.ObjectId; // Topic ID
-}
-export interface QuestionBank extends NewQuestion, Document {
-  question: string;
-  subject?: Schema.Types.ObjectId;
-  chapter?: Schema.Types.ObjectId;
-  topic?: Schema.Types.ObjectId;
-}
-
-export interface SuggestQuestionInput {
-  course?: string;
-  chapter?: string;
-  // subject?: string;
-  topics?: string;
-  level?: Level;
-  questionCount?: number;
-  type?: ExamType;
-}
 
 /* export interface NewExam {
   examTitle: string;

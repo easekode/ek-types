@@ -1,7 +1,25 @@
-import { Schema } from 'mongoose'
+import { Schema, Types } from 'mongoose'
 import { IUser } from './user'
 import { ExamShareStatus, ICourseBatch, ICourseBatchSession } from './courseBatch'
 import { Course } from './course'
+import { z } from 'zod'
+import { FileTypeSchema } from './common'
+
+export enum QuestionType {
+ RADIO_GROUP = 'radio_group',
+ MULTIPLE_CHOICE = 'multiple_choice',
+ SHORT_ANSWER = 'short_answer',
+ FILL_IN_THE_BLANK = 'fill_in_the_blank',
+ MATCHING = 'matching',
+ ESSAY = 'essay',
+ RANKING = 'ranking',
+ SCALE = 'scale',
+ YES_NO = 'yes_no',
+ MULTIPLE_RESPONSE = 'multiple_response',
+ SCENARIO_BASED = 'scenario_based',
+ IMAGE_BASED = 'image_based'
+}
+
 export enum Level {
  EASY = 'EASY',
  MEDIUM = 'MEDIUM',
@@ -13,25 +31,57 @@ export enum ExamType {
  QUIZ = 'Quiz'
 }
 
-export interface IExam extends Document {
- _id?: Schema.Types.ObjectId
- title: string
- description: string
- courseId?: Schema.Types.ObjectId
- course?: Course
- /* questions: IExamQuestion[]
- isNegativeScoring: boolean */
- createdById?: Schema.Types.ObjectId
- createdBy?: IUser
- level?: Level
- tags: string[]
- surveyJson: string
- type: ExamType
-}
+export const NewQuestionSchema = z.object({
+ type: z.nativeEnum(QuestionType), // Type of question
+ name: z.string(), // unique name of the question
+ title: z.string(), // Text of the question
+ choices: z.array(z.string()), // Array of options (for multiple choice, ranking, and multiple response questions)
+ correctAnswers: z.array(z.string()), // Correct answer for the question and it's mandatory
+ score: z.number().optional().default(1),
+ file: FileTypeSchema.optional()
+})
 
-export type NewExam = Omit<IExam, keyof Document | 'createdById'> & {
- title: string
-}
+export type NewQuestion = z.infer<typeof NewQuestionSchema>
+
+export type Question = NewQuestion & Document
+
+export const QuestionBankSchema = NewQuestionSchema.extend({
+ question: z.string(),
+ subject: z.instanceof(Types.ObjectId).optional(),
+ chapter: z.instanceof(Types.ObjectId).optional(),
+ topic: z.instanceof(Types.ObjectId).optional()
+})
+
+export type QuestionBank = z.infer<typeof QuestionBankSchema>
+
+export const SuggestQuestionInputSchema = z.object({
+ course: z.string().optional(),
+ chapter: z.string().optional(),
+ topics: z.string().optional(),
+ level: z.enum(Object.values(Level) as [Level, ...Level[]]).optional(),
+ questionCount: z.number().optional(),
+ existingQuestions: z.array(NewQuestionSchema).optional().default([])
+})
+
+export type SuggestQuestionInput = z.infer<typeof SuggestQuestionInputSchema>
+
+export const NewExamSchema = z.object({
+ title: z.string(),
+ description: z.string(),
+ courseId: z.instanceof(Types.ObjectId).optional(),
+ level: z.enum(Object.values(Level) as [Level, ...Level[]]),
+ tags: z.array(z.string()),
+ questions: z.array(NewQuestionSchema),
+ type: z.nativeEnum(ExamType),
+ maxTimeToFinish: z.number().optional().default(0),
+ maxTimeToFinishPage: z.number().optional().default(0),
+ showTimerPanel: z.boolean().optional().default(false),
+ showProgressPanel: z.boolean().optional().default(false),
+ createdById: z.instanceof(Types.ObjectId).optional()
+})
+
+export type NewExam = z.infer<typeof NewExamSchema>
+export type IExam = NewExam & Document
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',
@@ -42,35 +92,37 @@ export enum ExamTrackerStatus {
 }
 
 export interface IExamTracker extends Document {
- examId: Schema.Types.ObjectId
+ examId: Types.ObjectId
  exam?: IExam
- studentId: Schema.Types.ObjectId
+ studentId: Types.ObjectId
  student?: IUser
- questionId?: Schema.Types.ObjectId
- instructorId: Schema.Types.ObjectId
+ instructorId: Types.ObjectId
  isChecked?: boolean
- batchId?: Schema.Types.ObjectId
+ batchId?: Types.ObjectId
  batch?: ICourseBatch
- sessionId?: Schema.Types.ObjectId
+ sessionId?: Types.ObjectId
  session?: ICourseBatchSession
  remarks?: string
  score?: number
- surveyData?: object
- surveyJson?: string
+ questions: NewQuestion[] // questions in the exam
+ anwers?: string // json stringified AnsweredQuestions
  status?: ExamTrackerStatus
  examCode?: string
+ totalCorrectAnswers?: number
+ totalQuestions?: number
+ totalAnswers?: number
 }
 
 export interface NewExamTrackersInput {
- batchId: Schema.Types.ObjectId
- examId: Schema.Types.ObjectId
- studentIds: Schema.Types.ObjectId[]
+ batchId: Types.ObjectId
+ examId: Types.ObjectId
+ studentIds: Types.ObjectId[]
 }
 
+export type AnsweredQuestions = Record<string, string[]>
 export interface NewAnswerInput {
- surveyData: object
- examId: Schema.Types.ObjectId
- batchId: Schema.Types.ObjectId
+ answers: AnsweredQuestions // answers submitted by the student
+ examCode: string
 }
 
 export type NewExamTracker = Omit<IExamTracker, keyof Document>

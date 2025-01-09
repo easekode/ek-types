@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, Types } from 'mongoose'
 import { Bootcamp } from './bootcamp'
 import { Client } from './client'
 import { Image } from './common'
@@ -55,7 +55,7 @@ export type PageContent = {
  bootcamps?: Bootcamp[]
  testimonials?: Testimonial[]
  stats?: Stat[]
- instructors?: Schema.Types.ObjectId[]
+ instructors?: Types.ObjectId[]
  projectDetails?: ProjectDetail[]
  toolsTechnologies?: ToolsTechnologies[]
  masterClasses?: MasterClass[]

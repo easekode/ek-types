@@ -25,7 +25,7 @@ export interface Topic {
  slNo: number
  code?: string
  name: string
- examIds?: Schema.Types.ObjectId[]
+ examIds?: Types.ObjectId[]
  exams?: IExam[]
 }
 export interface Chapter {
@@ -33,12 +33,12 @@ export interface Chapter {
  code?: string
  name: string
  topics: Topic[]
- examIds?: Schema.Types.ObjectId[]
+ examIds?: Types.ObjectId[]
  exams?: IExam[] // Assessment ===
 }
 export interface Course {
  id?: string
- _id?: Schema.Types.ObjectId
+ _id?: Types.ObjectId
  slNo: number
  code: string
  title: string
@@ -49,16 +49,16 @@ export interface Course {
  mediumDescription?: string
  longDescription?: string
  status?: CourseStatus
- authorId?: Schema.Types.ObjectId
+ authorId?: Types.ObjectId
 
- categoryId?: Schema.Types.ObjectId
+ categoryId?: Types.ObjectId
  category?: Category
 
  chapters?: Chapter[]
  toolsAndTechnologies?: ToolsTechnologies[]
  projects?: ProjectDetail[]
  instructors?: IUser[]
- instructorIds?: Schema.Types.ObjectId[]
+ instructorIds?: Types.ObjectId[]
  banner?: Banner[]
  duration?: number
  durationUnit?: string
@@ -84,7 +84,7 @@ export interface MasterClass {
  endDate?: string
  endTime?: string
  image?: Image
- instructors?: Schema.Types.ObjectId[]
+ instructors?: Types.ObjectId[]
 }
 
 export interface Schedule {

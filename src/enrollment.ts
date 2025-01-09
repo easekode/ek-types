@@ -10,18 +10,18 @@ export enum EnrollmentStatus {
 }
 
 export interface IEnrollment extends Document {
- studentId: Schema.Types.ObjectId
+ studentId: Types.ObjectId
  student?: IUser
- courseId: Schema.Types.ObjectId
+ courseId: Types.ObjectId
  course?: Course
  enrollmentDate: Date
  status?: EnrollmentStatus
 }
 
 export interface NewEnrollment {
- studentId: Schema.Types.ObjectId
- courseId: Schema.Types.ObjectId
- batchId?: Schema.Types.ObjectId
+ studentId: Types.ObjectId
+ courseId: Types.ObjectId
+ batchId?: Types.ObjectId
  enrollmentDate?: Date
 }
 
