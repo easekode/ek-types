@@ -37,6 +37,7 @@ export interface IGetPaginationParams {
  sortField?: string
  sortDir?: number
  filters?: string
+ roles?: string
 }
 
 export interface PaginatedResult<T> {
