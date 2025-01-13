@@ -20,6 +20,7 @@ export interface QueryStringType {
  fromDate?: string
  toDate?: string
  id?: string
+ filter?: string
 }
 export interface IGetPaginationParamsResult {
  page: number
@@ -36,7 +37,8 @@ export interface IGetPaginationParams {
  keyword?: string
  sortField?: string
  sortDir?: number
- filters?: string
+ filters?: string //this filter is old filter with different structure
+ filter?: string //this is simpley an stringified object {}
 }
 
 export interface PaginatedResult<T> {

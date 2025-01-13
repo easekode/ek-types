@@ -8,3 +8,14 @@ export interface IApiError {
     isPublic?: boolean;
     stack?: string;
 }
+
+export interface FeParsedError {
+    status: number;
+    statusText: string;
+    data: any;
+    message: string;
+}
+
+export interface HandleErrorResult {
+    error: FeParsedError
+  }

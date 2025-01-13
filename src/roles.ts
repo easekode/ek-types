@@ -40,3 +40,7 @@ export const roleDefinitions: IRoleDefinitions = {
   slug: 'role_instructor'
  }
 }
+
+export interface RoleQueryFilter {
+ role?: string
+}

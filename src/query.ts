@@ -3,8 +3,8 @@ import { QueryStringType } from './pagination'
 import { IUser } from './user'
 
 export interface RequestInput<T = null> {
- //  query?: QueryStringType
- query?: Record<string, any>
+ //   query?: QueryStringType
+ query?: Record<string, any> & { filter?: string }
  body?: T
  params?: Record<string, any>
  user?: IUser
