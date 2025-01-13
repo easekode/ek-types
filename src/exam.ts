@@ -95,6 +95,7 @@ export enum ExamTrackerStatus {
 export interface IExamTracker extends Document {
  examId: Types.ObjectId
  exam?: IExam
+ examTitle?: string
  studentId: Types.ObjectId
  student?: IUser
  instructorId: Types.ObjectId
@@ -106,10 +107,13 @@ export interface IExamTracker extends Document {
  remarks?: string
  score?: number
  questions: NewQuestion[] // questions in the exam
- anwers?: string // json stringified AnsweredQuestions
+ answers?: string // json stringified AnsweredQuestions
  status?: ExamTrackerStatus
  examCode?: string
  totalCorrectAnswers?: number
+ totalWrongAnswers?: number
+ isPass?: boolean
+ percentage?: number
  totalQuestions?: number
  totalAnswers?: number
 }
