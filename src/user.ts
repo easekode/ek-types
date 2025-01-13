@@ -25,19 +25,6 @@ export interface IAddress {
  }
 }
 
-export interface IAddress {
- address?: string
- city?: string
- country?: string
- state?: string
- landmark?: string
- pinCode?: string
- location?: {
-  type: string
-  coordinates: number[]
- }
-}
-
 export interface StudentDetails {
  studentCode?: string
 }
@@ -79,7 +66,13 @@ export interface ClientInfo {
  isClientRegistration?: boolean
 }
 
-export interface IUser extends Document, ICommonFields, IPersonalInfo, StudentDetails, StudentDetails, ClientInfo {
+export interface IUser
+ extends Document,
+  ICommonFields,
+  IPersonalInfo,
+  StudentDetails,
+  StudentDetails,
+  ClientInfo {
  roles?: Types.ObjectId[] | string[]
  isAdmin?: boolean
  lastLoggedIn?: Date

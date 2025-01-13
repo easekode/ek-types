@@ -1,10 +1,21 @@
 import { z } from 'zod'
 import { addressCreateSchema } from './address'
+import { IAddress } from './user'
+import { Model } from 'mongoose'
 
 export interface ICompany extends Document {
- companyId: string
- name: string
+ name?: string
+ representativeName?: string
+ clientKey?: string
+ address?: IAddress
+ website?: string
+ numberOfEmployees?: number
+ establishedDate?: Date
+ companyDescription?: string
+ secondaryEmail?: string
 }
+
+export type ICompanyModel = Model<ICompany, object> //methods can be added in third type param
 
 export type NewCompany = Omit<ICompany, '_id'>
 
@@ -17,7 +28,7 @@ export const companyProfileCreateSchema = z.object({
  establishedDate: z.string(),
  companyDescription: z.string(),
  secondaryEmail: z.string().email(),
- clientKey: z.string().trim().optional(),
+ clientKey: z.string().trim().optional()
 })
 
 export type CompanyProfileCreate = z.infer<typeof companyProfileCreateSchema>

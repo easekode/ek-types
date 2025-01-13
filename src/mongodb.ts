@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Types } from 'mongoose'
 export type ObjectId = Types.ObjectId
 export const idToString = (id: ObjectId | undefined | null | unknown) => {
  if (!id) {
