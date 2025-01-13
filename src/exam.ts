@@ -117,7 +117,6 @@ export interface IExamTracker extends Document {
  totalQuestions?: number
  totalAnswers?: number
 }
-
 export interface NewExamTrackersInput {
  batchId: Types.ObjectId
  examId: Types.ObjectId
