@@ -1,6 +1,7 @@
 import { Model, PipelineStage } from 'mongoose'
 import { QueryStringType } from './pagination'
 import { IUser } from './user'
+import { IncomingHttpHeaders } from 'http'
 
 export interface RequestInput<T = null> {
  //   query?: QueryStringType
@@ -8,6 +9,7 @@ export interface RequestInput<T = null> {
  body?: T
  params?: Record<string, any>
  user?: IUser
+ headers?: IncomingHttpHeaders
 }
 
 export interface GetAggregateResultInput {

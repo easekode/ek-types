@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { addressCreateSchema } from './address'
 import { IAddress } from './user'
-import { Model } from 'mongoose'
+import { Model, Document } from 'mongoose'
 
 export interface ICompany extends Document {
  name?: string
