@@ -1,3 +1,4 @@
+import { CompanyIdFilter } from './company'
 import { ICourseBatch, ICourseBatchSession, NewCourseBatchSession } from './courseBatch'
 import { IExamTracker } from './exam'
 import { PaginatedResult } from './pagination'
@@ -61,3 +62,6 @@ export interface AdminDashboardData {
  totalTeachers: number
  totalEarnings: number
 }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface AdminDashboardFilter extends CompanyIdFilter {}

@@ -4,7 +4,7 @@ export interface GenericOptions<T> {
  filter: T
 }
 
-export type FilterAndOptions = GenericOptions<{
- userId?: Types.ObjectId
- companyId?: Types.ObjectId
-}>
+
+export interface FilterAndOptions<T> {
+ filter: T
+}

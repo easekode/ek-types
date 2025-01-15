@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { addressCreateSchema } from './address'
 import { IAddress } from './user'
-import { Model, Document } from 'mongoose'
+import { Model, Document, Schema } from 'mongoose'
 
 export interface ICompany extends Document {
  name?: string
@@ -36,3 +36,7 @@ export type CompanyProfileCreate = z.infer<typeof companyProfileCreateSchema>
 export const companyProfileUpdateSchema = companyProfileCreateSchema.partial()
 
 export type CompanyProfileUpdate = z.infer<typeof companyProfileUpdateSchema>
+
+export interface CompanyIdFilter {
+ companyId?: Schema.Types.ObjectId
+}
