@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Types } from 'mongoose'
 import { Image } from './common'
 import { Banner } from './page'
 import { Pricing } from './pricing'
@@ -8,6 +8,7 @@ import { ToolsTechnologies } from './toolsTechnologies'
 import { IUser } from './user'
 import { IExam } from './exam'
 import { Category } from './category'
+import { CompanyIdFilter } from './company'
 export enum CourseStatus {
  DRAFT = 'DRAFT',
  PUBLISHED = 'PUBLISHED',
@@ -155,3 +156,7 @@ export type GenerateCourseResult = Partial<
   NewChapter | NewTopic | NewCourse | AdditionalChapters | AdditionalTopics | DummyString
  >
 >
+
+export interface CourseFilter extends CompanyIdFilter {
+ status?: CourseStatus
+}

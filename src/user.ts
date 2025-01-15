@@ -108,3 +108,9 @@ export interface CompleteProfile {
  enrollments?: PaginatedResult<IEnrollment>
  certificates?: PaginatedResult<Certificate>
 }
+
+export interface UserFilter {
+ userId?: Schema.Types.ObjectId
+ companyId?: Schema.Types.ObjectId
+ accountStatus?: AccountStatus
+}
