@@ -43,6 +43,7 @@ export interface Course {
  slNo: number
  code: string
  title: string
+ slug: string
  cardImage?: Image
  heroImage?: Image
  images?: Image[]
