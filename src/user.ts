@@ -4,7 +4,7 @@ import { LoginResponse } from './auth'
 import { IEnrollment } from './enrollment'
 import { Certificate } from './certificate'
 import { Model, Schema, Document, Types } from 'mongoose'
-
+import { AddressSchema } from './address'
 import { PaginatedResult } from './pagination'
 
 export enum Gender {
@@ -13,21 +13,6 @@ export enum Gender {
  TRANSGENDER = 'TRANSGENDER',
  NOT_SAY = 'RATHER NOT SAY'
 }
-
-export const AddressSchema = z.object({
- address: z.string().optional(),
- city: z.string().optional(),
- country: z.string().optional(),
- state: z.string().optional(),
- landmark: z.string().optional(),
- pinCode: z.string().optional(),
- location: z
-  .object({
-   type: z.string(),
-   coordinates: z.array(z.number())
-  })
-  .optional()
-})
 
 export const StudentDetailsSchema = z.object({
  studentCode: z.string().optional()
