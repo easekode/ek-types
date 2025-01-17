@@ -30,3 +30,12 @@ export interface ICommonFields {
  createdBy?: Types.ObjectId
  lastUpdatedBy?: Types.ObjectId
 }
+
+export enum NA {
+    SHORT = 'N/A',
+    LONG = 'NOT APPLICABLE',
+}
+
+export enum NotAvailable {
+    LONG = 'Not Available'
+}
