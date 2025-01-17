@@ -1,14 +1,15 @@
 import { Types } from 'mongoose'
-import { Image } from './common'
-import { Banner } from './page'
-import { Pricing } from './pricing'
-import { ProjectDetail } from './projectDetail'
-import { SEOHead } from './seoHead'
+import { Image, ImageSchema } from './common'
+import { Banner, BannerSchema } from './page'
+import { PricingSchema } from './pricing'
+import { ProjectDetail, ProjectDetailSchema } from './projectDetail'
+import { SEOHead, SEOHeadSchema } from './seoHead'
 import { ToolsTechnologies } from './toolsTechnologies'
-import { IUser } from './user'
+import { IUser, IUserSchema } from './user'
 import { IExam } from './exam'
 import { Category } from './category'
 import { CompanyIdFilter } from './company'
+import { z } from 'zod'
 export enum CourseStatus {
  DRAFT = 'DRAFT',
  PUBLISHED = 'PUBLISHED',
@@ -21,56 +22,86 @@ export enum DurationUnit {
  WEEKS = 'weeks',
  MONTHS = 'months'
 }
+export const CourseStatusSchema = z.nativeEnum(CourseStatus)
 
-export interface Topic {
- slNo: number
- code?: string
- name: string
- examIds?: Types.ObjectId[]
- exams?: IExam[]
-}
-export interface Chapter {
- slNo: number
- code?: string
- name: string
- topics: Topic[]
- examIds?: Types.ObjectId[]
- exams?: IExam[] // Assessment ===
-}
-export interface Course {
- id?: string
- _id?: Types.ObjectId
- slNo: number
- code: string
- title: string
- cardImage?: Image
- heroImage?: Image
- images?: Image[]
- description?: string
- mediumDescription?: string
- longDescription?: string
- status?: CourseStatus
- authorId?: Types.ObjectId
+export const CategorySchema = z.object({
+ id: z.string(),
+ name: z.string()
+})
+export const TopicSchema = z.object({
+ _id: z.string().optional(),
+ slNo: z.number(),
+ code: z.string().optional(),
+ name: z.string(),
+ description: z.string().optional(),
+ duration: z.number().optional(),
+ durationUnit: z.nativeEnum(DurationUnit).optional(),
+ examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+ exams: z.array(z.object({})).optional() // Define IExam schema separately
+})
 
- categoryId?: Types.ObjectId
- category?: Category
+export const NewTopicSchema = TopicSchema.omit({
+ _id: true
+})
+export type Topic = z.infer<typeof TopicSchema>
+export type NewTopic = z.infer<typeof NewTopicSchema>
 
- chapters?: Chapter[]
- toolsAndTechnologies?: ToolsTechnologies[]
- projects?: ProjectDetail[]
- instructors?: IUser[]
- instructorIds?: Types.ObjectId[]
- banner?: Banner[]
- duration?: number
- durationUnit?: string
- seoHead?: SEOHead
- pricings?: Pricing[]
- publishedAt?: Date
- createdAt?: Date
- updatedAt?: Date
-}
+export const ChapterSchema = z.object({
+ _id: z.instanceof(Types.ObjectId).optional(),
+ slNo: z.number().optional(),
+ code: z.string().optional(),
+ name: z.string(),
+ topics: z.array(TopicSchema), // Define Topic schema separately
+ examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+ exams: z.array(z.object({})).optional() // Define IExam schema separately
+})
+export type Chapter = z.infer<typeof ChapterSchema>
+export const NewChapterSchema = ChapterSchema.omit({
+ _id: true
+})
 
-export type NewCourse = Partial<Course>
+export const ToolsTechnologiesSchema = z.object({
+ id: z.string(),
+ name: z.string()
+})
+
+export const CourseSchema = z.object({
+ _id: z.instanceof(Types.ObjectId).optional(),
+ //  slNo: z.number(),
+ code: z.string().optional(),
+ title: z.string(),
+ cardImage: ImageSchema.optional(),
+ heroImage: ImageSchema.optional(),
+ images: z.array(ImageSchema).optional(),
+ description: z.string().optional(),
+ mediumDescription: z.string().optional(),
+ longDescription: z.string().optional(),
+ status: CourseStatusSchema.optional(),
+ authorId: z.instanceof(Types.ObjectId).optional(),
+ categoryId: z.instanceof(Types.ObjectId).optional(),
+ category: CategorySchema.optional(),
+ chapters: z.array(ChapterSchema).optional(),
+ toolsAndTechnologies: z.array(ToolsTechnologiesSchema).optional(),
+ projects: z.array(ProjectDetailSchema).optional(),
+ instructors: z.array(IUserSchema).optional(),
+ instructorIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+ banner: z.array(BannerSchema).optional(),
+ duration: z.number().optional(),
+ durationUnit: z.string().optional(),
+ seoHead: SEOHeadSchema.optional(),
+ pricings: z.array(PricingSchema).optional()
+})
+
+export type Course = z.infer<typeof CourseSchema>
+
+export const NewCourseSchema = CourseSchema.omit({
+ _id: true,
+ authorId: true,
+ categoryId: true,
+ instructorIds: true
+})
+
+export type NewCourse = z.infer<typeof NewCourseSchema>
 
 export interface MasterClass {
  id?: string
@@ -138,8 +169,7 @@ export type ContentGenType =
  | 'additionalTopics'
  | 'courseDescription'
 
-export type NewChapter = Partial<Chapter>
-export type NewTopic = Partial<Topic>
+export type NewChapter = z.infer<typeof NewChapterSchema>
 
 export type AdditionalChapters = NewChapter[]
 export type AdditionalTopics = NewTopic[]
