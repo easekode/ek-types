@@ -4,7 +4,7 @@ import { z } from 'zod'
 export const AddressSchema = z.object({
  _id: z.instanceof(Types.ObjectId).optional(),
  address: z.string().optional(),
- street: z.string(),
+ street: z.string().optional(),
  city: z.string(),
  state: z.string(),
  pinCode: z.string(),
