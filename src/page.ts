@@ -1,12 +1,13 @@
 import { Schema, Types } from 'mongoose'
 import { Bootcamp } from './bootcamp'
 import { Client } from './client'
-import { Image } from './common'
+import { Image, ImageSchema } from './common'
 import { Course, MasterClass } from './course'
 import { ProjectDetail } from './projectDetail'
 import { SEOHead } from './seoHead'
 import { Testimonial } from './testimonial'
 import { ToolsTechnologies } from './toolsTechnologies'
+import { z } from 'zod'
 
 export enum PageType {
  LANDING = 'LANDING',
@@ -24,15 +25,15 @@ export enum PageType {
  PRIVACY_POLICY = 'PRIVACY_POLICY',
  TERMS_AND_POLICY = 'TERMS_AND_POLICY'
 }
-
-export type Banner = {
- title: string
- description: string
- image: Image
- mobileImage: Image
- ctaText: string
- link: string
-}
+export const BannerSchema = z.object({
+ title: z.string(),
+ description: z.string(),
+ image: ImageSchema,
+ mobileImage: ImageSchema,
+ ctaText: z.string(),
+ link: z.string()
+})
+export type Banner = z.infer<typeof BannerSchema>
 
 export type BannerType<T extends string> = {
  [key in T]: Banner

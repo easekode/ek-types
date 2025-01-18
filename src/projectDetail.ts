@@ -1,7 +1,9 @@
-import { Image } from './common';
+import { z } from 'zod'
 
-export interface ProjectDetail {
-  title: string;
-  description: string;
-  images: Image[];
-}
+export const ProjectDetailSchema = z.object({
+ id: z.string(),
+ title: z.string(),
+ description: z.string()
+})
+
+export type ProjectDetail = z.infer<typeof ProjectDetailSchema>

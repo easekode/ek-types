@@ -1,11 +1,14 @@
 import type { Schema, Types } from 'mongoose'
 import { z } from 'zod'
-export interface Image {
- file?: string
- name: string
- alt?: string
- url?: string
-}
+
+export const ImageSchema = z.object({
+ file: z.string().optional(),
+ name: z.string(),
+ url: z.string().optional(),
+ alt: z.string().optional()
+})
+
+export type Image = z.infer<typeof ImageSchema>
 
 export const FileTypeSchema = z.object({
  file: z.string().optional(),
@@ -32,10 +35,10 @@ export interface ICommonFields {
 }
 
 export enum NA {
-    SHORT = 'N/A',
-    LONG = 'NOT APPLICABLE',
+ SHORT = 'N/A',
+ LONG = 'NOT APPLICABLE'
 }
 
 export enum NotAvailable {
-    LONG = 'Not Available'
+ LONG = 'Not Available'
 }
