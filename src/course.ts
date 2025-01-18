@@ -190,3 +190,8 @@ export type GenerateCourseResult = Partial<
 export interface CourseFilter extends CompanyIdFilter {
  status?: CourseStatus
 }
+
+export interface CoursesComposite {
+ courseId: string
+ title: string
+}
