@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Schema, Types, Document } from 'mongoose'
 import { IUser } from './user'
 import { ExamShareStatus, ICourseBatch, ICourseBatchSession } from './courseBatch'
 import { Course } from './course'
@@ -82,7 +82,7 @@ export const NewExamSchema = z.object({
 })
 
 export type NewExam = z.infer<typeof NewExamSchema>
-export type IExam = NewExam & Document
+export type IExam = NewExam
 
 export enum ExamTrackerStatus {
  NOT_STARTED = 'NOT_STARTED',

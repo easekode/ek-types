@@ -6,7 +6,7 @@ import { ProjectDetail, ProjectDetailSchema } from './projectDetail'
 import { SEOHead, SEOHeadSchema } from './seoHead'
 import { ToolsTechnologies } from './toolsTechnologies'
 import { IUser, IUserSchema } from './user'
-import { IExam } from './exam'
+import { IExam, NewExamSchema } from './exam'
 import { Category } from './category'
 import { CompanyIdFilter } from './company'
 import { z } from 'zod'
@@ -37,7 +37,7 @@ export const TopicSchema = z.object({
  duration: z.number().optional(),
  durationUnit: z.nativeEnum(DurationUnit).optional(),
  examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
- exams: z.array(z.object({})).optional() // Define IExam schema separately
+ exams: z.array(NewExamSchema).optional() // Define IExam schema separately
 })
 
 export const NewTopicSchema = TopicSchema.omit({
@@ -53,7 +53,7 @@ export const ChapterSchema = z.object({
  name: z.string(),
  topics: z.array(TopicSchema), // Define Topic schema separately
  examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
- exams: z.array(z.object({})).optional() // Define IExam schema separately
+ exams: z.array(NewExamSchema).optional() // Define IExam schema separately
 })
 export type Chapter = z.infer<typeof ChapterSchema>
 export const NewChapterSchema = ChapterSchema.omit({
