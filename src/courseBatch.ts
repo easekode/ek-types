@@ -274,3 +274,7 @@ export interface EndSessionBody {
  progress: CourseProgressUpdateType
  notes: string
 }
+export interface BatchComposite {
+ batchId: string
+ title: string
+}

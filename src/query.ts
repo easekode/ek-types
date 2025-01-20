@@ -38,6 +38,12 @@ export interface IGetPipeline {
 }
 
 export interface IGetPipelineResult {
- customPipeline: PipelineStage[]
- defaultPipeline: PipelineStage[]
+  customPipeline: PipelineStage[]
+  defaultPipeline: PipelineStage[]
+}
+
+export type CompositeApiProjectionValue = 1 | 0;
+export interface CompositeApiProjection {
+  courses?: CompositeApiProjectionValue;
+  batches?: CompositeApiProjectionValue;
 }
