@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { AccountStatus, Image } from './common'
+import { AccountStatus, FileTypeSchema, Image, ImageSchema } from './common'
 import { LoginResponse } from './auth'
 import { IEnrollment } from './enrollment'
 import { Certificate } from './certificate'
@@ -28,7 +28,8 @@ export const PersonalInfoSchema = z.object({
  address: z.array(AddressSchema).optional(),
  emailVerified: z.boolean().optional(),
  mobileVerified: z.boolean().optional(),
- profilePicture: z.any().optional() // Replace with Image schema if available
+ profilePicture: z.any(ImageSchema).optional(),
+ resume: z.any(FileTypeSchema).optional()
 })
 
 export const ClientInfoSchema = z.object({
