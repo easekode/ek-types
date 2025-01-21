@@ -89,7 +89,8 @@ export const CourseSchema = z.object({
  duration: z.number().optional(),
  durationUnit: z.string().optional(),
  seoHead: SEOHeadSchema.optional(),
- pricings: z.array(PricingSchema).optional()
+ pricings: z.array(PricingSchema).optional(),
+ slug: z.string()
 })
 
 export type Course = z.infer<typeof CourseSchema>
