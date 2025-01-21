@@ -1,35 +1,44 @@
-import { Date, Schema, Types } from 'mongoose'
-import { IUser } from './user'
-import { Course } from './course'
+import { Types, Document } from 'mongoose'
+import { z } from 'zod'
+import { IUserSchema } from './user'
+import { CourseSchema } from './course'
 
 export enum EnrollmentStatus {
  ENROLLED = 'ENROLLED',
  NOT_ENROLLED = 'NOT_ENROLLED',
  PENDING = 'PENDING',
- CANCELED = 'CANCELED'
+ CANCELLED = 'CANCELLED'
 }
 
-export interface IEnrollment extends Document {
- studentId: Types.ObjectId
- student?: IUser
- courseId: Types.ObjectId
- course?: Course
- enrollmentDate: Date
- status?: EnrollmentStatus
-}
+export const NewEnrollmentSchema = z.object({
+ studentId: z.instanceof(Types.ObjectId),
+ student: IUserSchema.optional(),
+ courseId: z.instanceof(Types.ObjectId),
+ course: CourseSchema.optional(),
+ enrollmentDate: z.date(),
+ status: z.optional(z.nativeEnum(EnrollmentStatus)),
+ companyId: z.instanceof(Types.ObjectId)
+})
 
-export interface NewEnrollment {
- studentId: Types.ObjectId
- courseId: Types.ObjectId
- batchId?: Types.ObjectId
- enrollmentDate?: Date
-}
+export const UpdateEnrollmentSchema = NewEnrollmentSchema.partial()
 
-export interface BulkEnrollmentRow {
- studentCode?: string
- studentName?: string
- studentEmail?: string
- courseCode: string
- enrollmentDate: Date
- enrollmentStatus: EnrollmentStatus
-}
+export type NewEnrollment = z.infer<typeof NewEnrollmentSchema>
+export type IEnrollment = z.infer<typeof NewEnrollmentSchema> & Document
+export type UpdateEnrollment = z.infer<typeof UpdateEnrollmentSchema>
+
+export const BulkEnrollmentRowSchema = z.object({
+ studentCode: z.optional(z.string()),
+ studentName: z.optional(z.string()),
+ studentEmail: z.optional(z.string().email()),
+ courseCode: z.string(),
+ enrollmentDate: z.date(),
+ enrollmentStatus: z.nativeEnum(EnrollmentStatus)
+})
+
+export type BulkEnrollmentRow = z.infer<typeof BulkEnrollmentRowSchema>
+
+const NewSelfEnrollSchema = NewEnrollmentSchema.partial().extend({
+ courseId: z.instanceof(Types.ObjectId)
+})
+
+export type NewSelfEnroll = z.infer<typeof NewSelfEnrollSchema>
