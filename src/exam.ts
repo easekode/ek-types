@@ -92,6 +92,15 @@ export enum ExamTrackerStatus {
  COMPLETED = 'COMPLETED'
 }
 
+export interface AggregatedExamTracker extends Document {
+ totalCorrectAnswers?: number
+ score?: number
+ totalAnswers?: number
+ totalQuestions?: number
+ totalWrongAnswers?: number
+ notAttempted?: number
+}
+
 export interface IExamTracker extends Document {
  examId: Types.ObjectId
  exam?: IExam
