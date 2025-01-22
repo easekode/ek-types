@@ -2,6 +2,7 @@ import { Model, PipelineStage } from 'mongoose'
 import { QueryStringType } from './pagination'
 import { IUser } from './user'
 import { IncomingHttpHeaders } from 'http'
+import { ICompany } from './company'
 
 export interface RequestInput<T = null> {
  //   query?: QueryStringType
@@ -10,6 +11,7 @@ export interface RequestInput<T = null> {
  params?: Record<string, any>
  user?: IUser
  headers?: IncomingHttpHeaders
+ company?: ICompany
 }
 
 export interface GetAggregateResultInput {
@@ -38,8 +40,8 @@ export interface IGetPipeline {
 }
 
 export interface IGetPipelineResult {
-  customPipeline: PipelineStage[]
-  defaultPipeline: PipelineStage[]
+ customPipeline: PipelineStage[]
+ defaultPipeline: PipelineStage[]
 }
 
 export type CompositeApiProjectionValue = 1 | 0;
