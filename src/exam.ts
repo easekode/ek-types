@@ -92,13 +92,19 @@ export enum ExamTrackerStatus {
  COMPLETED = 'COMPLETED'
 }
 
-export interface AggregatedExamTracker extends Document {
- totalCorrectAnswers?: number
+export interface AggregatedExamTracker extends Document {//this is for all data of students
+ _id: string
+ batchId?: string
+ email?: string
+ examCode?: string
+ notAttempted?: number
  score?: number
+ sessionId?: string
+ studentId?: string
  totalAnswers?: number
+ totalCorrectAnswers?: number
  totalQuestions?: number
  totalWrongAnswers?: number
- notAttempted?: number
 }
 
 export interface IExamTracker extends Document {
