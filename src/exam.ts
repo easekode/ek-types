@@ -92,7 +92,7 @@ export enum ExamTrackerStatus {
  COMPLETED = 'COMPLETED'
 }
 
-export const AggregatedExamTracker = z.object({ //for all student data of exam
+export const AggregatedExamTrackerSchema = z.object({
  _id: z.string(), 
  batchId: z.string().optional(),
  email: z.string().optional(),
@@ -106,6 +106,8 @@ export const AggregatedExamTracker = z.object({ //for all student data of exam
  totalQuestions: z.number().optional(),
  totalWrongAnswers: z.number().optional()
 })
+
+export type AggregatedExamTracker = z.infer<typeof AggregatedExamTrackerSchema>;
 
 export interface IExamTracker extends Document {
  examId: Types.ObjectId
