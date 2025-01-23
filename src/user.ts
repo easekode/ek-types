@@ -1,11 +1,8 @@
 import { z } from 'zod'
-import { AccountStatus, FileTypeSchema, Image, ImageSchema } from './common'
+import { AccountStatus, FileTypeSchema, ImageSchema } from './common'
 import { LoginResponse } from './auth'
-import { IEnrollment } from './enrollment'
-import { Certificate } from './certificate'
-import { Model, Schema, Document, Types } from 'mongoose'
+import { Model, Document, Types } from 'mongoose'
 import { AddressSchema } from './address'
-import { PaginatedResult } from './pagination'
 
 export enum Gender {
  MALE = 'MALE',
