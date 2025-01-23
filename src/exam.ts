@@ -92,20 +92,20 @@ export enum ExamTrackerStatus {
  COMPLETED = 'COMPLETED'
 }
 
-export interface AggregatedExamTracker extends Document {//this is for all data of students
- _id: string
- batchId?: string
- email?: string
- examCode?: string
- notAttempted?: number
- score?: number
- sessionId?: string
- studentId?: string
- totalAnswers?: number
- totalCorrectAnswers?: number
- totalQuestions?: number
- totalWrongAnswers?: number
-}
+export const AggregatedExamTracker = z.object({ //for all student data of exam
+ _id: z.string(), 
+ batchId: z.string().optional(),
+ email: z.string().optional(),
+ examCode: z.string().optional(),
+ notAttempted: z.number().optional(),
+ score: z.number().optional(),
+ sessionId: z.string().optional(),
+ studentId: z.string().optional(),
+ totalAnswers: z.number().optional(),
+ totalCorrectAnswers: z.number().optional(),
+ totalQuestions: z.number().optional(),
+ totalWrongAnswers: z.number().optional()
+})
 
 export interface IExamTracker extends Document {
  examId: Types.ObjectId
