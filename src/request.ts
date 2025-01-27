@@ -6,5 +6,6 @@ export interface RequestWithUser extends Request {
 }
 
 export enum HttpHeaderPath {
-    CLIENT_KEY = 'client-key'
+ CLIENT_KEY = 'client-key',
+ AUTHORIZATION = 'authorization'
 }

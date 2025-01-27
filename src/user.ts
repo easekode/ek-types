@@ -47,7 +47,8 @@ export const IUserSchema = z
   deviceToken: z.array(z.string()).optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
-  signUpData: z.string().optional()
+  signUpData: z.string().optional(),
+  providerAccountId: z.string().optional()
  })
  .merge(PersonalInfoSchema)
  .merge(StudentDetailsSchema)
