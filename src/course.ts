@@ -47,7 +47,8 @@ export type Topic = z.infer<typeof TopicSchema>;
 export type NewTopic = z.infer<typeof NewTopicSchema>;
 
 export const ChapterSchema = z.object({
-  _id: z.instanceof(Types.ObjectId).optional(),
+  _id: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
+  // _id: z.instanceof(Types.ObjectId).optional(),
   slNo: z.number().optional(),
   code: z.string().optional(),
   name: z.string(),
@@ -94,7 +95,8 @@ export const CourseSchema = z.object({
   seoHead: SEOHeadSchema.optional(),
   pricings: z.array(PricingSchema).optional(),
   slug: z.string(),
-  companyId: z.instanceof(Types.ObjectId).optional(),
+  companyId: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
+  //  companyId: z.instanceof(Types.ObjectId).optional()
 });
 
 export type Course = z.infer<typeof CourseSchema>;
@@ -199,6 +201,7 @@ export type GenerateCourseResult = Partial<
 
 const CourseFilterSchema = CourseSchema.partial() //.extend({})
 export type CourseFilter = z.infer<typeof CourseFilterSchema>
+
 
 export interface CoursesComposite {
   courseId: string;

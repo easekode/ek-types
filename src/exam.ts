@@ -71,7 +71,7 @@ export type SuggestQuestionInput = z.infer<typeof SuggestQuestionInputSchema>;
 
 export const NewExamSchema = z.object({
   //  _id: z.instanceof(Schema.Types.ObjectId).optional(),
-  _id: z.union([z.instanceof(Schema.Types.ObjectId), z.string()]).optional(),
+  _id: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
   title: z.string(),
   description: z.string(),
   courseId: z.instanceof(Types.ObjectId).optional(),
@@ -84,9 +84,7 @@ export const NewExamSchema = z.object({
   showTimerPanel: z.boolean().optional().default(false),
   showProgressPanel: z.boolean().optional().default(false),
   //  createdById: z.instanceof(Schema.Types.ObjectId).optional()
-  createdById: z
-    .union([z.instanceof(Schema.Types.ObjectId), z.string()])
-    .optional(),
+  createdById: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
 });
 
 export type NewExam = z.infer<typeof NewExamSchema>;
