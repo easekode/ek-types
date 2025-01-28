@@ -199,8 +199,9 @@ export type GenerateCourseResult = Partial<
   >
 >;
 
-const CourseFilterSchema = CourseSchema.partial(); //.extend({})
-export type CourseFilter = z.infer<typeof CourseFilterSchema>;
+const CourseFilterSchema = CourseSchema.partial() //.extend({})
+export type CourseFilter = z.infer<typeof CourseFilterSchema>
+
 
 export interface CoursesComposite {
   courseId: string;
