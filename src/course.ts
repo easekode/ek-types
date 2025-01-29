@@ -48,12 +48,13 @@ export type Topic = z.infer<typeof TopicSchema>;
 export type NewTopic = z.infer<typeof NewTopicSchema>;
 
 export const ChapterSchema = z.object({
- _id: z.instanceof(Types.ObjectId).optional(),
- slNo: z.number().optional(),
- code: z.string().optional(),
- name: z.string(),
- topics: z.array(TopicSchema),
- // examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+  _id: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
+  // _id: z.instanceof(Types.ObjectId).optional(),
+  slNo: z.number().optional(),
+  code: z.string().optional(),
+  name: z.string(),
+  topics: z.array(TopicSchema),
+  // examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
   examIds: z
     .array(z.union([z.instanceof(Types.ObjectId), z.string()]))
     .optional(),
@@ -70,32 +71,33 @@ export const ToolsTechnologiesSchema = z.object({
 });
 
 export const CourseSchema = z.object({
- _id: z.instanceof(Types.ObjectId).optional(),
- //  slNo: z.number(),
- code: z.string().optional(),
- title: z.string(),
- cardImage: ImageSchema.optional(),
- heroImage: ImageSchema.optional(),
- images: z.array(ImageSchema).optional(),
- description: z.string().optional(),
- mediumDescription: z.string().optional(),
- longDescription: z.string().optional(),
- status: CourseStatusSchema.optional(),
- authorId: z.instanceof(Types.ObjectId).optional(),
- categoryId: z.instanceof(Types.ObjectId).optional(),
- category: CategorySchema.optional(),
- chapters: z.array(ChapterSchema).optional(),
- toolsAndTechnologies: z.array(ToolsTechnologiesSchema).optional(),
- projects: z.array(ProjectDetailSchema).optional(),
- instructors: z.array(IUserSchema).optional(),
- instructorIds: z.array(z.instanceof(Types.ObjectId)).optional(),
- banner: z.array(BannerSchema).optional(),
- duration: z.number().optional(),
- durationUnit: z.string().optional(),
- seoHead: SEOHeadSchema.optional(),
- pricings: z.array(PricingSchema).optional(),
- slug: z.string(),
-  companyId: z.instanceof(Types.ObjectId).optional(),
+  _id: z.instanceof(Types.ObjectId).optional(),
+  //  slNo: z.number(),
+  code: z.string().optional(),
+  title: z.string(),
+  cardImage: ImageSchema.optional(),
+  heroImage: ImageSchema.optional(),
+  images: z.array(ImageSchema).optional(),
+  description: z.string().optional(),
+  mediumDescription: z.string().optional(),
+  longDescription: z.string().optional(),
+  status: CourseStatusSchema.optional(),
+  authorId: z.instanceof(Types.ObjectId).optional(),
+  categoryId: z.instanceof(Types.ObjectId).optional(),
+  category: CategorySchema.optional(),
+  chapters: z.array(ChapterSchema).optional(),
+  toolsAndTechnologies: z.array(ToolsTechnologiesSchema).optional(),
+  projects: z.array(ProjectDetailSchema).optional(),
+  instructors: z.array(IUserSchema).optional(),
+  instructorIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+  banner: z.array(BannerSchema).optional(),
+  duration: z.number().optional(),
+  durationUnit: z.string().optional(),
+  seoHead: SEOHeadSchema.optional(),
+  pricings: z.array(PricingSchema).optional(),
+  slug: z.string(),
+  companyId: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
+  //  companyId: z.instanceof(Types.ObjectId).optional()
 });
 
 export type Course = z.infer<typeof CourseSchema>;
@@ -200,6 +202,7 @@ export type GenerateCourseResult = Partial<
 
 const CourseFilterSchema = CourseSchema.partial() //.extend({})
 export type CourseFilter = z.infer<typeof CourseFilterSchema>
+
 
 export interface CoursesComposite {
  courseId: string
