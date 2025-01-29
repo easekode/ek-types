@@ -10,33 +10,34 @@ import { IExam, NewExamSchema } from './exam';
 import { Category } from './category';
 import { CompanyIdFilter } from './company';
 import { z } from 'zod';
+import { EnrollmentStatus } from './enrollment'
 export enum CourseStatus {
-  DRAFT = 'DRAFT',
-  PUBLISHED = 'PUBLISHED',
+ DRAFT = 'DRAFT',
+ PUBLISHED = 'PUBLISHED',
   ARCHIVED = 'ARCHIVED',
 }
 
 export enum DurationUnit {
-  HOURS = 'hours',
-  DAYS = 'days',
-  WEEKS = 'weeks',
+ HOURS = 'hours',
+ DAYS = 'days',
+ WEEKS = 'weeks',
   MONTHS = 'months',
 }
 export const CourseStatusSchema = z.nativeEnum(CourseStatus);
 
 export const CategorySchema = z.object({
-  id: z.string(),
+ id: z.string(),
   name: z.string(),
 });
 export const TopicSchema = z.object({
-  _id: z.string().optional(),
-  slNo: z.number(),
-  code: z.string().optional(),
-  name: z.string(),
-  description: z.string().optional(),
-  duration: z.number().optional(),
-  durationUnit: z.nativeEnum(DurationUnit).optional(),
-  examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
+ _id: z.string().optional(),
+ slNo: z.number(),
+ code: z.string().optional(),
+ name: z.string(),
+ description: z.string().optional(),
+ duration: z.number().optional(),
+ durationUnit: z.nativeEnum(DurationUnit).optional(),
+ examIds: z.array(z.instanceof(Types.ObjectId)).optional(),
   exams: z.array(NewExamSchema).optional(), // Define IExam schema separately
 });
 
@@ -65,7 +66,7 @@ export const NewChapterSchema = ChapterSchema.omit({
 });
 
 export const ToolsTechnologiesSchema = z.object({
-  id: z.string(),
+ id: z.string(),
   name: z.string(),
 });
 
@@ -102,9 +103,9 @@ export const CourseSchema = z.object({
 export type Course = z.infer<typeof CourseSchema>;
 
 export const NewCourseSchema = CourseSchema.omit({
-  _id: true,
-  authorId: true,
-  categoryId: true,
+ _id: true,
+ authorId: true,
+ categoryId: true,
   instructorIds: true,
 });
 
@@ -149,7 +150,7 @@ export interface ChaptersAndTopicsGenInput {
 
 export interface AdditionalChaptersGenInput {
   course: NewCourse;
-  //  existingChapters: Chapter[]
+ //  existingChapters: Chapter[]
 }
 
 export interface TopicsGenInput {
@@ -162,18 +163,18 @@ export interface AdditionalTopicsGenInput {
 }
 
 export type SuggestCourseGenType =
-  | CourseDetailsGenInput
-  | ChaptersAndTopicsGenInput
-  | AdditionalChaptersGenInput
-  | TopicsGenInput
+ | CourseDetailsGenInput
+ | ChaptersAndTopicsGenInput
+ | AdditionalChaptersGenInput
+ | TopicsGenInput
   | AdditionalTopicsGenInput;
 
 export type ContentGenType =
-  | 'course'
-  | 'chapters'
-  | 'additionalChapters'
-  | 'topics'
-  | 'additionalTopics'
+ | 'course'
+ | 'chapters'
+ | 'additionalChapters'
+ | 'topics'
+ | 'additionalTopics'
   | 'courseDescription';
 
 export type NewChapter = z.infer<typeof NewChapterSchema>;
@@ -188,15 +189,15 @@ export interface CourseContentGenInput {
 
 type DummyString = string;
 export type GenerateCourseResult = Partial<
-  Record<
-    ContentGenType,
+ Record<
+  ContentGenType,
     | NewChapter
     | NewTopic
     | NewCourse
     | AdditionalChapters
     | AdditionalTopics
     | DummyString
-  >
+ >
 >;
 
 const CourseFilterSchema = CourseSchema.partial() //.extend({})
@@ -204,6 +205,7 @@ export type CourseFilter = z.infer<typeof CourseFilterSchema>
 
 
 export interface CoursesComposite {
-  courseId: string;
-  title: string;
+ courseId: string
+ title: string
+ status: EnrollmentStatus
 }
