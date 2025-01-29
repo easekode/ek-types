@@ -17,7 +17,7 @@ export const NewEnrollmentSchema = z.object({
  course: CourseSchema.optional(),
  enrollmentDate: z.date(),
  status: z.optional(z.nativeEnum(EnrollmentStatus)),
- companyId: z.instanceof(Types.ObjectId)
+ companyId: z.union([z.instanceof(Types.ObjectId), z.string()])
 })
 
 export const UpdateEnrollmentSchema = NewEnrollmentSchema.partial()
