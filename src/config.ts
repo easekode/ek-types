@@ -19,6 +19,13 @@ export interface Config {
 }
 
 export const appConfigSchema = z.object({
- COMPANY_PROFILE_CHECK_ENABLED: z.boolean()
-})
-export type AppConfig = z.infer<typeof appConfigSchema>
+  COMPANY_PROFILE_CHECK_ENABLED: z.boolean(),
+});
+export type AppConfig = z.infer<typeof appConfigSchema>;
+
+export const appConfigFeSchema = z.object({
+  clientKey: z.string(),
+  apiUrl: z.string(),
+});
+
+export type AppConfigFe = z.infer<typeof appConfigFeSchema>;
