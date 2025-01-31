@@ -42,3 +42,8 @@ const NewSelfEnrollSchema = NewEnrollmentSchema.partial().extend({
 })
 
 export type NewSelfEnroll = z.infer<typeof NewSelfEnrollSchema>
+
+const EnrollmentFilterSchema = NewEnrollmentSchema.partial().extend({
+ status: z.array(z.nativeEnum(EnrollmentStatus)).optional()
+})
+export type EnrollmentFilter = z.infer<typeof EnrollmentFilterSchema>
