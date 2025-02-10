@@ -22,6 +22,7 @@ export enum QuestionType {
   MULTIPLE_RESPONSE = 'multiple_response',
   SCENARIO_BASED = 'scenario_based',
   IMAGE_BASED = 'image_based',
+  CODING = 'coding',
 }
 
 export enum Level {
@@ -156,6 +157,7 @@ export type NewExamTracker = Omit<IExamTracker, keyof Document>;
 
 export type ExistingQuiz = {
   quiz: IExam;
+  shared?: ExamShareStatus;
   status?: ExamShareStatus;
 };
 
