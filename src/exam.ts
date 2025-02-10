@@ -158,6 +158,7 @@ export type NewExamTracker = Omit<IExamTracker, keyof Document>;
 export type ExistingQuiz = {
   quiz: IExam;
   shared?: ExamShareStatus;
+  status?: ExamShareStatus;
 };
 
 export interface UpdateExamStatusInput {
