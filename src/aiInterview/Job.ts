@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Document } from 'mongoose'
-import { ObjectIdOrStringId } from '../common'
+import { ActiveStatus, ObjectIdOrStringId } from '../common'
 import { HiringCompanySchema } from './HiringCompany'
 
 export const JobSchema = z.object({
@@ -11,7 +11,8 @@ export const JobSchema = z.object({
  createdBy: ObjectIdOrStringId,
  updatedBy: ObjectIdOrStringId.optional(),
  hiringCompanyId: ObjectIdOrStringId.optional(),
- hiringCompany: HiringCompanySchema.optional()
+ hiringCompany: HiringCompanySchema.optional(),
+ status: z.nativeEnum(ActiveStatus).optional()
 })
 
 export const updateJobSchema = JobSchema.partial().omit({

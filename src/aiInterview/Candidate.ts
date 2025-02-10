@@ -1,8 +1,9 @@
 import { z } from 'zod'
-import { ActiveStatus } from '../common'
+import { ObjectIdOrStringId } from '../common'
 import { ProfileSource } from './ProfileSource'
 import { CallStatus } from './Call'
 import { IUserSchema } from '../user'
+import { JobSchema } from './Job'
 
 export enum CandidateStatus {
  PENDING = 'PENDING',
@@ -14,9 +15,7 @@ export enum CandidateStatus {
 }
 
 export const CandidateSchema = z.object({
- userId: z.string().refine((id) => id.match(/^[0-9a-fA-F]{24}$/), {
-  message: 'Invalid id userId'
- }),
+ userId: ObjectIdOrStringId,
  user: IUserSchema.optional(),
  resumeUrl: z.string().url(),
  workExperience: z
@@ -29,6 +28,7 @@ export const CandidateSchema = z.object({
    })
   )
   .optional(),
+ expInYrs: z.number().optional(),
  lastWorkingDay: z.date().optional(),
  source: z.nativeEnum(ProfileSource),
  status: z.nativeEnum(CandidateStatus),
@@ -40,3 +40,12 @@ export const UpdateCandidateSchema = CandidateSchema.partial()
 
 export type NewCandidate = z.infer<typeof CandidateSchema>
 export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
+
+export const CandidateJobInviteSchema = z.object({
+ jobId: ObjectIdOrStringId,
+ job: JobSchema.optional(),
+ userIds: z.array(ObjectIdOrStringId).min(1),
+ users: z.array(IUserSchema).optional()
+})
+
+export type CandidateJobInvite = z.infer<typeof CandidateJobInviteSchema>

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { QuestionAnswerSchema } from './QuestionAnswer'
+import { CreatedAndUpdatedAt } from '../common'
 
 export enum InterviewQuestionStatus {
  DRAFT = 'DRAFT',
@@ -12,7 +13,7 @@ export enum InterviewQuestionStatus {
 export const InterviewQuestionSchema = z.object({
  title: z.string().min(1),
  status: z.nativeEnum(InterviewQuestionStatus),
- timesUsed: z.number(),
+ timesUsed: z.number().optional(),
  experienceRange: z
   .object({
    min: z.number().min(0),
@@ -21,10 +22,22 @@ export const InterviewQuestionSchema = z.object({
   .refine((data) => data.min <= data.max, {
    message: 'min should be less than or equal to max'
   }),
- questions: z.array(QuestionAnswerSchema)
+ questions: z.array(QuestionAnswerSchema),
+ totalQuestions: z.number().optional()
 })
 
-const UpdateInterviewQuestionSchema = InterviewQuestionSchema.partial()
+export const UpdateInterviewQuestionSchema = InterviewQuestionSchema.partial()
 
-export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema>
+export const NewInterviewQuestionReqSchema = InterviewQuestionSchema.partial()
+ .omit({
+  status: true,
+  timesUsed: true,
+  questions: true
+ })
+ .extend({
+  prompt: z.string(),
+  questionSet: z.number()
+ })
+export type NewInterviewQuestionReq = z.infer<typeof NewInterviewQuestionReqSchema>
+export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema> & CreatedAndUpdatedAt
 export type UpdateInterviewQuestion = z.infer<typeof UpdateInterviewQuestionSchema>
