@@ -18,7 +18,8 @@ export interface IRoleDefinitions {
  role_admin: RoleDefinitionValue
  role_student: RoleDefinitionValue
  role_instructor: RoleDefinitionValue
- //  [key: string]: RoleDefinitionValue
+ role_candidate: RoleDefinitionValue
+ role_interviewer: RoleDefinitionValue
 }
 
 export type RoleNames = keyof IRoleDefinitions
@@ -38,6 +39,16 @@ export const roleDefinitions: IRoleDefinitions = {
   _id: '650acb6e752c4489ac858161',
   name: 'instructor',
   slug: 'role_instructor'
+ },
+ role_candidate: {
+    _id: '67a49aded1fe941bfdc58e21',
+    name: 'candidate',
+    slug: 'role_candidate'
+ },
+ role_interviewer: {
+    _id: '67a49b197ce2358861766102',
+    name: 'interviewer',
+    slug: 'role_interviewer'
  }
 }
 

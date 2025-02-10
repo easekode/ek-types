@@ -19,6 +19,16 @@ export interface Config {
 }
 
 export const appConfigSchema = z.object({
- COMPANY_PROFILE_CHECK_ENABLED: z.boolean()
-})
-export type AppConfig = z.infer<typeof appConfigSchema>
+  COMPANY_PROFILE_CHECK_ENABLED: z.boolean(),
+});
+export type AppConfig = z.infer<typeof appConfigSchema>;
+
+export const appConfigFeSchema = z.object({
+  NEXT_PUBLIC_CLIENT_KEY: z.string(),
+  NEXT_PUBLIC_API_URL: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  AUTH_SECRET: z.string()
+});
+
+export type AppConfigFe = z.infer<typeof appConfigFeSchema>;

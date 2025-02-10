@@ -1,4 +1,4 @@
-import type { Schema, Types } from 'mongoose'
+import { Types } from 'mongoose'
 import { z } from 'zod'
 
 export const ImageSchema = z.object({
@@ -42,3 +42,13 @@ export enum NA {
 export enum NotAvailable {
  LONG = 'Not Available'
 }
+
+export const MongoObjectIdString = z.string().refine((id) => id.match(/^[0-9a-fA-F]{24}$/), {
+ message: 'Invalid object id'
+})
+
+export const ObjectIdOrStringId = z.union([MongoObjectIdString, z.instanceof(Types.ObjectId)])
+export const CreatedAndUpdatedBySchema = z.object({
+ createdBy: ObjectIdOrStringId.optional(),
+ updatedBy: ObjectIdOrStringId.optional()
+})
