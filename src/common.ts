@@ -52,3 +52,10 @@ export const CreatedAndUpdatedBySchema = z.object({
  createdBy: ObjectIdOrStringId.optional(),
  updatedBy: ObjectIdOrStringId.optional()
 })
+
+export const CreateAtUpdateAtSchema = z.object({
+ createdAt: z.date().optional(),
+ updatedAt: z.date().optional()
+})
+
+export type CreatedAndUpdatedAt = z.infer<typeof CreatedAndUpdatedBySchema>
