@@ -12,13 +12,22 @@ export const JobSchema = z.object({
  updatedBy: ObjectIdOrStringId.optional(),
  hiringCompanyId: ObjectIdOrStringId.optional(),
  hiringCompany: HiringCompanySchema.optional(),
- status: z.nativeEnum(ActiveStatus).optional()
+ status: z.nativeEnum(ActiveStatus).optional(),
+ companyId: ObjectIdOrStringId
 })
 
 export const updateJobSchema = JobSchema.partial().omit({
- createdBy: true
+ createdBy: true,
+ companyId: true
 })
 
+export const NewJobSchema = JobSchema.omit({
+ createdBy: true,
+ updatedBy: true,
+ status: true,
+ companyId: true
+}).strict()
+
 export type Job = z.infer<typeof JobSchema> & Document
-export type NewJob = z.infer<typeof JobSchema>
+export type NewJob = z.infer<typeof NewJobSchema>
 export type UpdateJob = z.infer<typeof updateJobSchema>

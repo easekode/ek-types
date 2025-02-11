@@ -27,17 +27,21 @@ export const InterviewQuestionSchema = z.object({
 })
 
 export const UpdateInterviewQuestionSchema = InterviewQuestionSchema.partial()
-
-export const NewInterviewQuestionReqSchema = InterviewQuestionSchema.partial()
  .omit({
-  status: true,
   timesUsed: true,
-  questions: true
+  totalQuestions: true
  })
- .extend({
-  prompt: z.string(),
-  questionSet: z.number()
- })
+ .strict()
+
+export const NewInterviewQuestionReqSchema = InterviewQuestionSchema.omit({
+ title: true,
+ status: true,
+ timesUsed: true,
+ questions: true
+}).extend({
+ prompt: z.string(),
+ questionSet: z.number()
+})
 export type NewInterviewQuestionReq = z.infer<typeof NewInterviewQuestionReqSchema>
 export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema> & CreatedAndUpdatedAt
 export type UpdateInterviewQuestion = z.infer<typeof UpdateInterviewQuestionSchema>

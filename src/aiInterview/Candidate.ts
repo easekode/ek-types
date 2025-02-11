@@ -14,30 +14,52 @@ export enum CandidateStatus {
  REJECTED = 'REJECTED'
 }
 
-export const CandidateSchema = z.object({
- userId: ObjectIdOrStringId,
- user: IUserSchema.optional(),
- resumeUrl: z.string().url(),
- workExperience: z
-  .array(
-   z.object({
-    company: z.string().min(1),
-    role: z.string().min(1),
-    startDate: z.date(),
-    endDate: z.date().optional()
-   })
-  )
-  .optional(),
- expInYrs: z.number().optional(),
- lastWorkingDay: z.date().optional(),
- source: z.nativeEnum(ProfileSource),
- status: z.nativeEnum(CandidateStatus),
- callStatus: z.nativeEnum(CallStatus),
- contactedOn: z.date()
+export const CandidateSchema = z
+ .object({
+  userId: ObjectIdOrStringId,
+  user: IUserSchema.optional(),
+  resumeUrl: z.string().url(),
+  workExperience: z
+   .array(
+    z.object({
+     company: z.string().min(1),
+     role: z.string().min(1),
+     startDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date()),
+     endDate: z.preprocess(
+      (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
+      z.date().optional()
+     )
+    })
+   )
+   .optional(),
+  expInYrs: z.number().optional(),
+  lastWorkingDay: z.preprocess(
+   (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
+   z.date().optional()
+  ),
+  source: z.nativeEnum(ProfileSource).optional(),
+  status: z.nativeEnum(CandidateStatus).optional(),
+  callStatus: z.nativeEnum(CallStatus).optional(),
+  contactedOn: z.preprocess(
+   (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
+   z.date().optional()
+  ),
+  companyId: ObjectIdOrStringId
+ })
+ .strict()
+
+export const NewCandidateSchema = CandidateSchema.omit({
+ companyId: true,
+ contactedOn: true,
+ callStatus: true
 })
 
-export const UpdateCandidateSchema = CandidateSchema.partial()
+export const UpdateCandidateSchema = CandidateSchema.partial().omit({
+ userId: true,
+ companyId: true
+})
 
+export type Candidate = z.infer<typeof CandidateSchema>
 export type NewCandidate = z.infer<typeof CandidateSchema>
 export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 
