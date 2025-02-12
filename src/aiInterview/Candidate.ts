@@ -3,7 +3,7 @@ import { ObjectIdOrStringId } from '../common'
 import { ProfileSource } from './ProfileSource'
 import { CallStatus } from './Call'
 import { IUserSchema } from '../user'
-import { JobSchema } from './Job'
+import { Document } from 'mongoose'
 
 export enum CandidateStatus {
  PENDING = 'PENDING',
@@ -59,15 +59,13 @@ export const UpdateCandidateSchema = CandidateSchema.partial().omit({
  companyId: true
 })
 
-export type Candidate = z.infer<typeof CandidateSchema>
+export type Candidate = z.infer<typeof CandidateSchema> & Document
 export type NewCandidate = z.infer<typeof CandidateSchema>
 export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 
 export const CandidateJobInviteSchema = z.object({
  jobId: ObjectIdOrStringId,
- job: JobSchema.optional(),
- userIds: z.array(ObjectIdOrStringId).min(1),
- users: z.array(IUserSchema).optional()
+ candidateIds: z.array(ObjectIdOrStringId).min(1)
 })
 
 export type CandidateJobInvite = z.infer<typeof CandidateJobInviteSchema>

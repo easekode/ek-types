@@ -3,6 +3,7 @@ import { JobSchema } from './Job'
 import { CandidateSchema } from './Candidate'
 import { QuestionAnswerSchema } from './QuestionAnswer'
 import { Types } from 'mongoose'
+import { InvitationStatus } from '../invitation'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -50,3 +51,21 @@ export const InterviewSchema = z.object({
 
 export const UpdateInterviewSchema = InterviewSchema.partial()
 export type Interview = z.infer<typeof InterviewSchema>
+
+export const SelfScheduleInterviewSchema = z.object({
+ action: z.enum([InvitationStatus.ACCEPTED, InvitationStatus.REJECTED]),
+ invitationCode: z.string(),
+ scheduleTime: z.preprocess(
+  (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
+  z.date().optional()
+ )
+})
+
+export type SelfScheduleInterview = z.infer<typeof SelfScheduleInterviewSchema>
+
+const InterviewFilterSchema = InterviewSchema.partial().pick({
+    status: true,
+    type: true
+})
+
+export type InterviewFilter = z.infer<typeof InterviewFilterSchema>
