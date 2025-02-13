@@ -166,6 +166,13 @@ export interface TeacherCourseBatchResponse {
  batch: ICourseBatch
  pendingInvites: IInvitation[]
  members: PaginatedResult<any>
+ studentScores?: IStudentScore[]
+}
+
+export interface IStudentScore {
+ studentId: string
+ score: number
+ percentage: number
 }
 export interface ICourseBatchSessionClient extends ICourseBatch {
  course: Course
