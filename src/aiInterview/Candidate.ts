@@ -1,11 +1,13 @@
 import { z } from 'zod'
-import { ObjectIdOrStringId } from '../common'
+import { DateObjOrString, ObjectIdOrStringId } from '../common'
 import { ProfileSource } from './ProfileSource'
 import { CallStatus } from './Call'
 import { IUserSchema } from '../user'
 import { Document } from 'mongoose'
 
 export enum CandidateStatus {
+ CREATED = 'CREATED',
+ SCHEDULED = 'SCHEDULED',
  PENDING = 'PENDING',
  UNDER_REVIEW = 'UNDER_REVIEW',
  FOLLOW_UP = 'FOLLOW_UP',
@@ -33,10 +35,7 @@ export const CandidateSchema = z
    )
    .optional(),
   expInYrs: z.number().optional(),
-  lastWorkingDay: z.preprocess(
-   (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
-   z.date().optional()
-  ),
+  lastWorkingDay: DateObjOrString.optional(),
   source: z.nativeEnum(ProfileSource).optional(),
   status: z.nativeEnum(CandidateStatus).optional(),
   callStatus: z.nativeEnum(CallStatus).optional(),
