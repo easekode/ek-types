@@ -4,7 +4,9 @@ import { CandidateSchema } from './Candidate'
 import { QuestionAnswerSchema } from './QuestionAnswer'
 import { Types } from 'mongoose'
 import { InvitationStatus } from '../invitation'
-import { DateObjOrString } from '../common'
+import { DateObjOrString, ObjectIdOrStringId } from '../common'
+import { TransformedUser } from '../user'
+import { InterviewInstructions } from './instruction'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -47,10 +49,15 @@ export const InterviewSchema = z.object({
    message: 'Invalid id examId'
   })
  ]),
- providedAnswer: z.array(QuestionAnswerSchema).optional()
+ providedAnswer: z.array(QuestionAnswerSchema).optional(),
+ companyId: ObjectIdOrStringId
 })
 
-export const UpdateInterviewSchema = InterviewSchema.partial()
+export const UpdateInterviewSchema = InterviewSchema.omit({
+ candidateId: true,
+ job: true,
+ companyId: true
+}).partial()
 export type Interview = z.infer<typeof InterviewSchema>
 
 export const SelfScheduleInterviewSchema = z.object({
@@ -75,3 +82,9 @@ const InterviewFilterSchema = InterviewSchema.pick({
  })
 
 export type InterviewFilter = z.infer<typeof InterviewFilterSchema>
+
+export interface InterviewInfo {
+ user: TransformedUser
+ interview: Interview
+ instruction: InterviewInstructions
+}

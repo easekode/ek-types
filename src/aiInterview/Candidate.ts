@@ -68,3 +68,9 @@ export const CandidateJobInviteSchema = z.object({
 })
 
 export type CandidateJobInvite = z.infer<typeof CandidateJobInviteSchema>
+
+export const IsCandidateIvitedSchema = z.object({
+    invitationCode: z.string()
+})
+
+export type IsCandidateIvited = z.infer<typeof IsCandidateIvitedSchema> 
