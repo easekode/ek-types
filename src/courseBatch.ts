@@ -173,6 +173,7 @@ export interface IStudentScore {
  studentId: string
  score: number
  percentage: number
+ grade: string
 }
 export interface ICourseBatchSessionClient extends ICourseBatch {
  course: Course
