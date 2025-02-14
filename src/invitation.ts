@@ -16,7 +16,8 @@ export enum RecipientType {
 
 export enum InvitationPurpose {
  COURSE = 'COURSE',
- BATCH = 'BATCH'
+ BATCH = 'BATCH',
+ SCHEDULE_INTERVIEW = 'SCHEDULE_INTERVIEW'
 }
 
 export interface StudentAcceptRejectInvitationBody {
@@ -35,6 +36,8 @@ export interface IInvitation extends Document {
  purpose?: InvitationPurpose
  status?: InvitationStatus
  receipientType?: RecipientType
+ candidateId?: Types.ObjectId
+ jobId?: Types.ObjectId
 }
 
 export interface CreateInvitationResponse {

@@ -3,6 +3,8 @@ import { JobSchema } from './Job'
 import { CandidateSchema } from './Candidate'
 import { QuestionAnswerSchema } from './QuestionAnswer'
 import { Types } from 'mongoose'
+import { InvitationStatus } from '../invitation'
+import { DateObjOrString } from '../common'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -36,8 +38,8 @@ export const InterviewSchema = z.object({
  duration: z.number().min(1, 'Duration must be at least 1 minute'),
  score: z.number().min(0).max(100).optional(),
  status: z.nativeEnum(InterviewStatus),
- startTime: z.date().optional(),
- endTime: z.date().optional(),
+ startTime: DateObjOrString.optional(),
+ endTime: DateObjOrString.optional(),
  feedback: z.string().optional(),
  examId: z.union([
   z.instanceof(Types.ObjectId),
@@ -50,3 +52,26 @@ export const InterviewSchema = z.object({
 
 export const UpdateInterviewSchema = InterviewSchema.partial()
 export type Interview = z.infer<typeof InterviewSchema>
+
+export const SelfScheduleInterviewSchema = z.object({
+ action: z.enum([InvitationStatus.ACCEPTED, InvitationStatus.REJECTED]),
+ invitationCode: z.string(),
+ scheduleTime: DateObjOrString,
+ resumeUrl: z.string().url(),
+ expInYrs: z.number().min(1),
+ lastWorkingDay: DateObjOrString
+})
+
+export type SelfScheduleInterview = z.infer<typeof SelfScheduleInterviewSchema>
+
+const InterviewFilterSchema = InterviewSchema.pick({
+ status: true,
+ type: true,
+ startTime: true
+})
+ .partial()
+ .extend({
+  endTime: DateObjOrString.optional()
+ })
+
+export type InterviewFilter = z.infer<typeof InterviewFilterSchema>
