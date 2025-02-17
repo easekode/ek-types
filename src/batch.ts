@@ -75,5 +75,5 @@ export const NewCourseBatchSchema = CourseBatchSchema.omit({
 }).strict();
 
 export type CourseBatch = z.infer<typeof CourseBatchSchema>;
-export type NewCourseBatch = z.infer<typeof NewCourseBatchSchema>;
+export type _NewCourseBatch = z.infer<typeof NewCourseBatchSchema>; //TODO remove exp after testing
 export type UpdateCourseBatch = z.infer<typeof UpdateCourseBatchSchema>;
