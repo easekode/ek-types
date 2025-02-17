@@ -169,6 +169,11 @@ export interface TeacherCourseBatchResponse {
  studentScores?: IStudentScore[]
 }
 
+export interface IExamSetting {
+  gradeA: number;
+  gradeB: number;
+  gradeC: number;
+}
 export interface IStudentScore {
  studentId: string
  score: number
