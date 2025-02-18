@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Document } from 'mongoose'
-import { ActiveStatus, ObjectIdOrStringId } from '../common'
+import { ActiveStatus, DateObjOrString, ObjectIdOrStringId } from '../common'
 import { HiringCompanySchema } from './HiringCompany'
 import { Candidate } from './Candidate'
 
@@ -14,7 +14,8 @@ export const JobSchema = z.object({
  hiringCompanyId: ObjectIdOrStringId.optional(),
  hiringCompany: HiringCompanySchema.optional(),
  status: z.nativeEnum(ActiveStatus).optional(),
- companyId: ObjectIdOrStringId
+ companyId: ObjectIdOrStringId,
+ expiryDate: DateObjOrString
 })
 
 export const updateJobSchema = JobSchema.partial().omit({
@@ -34,7 +35,7 @@ export type NewJob = z.infer<typeof NewJobSchema>
 export type UpdateJob = z.infer<typeof updateJobSchema>
 
 export interface JobIvitationInfo {
-    job: Job
-    candidate: Candidate
-    link: string
+ job: Job
+ candidate: Candidate
+ link: string
 }

@@ -88,3 +88,9 @@ export interface InterviewInfo {
  interview: Interview
  instruction: InterviewInstructions
 }
+
+export const SelfUpdateInterviewSchema = SelfScheduleInterviewSchema.pick({
+ scheduleTime: true
+}).strict()
+
+export type SelfUpdateInterview = z.infer<typeof SelfUpdateInterviewSchema>
