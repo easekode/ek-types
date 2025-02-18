@@ -159,7 +159,8 @@ export interface ICourseBatchSession extends Document {
  feedback?: Types.ObjectId[]
  averageRating?: number
  notes?: string
- meetingLink?: string
+ meetingLink?: string,
+ totalAttendance?: number
 }
 
 export interface TeacherCourseBatchResponse {
