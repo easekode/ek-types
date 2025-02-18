@@ -18,7 +18,9 @@ export enum CandidateStatus {
 
 export const CandidateSchema = z
  .object({
-  userId: ObjectIdOrStringId,
+  userId: ObjectIdOrStringId.optional(),
+  email: z.string().email(),
+  name: z.string(),
   user: IUserSchema.optional(),
   resumeUrl: z.string().url(),
   workExperience: z
@@ -48,15 +50,19 @@ export const CandidateSchema = z
  .strict()
 
 export const NewCandidateSchema = CandidateSchema.omit({
+ userId: true,
  companyId: true,
  contactedOn: true,
  callStatus: true
-})
+}).strict()
 
-export const UpdateCandidateSchema = CandidateSchema.partial().omit({
- userId: true,
- companyId: true
-})
+export const UpdateCandidateSchema = CandidateSchema.partial()
+ .omit({
+  email: true,
+  userId: true,
+  companyId: true
+ })
+ .strict()
 
 export type Candidate = z.infer<typeof CandidateSchema> & Document
 export type NewCandidate = z.infer<typeof CandidateSchema>
@@ -70,7 +76,7 @@ export const CandidateJobInviteSchema = z.object({
 export type CandidateJobInvite = z.infer<typeof CandidateJobInviteSchema>
 
 export const IsCandidateIvitedSchema = z.object({
-    invitationCode: z.string()
+ invitationCode: z.string()
 })
 
-export type IsCandidateIvited = z.infer<typeof IsCandidateIvitedSchema> 
+export type IsCandidateIvited = z.infer<typeof IsCandidateIvitedSchema>
