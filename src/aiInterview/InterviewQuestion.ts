@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { QuestionAnswerSchema } from './QuestionAnswer'
 import { CreatedAndUpdatedAt } from '../common'
+import { Document } from 'mongoose'
 
 export enum InterviewQuestionStatus {
  DRAFT = 'DRAFT',
@@ -43,5 +44,5 @@ export const NewInterviewQuestionReqSchema = InterviewQuestionSchema.omit({
  questionSet: z.number()
 })
 export type NewInterviewQuestionReq = z.infer<typeof NewInterviewQuestionReqSchema>
-export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema> & CreatedAndUpdatedAt
+export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema> & Document & CreatedAndUpdatedAt
 export type UpdateInterviewQuestion = z.infer<typeof UpdateInterviewQuestionSchema>

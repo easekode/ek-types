@@ -58,7 +58,7 @@ export const CreateAtUpdateAtSchema = z.object({
  updatedAt: z.date().optional()
 })
 
-export type CreatedAndUpdatedAt = z.infer<typeof CreatedAndUpdatedBySchema>
+export type CreatedAndUpdatedAt = z.infer<typeof CreateAtUpdateAtSchema>
 
 export const DateObjOrString = z.preprocess(
  (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
