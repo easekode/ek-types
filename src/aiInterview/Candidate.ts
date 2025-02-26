@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { DateObjOrString, ObjectIdOrStringId } from '../common'
+import { CreatedAndUpdatedAt, DateObjOrString, ObjectIdOrStringId } from '../common'
 import { ProfileSource } from './ProfileSource'
 import { CallStatus } from './Call'
 import { IUserSchema } from '../user'
@@ -29,10 +29,7 @@ export const CandidateSchema = z
      company: z.string().min(1),
      role: z.string().min(1),
      startDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date()),
-     endDate: z.preprocess(
-      (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
-      z.date().optional()
-     )
+     endDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date().optional())
     })
    )
    .optional(),
@@ -41,10 +38,7 @@ export const CandidateSchema = z
   source: z.nativeEnum(ProfileSource).optional(),
   status: z.nativeEnum(CandidateStatus).optional(),
   callStatus: z.nativeEnum(CallStatus).optional(),
-  contactedOn: z.preprocess(
-   (arg) => (typeof arg === 'string' ? new Date(arg) : arg),
-   z.date().optional()
-  ),
+  contactedOn: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date().optional()),
   companyId: ObjectIdOrStringId
  })
  .strict()
@@ -64,14 +58,27 @@ export const UpdateCandidateSchema = CandidateSchema.partial()
  })
  .strict()
 
-export type Candidate = z.infer<typeof CandidateSchema> & Document
+export type Candidate = z.infer<typeof CandidateSchema> & Document & CreatedAndUpdatedAt
 export type NewCandidate = z.infer<typeof CandidateSchema>
 export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 
-export const CandidateJobInviteSchema = z.object({
- jobId: ObjectIdOrStringId,
- candidateIds: z.array(ObjectIdOrStringId).min(1)
+export const CandidateFilterSchema = CandidateSchema.partial().extend({
+ fromDate: z.string().optional(),
+ toDate: z.string().optional()
 })
+
+export type CandidateFilter = z.infer<typeof CandidateFilterSchema>
+
+export const CandidateJobInviteSchema = z
+ .object({
+  jobId: ObjectIdOrStringId,
+  candidateIds: z.array(ObjectIdOrStringId),
+  filter: CandidateFilterSchema.optional()
+ })
+ .refine((data) => data.candidateIds.length > 0 || (data.filter && Object.keys(data.filter).length > 0), {
+  message: 'When candidateIds is empty, there should be at least one filter item in filter',
+  path: ['filter']
+ })
 
 export type CandidateJobInvite = z.infer<typeof CandidateJobInviteSchema>
 
