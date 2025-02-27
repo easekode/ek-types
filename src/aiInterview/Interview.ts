@@ -7,6 +7,7 @@ import { InvitationStatus } from '../invitation'
 import { DateObjOrString, ObjectIdOrStringId } from '../common'
 import { TransformedUser } from '../user'
 import { InterviewInstructions } from './instruction'
+import { Document } from 'mongoose'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -58,7 +59,7 @@ export const UpdateInterviewSchema = InterviewSchema.omit({
  job: true,
  companyId: true
 }).partial()
-export type Interview = z.infer<typeof InterviewSchema>
+export type Interview = z.infer<typeof InterviewSchema> & Document
 
 export const SelfScheduleInterviewSchema = z.object({
  action: z.enum([InvitationStatus.ACCEPTED, InvitationStatus.REJECTED]),
