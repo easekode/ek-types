@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { QuestionAnswerSchema } from './QuestionAnswer'
-import { CreatedAndUpdatedAt } from '../common'
+import { CreatedAndUpdatedAt, ObjectIdOrStringId } from '../common'
 import { Document } from 'mongoose'
 
 export enum InterviewQuestionStatus {
@@ -24,7 +24,8 @@ export const InterviewQuestionSchema = z.object({
    message: 'min should be less than or equal to max'
   }),
  questions: z.array(QuestionAnswerSchema),
- totalQuestions: z.number().optional()
+ totalQuestions: z.number().optional(),
+ jobId: ObjectIdOrStringId
 })
 
 export const UpdateInterviewQuestionSchema = InterviewQuestionSchema.partial()
