@@ -10,6 +10,9 @@ export const QuestionAnswerSchema = z.object({
 });
 
 export type NewQuestionAnswer = z.infer<typeof QuestionAnswerSchema>;
+export type ProvidedQnA = NewQuestionAnswer;
+
+export type Questions = Omit<NewQuestionAnswer, 'answer'>;
 
 export const QuestionSetSchema = z.object({
   title: z.string(),
@@ -46,25 +49,9 @@ export type NewQuestionSets = z.infer<typeof NewQuestionSetsSchema>;
        type: 'string',
        enum: [QuestionType.RADIO_GROUP, QuestionType.MULTIPLE_CHOICE, QuestionType.YES_NO, QuestionType.SCENARIO_BASED, QuestionType.CODING]
       },
-      choices: {
-       type: 'array',
-       items: {
-        type: 'string'
-       },
-       nullable: true
-      },
-      answer: {
-       type: 'array',
-       items: {
-        type: 'string'
-       },
-       minItems: 1
-      }
-     },
-     required: ['question', 'type', 'answer'],
-     additionalProperties: false
-    }
-   }
+    },
+    required: ['title', 'questions'],
+    additionalProperties: false,
   },
   required: ['title', 'questions'],
   additionalProperties: false
