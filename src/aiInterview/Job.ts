@@ -4,6 +4,7 @@ import { ActiveStatus, DateObjOrString, ObjectIdOrStringId } from '../common'
 import { HiringCompanySchema } from './HiringCompany'
 import { Candidate } from './Candidate'
 import { IInvitation } from '../invitation'
+import { Interview } from './Interview'
 
 export const JobSchema = z.object({
  title: z.string(),
@@ -52,4 +53,10 @@ export interface CandidateInvitationInfo {
  invitaiton?: IInvitation
  candidate?: Candidate
  job?: TransformedJob
+}
+
+export interface InterviewPanelInfo {
+ job?: TransformedJob
+ candidate?: Candidate
+ interview?: Interview
 }
