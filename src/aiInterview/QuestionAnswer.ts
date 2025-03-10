@@ -4,6 +4,7 @@ import { InterviewQuestionStatus } from './InterviewQuestion';
 
 export const QuestionAnswerSchema = z.object({
   question: z.string(),
+  problemSnippet: z.string().optional(),
   type: z.nativeEnum(QuestionType),
   choices: z.array(z.string()).optional(),
   answer: z.array(z.string()),

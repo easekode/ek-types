@@ -15,7 +15,6 @@ export enum InterviewQuestionStatus {
 
 export const InterviewQuestionSchema = z.object({
   title: z.string().min(1),
-  problemSnippet: z.string().optional(),
   status: z.nativeEnum(InterviewQuestionStatus),
   timesUsed: z.number().optional(),
   experienceRange: z
