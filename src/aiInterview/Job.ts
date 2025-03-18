@@ -5,6 +5,7 @@ import { HiringCompanySchema } from './HiringCompany'
 import { Candidate } from './Candidate'
 import { IInvitation } from '../invitation'
 import { Interview } from './Interview'
+import { InterviewQuestion } from './InterviewQuestion'
 
 export const JobSchema = z.object({
  title: z.string(),
@@ -59,4 +60,5 @@ export interface InterviewPanelInfo {
  job?: TransformedJob
  candidate?: Candidate
  interview?: Interview
+ interviewQuestionInfo?: Pick<InterviewQuestion, 'totalQuestions'>
 }
