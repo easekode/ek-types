@@ -8,6 +8,7 @@ import { DateObjOrString, ObjectIdOrStringId } from '../common'
 import { TransformedUser } from '../user'
 import { InterviewInstructions } from './instruction'
 import { Document } from 'mongoose'
+import { MessageSchema } from './Caching'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -51,7 +52,8 @@ export const InterviewSchema = z.object({
   })
  ]),
  providedAnswer: z.array(QuestionAnswerSchema).optional(),
- companyId: ObjectIdOrStringId
+ companyId: ObjectIdOrStringId,
+ convHistory: z.array(MessageSchema).optional()
 })
 
 export const UpdateInterviewSchema = InterviewSchema.omit({
