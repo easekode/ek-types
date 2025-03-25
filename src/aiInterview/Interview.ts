@@ -20,7 +20,8 @@ export enum InterviewStatus {
  SCHEDULED = 'SCHEDULED',
  IN_PROGRESS = 'IN_PROGRESS',
  COMPLETED = 'COMPLETED',
- CANCELLED = 'CANCELLED'
+ CANCELLED = 'CANCELLED',
+ TIME_OUT = 'TIME_OUT'
 }
 
 export const InterviewSchema = z.object({

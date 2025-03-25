@@ -1,11 +1,14 @@
 import { z } from 'zod'
 
+
 export enum InterviewSessionStatus {
  ACTIVE = 'ACTIVE',
  IN_PROGRESS = 'IN_PROGRESS',
  COMPLETED = 'COMPLETED',
  CANCELLED = 'CANCELLED'
 }
+
+//refer openai documentation for the roles
 export enum InterviewRoles {
  USER = 'user',
  ASSISTANT = 'assistant',
@@ -25,3 +28,4 @@ export const InterviewSessionSchema = z.object({
 
 export type Message = z.infer<typeof MessageSchema>
 export type InterviewSession = z.infer<typeof InterviewSessionSchema>
+
