@@ -3,6 +3,7 @@ import { QuestionType } from '../exam';
 import { InterviewQuestionStatus } from './InterviewQuestion';
 
 export const QuestionAnswerSchema = z.object({
+  _id: z.string().optional(), 
   question: z.string(),
   problemSnippet: z.string().optional(),
   type: z.nativeEnum(QuestionType),
@@ -16,6 +17,7 @@ export type ProvidedQnA = NewQuestionAnswer;
 export type Questions = Omit<NewQuestionAnswer, 'answer'>;
 
 export const QuestionSetSchema = z.object({
+  _id: z.string().optional(),
   title: z.string(),
   questions: z.array(QuestionAnswerSchema),
   status: z.nativeEnum(InterviewQuestionStatus).optional(),

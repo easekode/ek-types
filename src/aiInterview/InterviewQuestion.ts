@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { QuestionAnswerSchema } from './QuestionAnswer';
 import { CreatedAndUpdatedAt, ObjectIdOrStringId } from '../common';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { QuestionType } from '../exam';
 
 export enum InterviewQuestionStatus {
@@ -30,6 +30,9 @@ export const InterviewQuestionSchema = z.object({
   jobId: ObjectIdOrStringId,
 });
 
+export type QuestionAnswer = z.infer<typeof QuestionAnswerSchema> & Document; // Ensure QuestionAnswer is typed as a Mongoose Document
+
+
 export const UpdateInterviewQuestionSchema = InterviewQuestionSchema.partial()
   .omit({
     timesUsed: true,
@@ -51,7 +54,10 @@ export type NewInterviewQuestionReq = z.infer<
 >;
 export type InterviewQuestion = z.infer<typeof InterviewQuestionSchema> &
   Document &
-  CreatedAndUpdatedAt;
+  CreatedAndUpdatedAt 
+  & {
+    questions: mongoose.Types.DocumentArray<QuestionAnswer>; // Use Mongoose DocumentArray for questions
+  };
 export type UpdateInterviewQuestion = z.infer<
   typeof UpdateInterviewQuestionSchema
 >;
