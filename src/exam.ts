@@ -22,7 +22,7 @@ export enum QuestionType {
   MULTIPLE_RESPONSE = 'multiple_response',
   SCENARIO_BASED = 'scenario_based',
   IMAGE_BASED = 'image_based',
-  CODING= 'coding'
+  CODING = 'coding',
 }
 
 export enum Level {
