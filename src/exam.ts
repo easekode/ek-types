@@ -23,6 +23,7 @@ export enum QuestionType {
   SCENARIO_BASED = 'scenario_based',
   IMAGE_BASED = 'image_based',
   CODING = 'coding',
+  VOICE_BASED = 'voice_based'
 }
 
 export enum Level {
