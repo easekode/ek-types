@@ -8,7 +8,8 @@ export enum PromptType {
  CHAPTER_TOPICS = 'CHAPTER_TOPICS',
  EXAMS = 'EXAMS',
  EXAM_QUESTIONS = 'EXAM_QUESTIONS',
- INTERVIEW = 'INTERVIEW'
+ INTERVIEW = 'INTERVIEW',
+ STT_KEYWORDS = 'STT_KEYWORDS'
 }
 
 // Create the Zod schema for the prompt
