@@ -19,7 +19,7 @@ export const JobSchema = z.object({
  status: z.nativeEnum(ActiveStatus).optional(),
  companyId: ObjectIdOrStringId,
  expiryDate: DateObjOrString,
- sttKeyowrds: z.array(z.string()).optional()
+ sttKeywords: z.array(z.string()).optional()
 })
 
 export const updateJobSchema = JobSchema.partial().omit({
