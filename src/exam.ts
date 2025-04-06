@@ -1,25 +1,24 @@
-import { Schema, Types, Document } from 'mongoose'
+import { Types, Document } from 'mongoose'
 import { IUser } from './user'
 import { ExamShareStatus, ICourseBatch, ICourseBatchSession } from './courseBatch'
-import { Course } from './course'
 import { z } from 'zod'
 import { FileTypeSchema } from './common'
 
 export enum QuestionType {
-  RADIO_GROUP = 'radio_group',
-  MULTIPLE_CHOICE = 'multiple_choice',
-  SHORT_ANSWER = 'short_answer',
-  FILL_IN_THE_BLANK = 'fill_in_the_blank',
-  MATCHING = 'matching',
-  ESSAY = 'essay',
-  RANKING = 'ranking',
-  SCALE = 'scale',
-  YES_NO = 'yes_no',
-  MULTIPLE_RESPONSE = 'multiple_response',
-  SCENARIO_BASED = 'scenario_based',
-  IMAGE_BASED = 'image_based',
-  CODING = 'coding',
-  VOICE_BASED = 'voice_based'
+ RADIO_GROUP = 'radio_group',
+ MULTIPLE_CHOICE = 'multiple_choice',
+ SHORT_ANSWER = 'short_answer',
+ FILL_IN_THE_BLANK = 'fill_in_the_blank',
+ MATCHING = 'matching',
+ ESSAY = 'essay',
+ RANKING = 'ranking',
+ SCALE = 'scale',
+ YES_NO = 'yes_no',
+ MULTIPLE_RESPONSE = 'multiple_response',
+ SCENARIO_BASED = 'scenario_based',
+ IMAGE_BASED = 'image_based',
+ CODING = 'coding',
+ VOICE_BASED = 'voice_based'
 }
 
 export enum Level {

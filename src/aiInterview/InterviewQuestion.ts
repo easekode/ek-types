@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { QuestionAnswerSchema } from './QuestionAnswer'
 import { CreatedAndUpdatedAt, ObjectIdOrStringId } from '../common'
 import mongoose, { Document } from 'mongoose'
-import { QuestionType } from '../exam'
+import { InterviewQuestionType } from './InterviewQuestionType'
 
 export enum InterviewQuestionStatus {
  DRAFT = 'DRAFT',
@@ -63,7 +63,7 @@ export const AiInterviewQuestionSchema = z.object({
  question: z.string(),
  problemSnippet: z.string().optional(),
  choices: z.array(z.string()).optional(),
- questionType: z.nativeEnum(QuestionType),
+ questionType: z.nativeEnum(InterviewQuestionType),
  sttKeywords: z.array(z.string())
 })
 
