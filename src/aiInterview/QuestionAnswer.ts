@@ -1,12 +1,12 @@
 import { z } from 'zod'
-import { QuestionType } from '../exam'
 import { InterviewQuestionStatus } from './InterviewQuestion'
+import { InterviewQuestionType } from './InterviewQuestionType'
 
 export const QuestionAnswerSchema = z.object({
  _id: z.string().optional(),
  question: z.string(),
  problemSnippet: z.string().optional(),
- type: z.nativeEnum(QuestionType),
+ type: z.nativeEnum(InterviewQuestionType),
  choices: z.array(z.string()).optional(),
  answer: z.array(z.string()),
  sttKeywords: z.array(z.string())
@@ -26,7 +26,11 @@ export const QuestionSetSchema = z.object({
 
 export type NewQuestionSet = z.infer<typeof QuestionSetSchema>
 export const NewQuestionSetsSchema = z.object({
- questionSets: z.array(QuestionSetSchema)
+ questionSets: z.array(
+  QuestionSetSchema.omit({ status: true, _id: true }).extend({
+   questions: z.array(QuestionAnswerSchema.omit({ _id: true }))
+  })
+ )
 })
 export type NewQuestionSets = z.infer<typeof NewQuestionSetsSchema>
 
