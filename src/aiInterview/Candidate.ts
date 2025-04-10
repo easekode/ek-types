@@ -28,7 +28,7 @@ export const CandidateSchema = z
     z.object({
      company: z.string().min(1),
      role: z.string().min(1),
-     startDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date()),
+     startDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date().optional()),
      endDate: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date().optional())
     })
    )
@@ -59,7 +59,7 @@ export const UpdateCandidateSchema = CandidateSchema.partial()
  .strict()
 
 export type Candidate = z.infer<typeof CandidateSchema> & Document & CreatedAndUpdatedAt
-export type NewCandidate = z.infer<typeof CandidateSchema>
+export type NewCandidate = z.infer<typeof NewCandidateSchema>
 export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 
 export const CandidateFilterSchema = CandidateSchema.partial().extend({
