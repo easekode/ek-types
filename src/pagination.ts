@@ -21,6 +21,8 @@ export interface QueryStringType {
  toDate?: string
  id?: string
  filter?: string
+ file?: string
+ type?: string
 }
 export interface IGetPaginationParamsResult {
  page: number
