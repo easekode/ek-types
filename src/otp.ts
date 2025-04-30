@@ -12,6 +12,7 @@ export interface IOtp extends Document {
  email?: string
  createdAt?: Date
  updatedAt?: Date
+ companyId?: Types.ObjectId
 }
 
 export type OtpRequestBody = Omit<

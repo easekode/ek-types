@@ -1,3 +1,4 @@
+import { Types } from 'mongoose'
 import { TransformedUser } from './user'
 
 export interface LoginResponse {
@@ -24,4 +25,5 @@ export interface RegisterBody {
 export interface ForgetPasswordBody {
  email?: string
  mobile?: string
+ companyId?: Types.ObjectId
 }
