@@ -60,6 +60,7 @@ export type UpdateInterviewQuestion = z.infer<typeof UpdateInterviewQuestionSche
 this is the schema for the interview question that will be asked by AI to the user
 */
 export const AiInterviewQuestionSchema = z.object({
+ qid: z.string(),
  question: z.string(),
  problemSnippet: z.string().optional(),
  choices: z.array(z.string()).optional(),
