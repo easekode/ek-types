@@ -54,7 +54,8 @@ export const InterviewSchema = z.object({
  ]),
  providedAnswer: z.array(QuestionAnswerSchema).optional(),
  companyId: ObjectIdOrStringId,
- convHistory: z.array(MessageSchema).optional()
+ convHistory: z.array(MessageSchema).optional(),
+ evalResultAi: z.string().optional()
 })
 
 export const UpdateInterviewSchema = InterviewSchema.omit({
