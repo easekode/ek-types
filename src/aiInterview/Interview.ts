@@ -63,7 +63,7 @@ export const UpdateInterviewSchema = InterviewSchema.omit({
  job: true,
  companyId: true
 }).partial()
-export type Interview = z.infer<typeof InterviewSchema> & Document
+export type Interview<T=unknown> = z.infer<typeof InterviewSchema> & { evalResultObj: T } & Document
 
 export const SelfScheduleInterviewSchema = z.object({
  action: z.enum([InvitationStatus.ACCEPTED, InvitationStatus.REJECTED]),
