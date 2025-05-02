@@ -10,15 +10,15 @@ export enum CompanyType {
 
 export const HiringCompanySchema = z
  .object({
-name: z.string().min(1),
-address: z.string().optional(),
-contactEmail: z.string().email(),
-contactPhone: z.string().optional(),
-website: z.string().optional(),
-type: z.nativeEnum(CompanyType).default(CompanyType.INTERNAL),
-companyId: ObjectIdOrStringId
-})
-.merge(CreatedAndUpdatedBySchema)
+  name: z.string().min(1),
+  address: z.string().optional(),
+  contactEmail: z.string().email(),
+  contactPhone: z.string().optional(),
+  website: z.string().optional(),
+  type: z.nativeEnum(CompanyType).default(CompanyType.INTERNAL),
+  companyId: ObjectIdOrStringId
+ })
+ .merge(CreatedAndUpdatedBySchema)
 
 export const UpdateHiringCompanySchema = HiringCompanySchema.partial().omit({ companyId: true })
 export const NewHiringCompanySchema = HiringCompanySchema.omit({ companyId: true })
