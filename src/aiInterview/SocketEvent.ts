@@ -8,5 +8,6 @@ export enum SocketEvents {
  DISCONNECT = 'disconnect',
  READY = 'ready',
  TIMEOUT = 'timeout',
- AUDIO_RECEIVED = 'audio_received'
+ AUDIO_RECEIVED = 'audio_received',   
+ SESSION_RESUME = 'session_resume',
 }
