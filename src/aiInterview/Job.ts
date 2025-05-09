@@ -63,3 +63,16 @@ export interface InterviewPanelInfo {
  interview?: Interview
  interviewQuestionInfo?: Pick<InterviewQuestion, 'totalQuestions'>
 }
+
+export const SuggestJobDescriptionInputSchema = z.object({
+ title: z.string(),
+ expYears: z.number(),
+ length: z.enum(['short', 'medium', 'long'])
+})
+
+export const SuggestJobDescriptionResSchema = z.object({
+ job_description: z.string()
+})
+
+export type SuggestJobDescriptionInput = z.infer<typeof SuggestJobDescriptionInputSchema>
+export type SuggestJobDescrptionRes = z.infer<typeof SuggestJobDescriptionResSchema>
