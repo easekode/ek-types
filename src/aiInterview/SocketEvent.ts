@@ -9,6 +9,6 @@ export enum SocketEvents {
   READY = 'ready',
   TIMEOUT = 'timeout',
   AUDIO_RECEIVED = 'audio_received',
-  SESSION_RESUME = 'session_resume',
+  CURRENT_QS_STATE = 'current_question_state',
   WEBCAM_STREAM = 'webcam_stream',
 }
