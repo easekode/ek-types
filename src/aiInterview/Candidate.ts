@@ -4,6 +4,8 @@ import { ProfileSource } from './ProfileSource'
 import { CallStatus } from './Call'
 import { IUserSchema } from '../user'
 import { Document } from 'mongoose'
+import { HiringCompanySchema } from './HiringCompany'
+import { JobSchema } from './Job'
 
 export enum CandidateStatus {
  CREATED = 'CREATED',
@@ -39,7 +41,11 @@ export const CandidateSchema = z
   status: z.nativeEnum(CandidateStatus).optional(),
   callStatus: z.nativeEnum(CallStatus).optional(),
   contactedOn: z.preprocess((arg) => (typeof arg === 'string' ? new Date(arg) : arg), z.date().optional()),
-  companyId: ObjectIdOrStringId
+  companyId: ObjectIdOrStringId, // this is the companyId where the recruiter is working
+  hiringCompanyId: ObjectIdOrStringId.optional(),
+  hiringCompany: HiringCompanySchema.optional(),
+  jobId: ObjectIdOrStringId.optional(),
+  job: JobSchema.optional()
  })
  .strict()
 
