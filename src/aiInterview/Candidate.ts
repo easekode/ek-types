@@ -64,7 +64,8 @@ export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 
 export const CandidateFilterSchema = CandidateSchema.partial().extend({
  fromDate: z.string().optional(),
- toDate: z.string().optional()
+ toDate: z.string().optional(),
+ statuses: z.array(z.nativeEnum(CandidateStatus)).optional()
 })
 
 export type CandidateFilter = z.infer<typeof CandidateFilterSchema>
