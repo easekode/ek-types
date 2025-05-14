@@ -14,6 +14,7 @@ export const HiringCompanySchema = z
   address: z.string().optional(),
   contactEmail: z.string().email(),
   contactPhone: z.string().optional(),
+  code: z.string().optional(),
   website: z.string().optional(),
   type: z.nativeEnum(CompanyType).default(CompanyType.INTERNAL),
   companyId: ObjectIdOrStringId

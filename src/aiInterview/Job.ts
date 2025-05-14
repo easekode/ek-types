@@ -11,6 +11,7 @@ export const JobSchema = z.object({
  title: z.string(),
  expYears: z.number(),
  jobDescription: z.string(),
+ code: z.string().optional(),
  examIds: z.array(ObjectIdOrStringId).min(1).optional(),
  createdBy: ObjectIdOrStringId,
  updatedBy: ObjectIdOrStringId.optional(),
