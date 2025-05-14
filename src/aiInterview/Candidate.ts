@@ -6,6 +6,7 @@ import { IUserSchema } from '../user'
 import { Document } from 'mongoose'
 import { HiringCompanySchema } from './HiringCompany'
 import { JobSchema } from './Job'
+import { InvitationStatus } from '../invitation'
 
 export enum CandidateStatus {
  CREATED = 'CREATED',
@@ -71,7 +72,10 @@ export type UpdateCandidate = z.infer<typeof UpdateCandidateSchema>
 export const CandidateFilterSchema = CandidateSchema.partial().extend({
  fromDate: z.string().optional(),
  toDate: z.string().optional(),
- statuses: z.array(z.nativeEnum(CandidateStatus)).optional()
+ statuses: z.array(z.nativeEnum(CandidateStatus)).optional(),
+ invitationStatuses: z.array(z.nativeEnum(InvitationStatus)).optional(),
+ hiringCompanyIds: z.array(ObjectIdOrStringId).optional(),
+ jobIds: z.array(ObjectIdOrStringId).optional()
 })
 
 export type CandidateFilter = z.infer<typeof CandidateFilterSchema>
