@@ -24,6 +24,20 @@ export enum InterviewStatus {
  TIME_OUT = 'TIME_OUT'
 }
 
+export enum TranscriptionStatus {
+ PENDING = 'PENDING',
+ IN_PROGRESS = 'IN_PROGRESS',
+ COMPLETED = 'COMPLETED',
+ FAILED = 'FAILED'
+}
+
+export enum EvaluationStatus {
+ PENDING = 'PENDING',
+ IN_PROGRESS = 'IN_PROGRESS',
+ COMPLETED = 'COMPLETED',
+ FAILED = 'FAILED'
+}
+
 export const InterviewSchema = z.object({
  candidateId: z.union([
   z.instanceof(Types.ObjectId),
@@ -55,7 +69,9 @@ export const InterviewSchema = z.object({
  providedAnswer: z.array(QuestionAnswerSchema).optional(),
  companyId: ObjectIdOrStringId,
  convHistory: z.array(MessageSchema).optional(),
- evalResult: z.string().optional()
+ evalResult: z.string().optional(),
+ transStatus: z.nativeEnum(TranscriptionStatus).optional(),
+ evalStatus: z.nativeEnum(EvaluationStatus).optional()
 })
 
 export const UpdateInterviewSchema = InterviewSchema.omit({
@@ -63,7 +79,7 @@ export const UpdateInterviewSchema = InterviewSchema.omit({
  job: true,
  companyId: true
 }).partial()
-export type Interview<T=unknown> = z.infer<typeof InterviewSchema> & { evalResultObj: T } & Document
+export type Interview<T = unknown> = z.infer<typeof InterviewSchema> & { evalResultObj: T } & Document
 
 export const SelfScheduleInterviewSchema = z.object({
  action: z.enum([InvitationStatus.ACCEPTED, InvitationStatus.REJECTED]),
