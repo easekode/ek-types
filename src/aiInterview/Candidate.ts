@@ -9,14 +9,15 @@ import { JobSchema } from './Job'
 import { InvitationStatus } from '../invitation'
 
 export enum CandidateStatus {
- CREATED = 'CREATED',
- SCHEDULED = 'SCHEDULED',
- PENDING = 'PENDING',
- UNDER_REVIEW = 'UNDER_REVIEW',
- FOLLOW_UP = 'FOLLOW_UP',
- SELECTED = 'SELECTED',
- PENDING_REVIEW = 'PENDING_REVIEW',
- REJECTED = 'REJECTED'
+ CREATED = 'CREATED', // Initial state when candidate is first added
+ INVITED = 'INVITED', // Waiting for interview to be scheduled
+ SCHEDULED = 'SCHEDULED', // Interview has been scheduled
+ PENDING_REVIEW = 'PENDING_REVIEW', // Interview completed, waiting for review
+ UNDER_REVIEW = 'UNDER_REVIEW', // Currently being reviewed
+ FOLLOW_UP = 'FOLLOW_UP', // Need additional interview/discussion
+ SELECTED = 'SELECTED', // Candidate has been selected
+ REJECTED = 'REJECTED', // Candidate was not selected
+ ON_HOLD = 'ON_HOLD' // Candidate is on hold for future consideration
 }
 
 export const CandidateSchema = z
