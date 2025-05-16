@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
    export enum RoundStatus {
-    REJECTED = 'rejected',
-    SELECTED = 'selected',    
+    REJECTED = 'REJECTED',
+    SELECTED = 'SELECTED',    
    }
    
    export const InterviewRoundSchema = z.object({
