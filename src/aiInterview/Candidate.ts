@@ -9,7 +9,7 @@ import { JobSchema } from './Job'
 import { InvitationStatus } from '../invitation'
 
 export enum CandidateStatus {
- CREATED = 'CREATED', // Initial state when candidate is first added
+ NEW = 'NEW', // Initial state when candidate is first added
  INVITED = 'INVITED', // Waiting for interview to be scheduled
  SCHEDULED = 'SCHEDULED', // Interview has been scheduled
  PENDING_REVIEW = 'PENDING_REVIEW', // Interview completed, waiting for review
