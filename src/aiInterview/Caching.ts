@@ -1,5 +1,5 @@
 import { z } from 'zod'
-
+import { ConvHistorySchema } from './ConvHistory'
 
 export enum InterviewSessionStatus {
  ACTIVE = 'ACTIVE',
@@ -8,24 +8,12 @@ export enum InterviewSessionStatus {
  CANCELLED = 'CANCELLED'
 }
 
-//refer openai documentation for the roles
-export enum InterviewRoles {
- USER = 'user',
- ASSISTANT = 'assistant',
- SYSTEM = 'system'
-}
-export const MessageSchema = z.object({
- role: z.nativeEnum(InterviewRoles),
- content: z.string()
-})
 export const InterviewSessionSchema = z.object({
  interviewId: z.string(),
  status: z.nativeEnum(InterviewSessionStatus).optional(),
- conversation: z.array(MessageSchema).optional(),
+ conversation: z.array(ConvHistorySchema).optional(),
  createdAt: z.string().optional(),
  updatedAt: z.string().optional()
 })
 
-export type Message = z.infer<typeof MessageSchema>
 export type InterviewSession = z.infer<typeof InterviewSessionSchema>
-

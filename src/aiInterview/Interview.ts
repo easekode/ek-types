@@ -8,7 +8,7 @@ import { DateObjOrString, ObjectIdOrStringId } from '../common'
 import { TransformedUser } from '../user'
 import { InterviewInstructions } from './instruction'
 import { Document } from 'mongoose'
-import { MessageSchema } from './Caching'
+import { ConvHistorySchema } from './ConvHistory'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -68,7 +68,7 @@ export const InterviewSchema = z.object({
  ]),
  providedAnswer: z.array(QuestionAnswerSchema).optional(),
  companyId: ObjectIdOrStringId,
- convHistory: z.array(MessageSchema).optional(),
+ convHistory: z.array(ConvHistorySchema).optional(),
  evalResult: z.string().optional(),
  transStatus: z.nativeEnum(TranscriptionStatus).optional(),
  evalStatus: z.nativeEnum(EvaluationStatus).optional()
