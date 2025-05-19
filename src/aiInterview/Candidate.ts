@@ -7,6 +7,7 @@ import { Document } from 'mongoose'
 import { HiringCompanySchema } from './HiringCompany'
 import { JobSchema } from './Job'
 import { InvitationStatus } from '../invitation'
+import { InterviewRoundSchema } from './InterviewRound'
 
 export enum CandidateStatus {
  NEW = 'NEW', // Initial state when candidate is first added
@@ -47,7 +48,8 @@ export const CandidateSchema = z
   hiringCompanyId: ObjectIdOrStringId.optional(),
   hiringCompany: HiringCompanySchema.optional(),
   jobId: ObjectIdOrStringId.optional(),
-  job: JobSchema.optional()
+  job: JobSchema.optional(),
+  interviewRounds: z.array(InterviewRoundSchema).optional(), 
  })
  .strict()
 
