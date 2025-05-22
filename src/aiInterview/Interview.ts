@@ -9,6 +9,7 @@ import { TransformedUser } from '../user'
 import { InterviewInstructions } from './instruction'
 import { Document } from 'mongoose'
 import { ConvHistorySchema } from './ConvHistory'
+import { RescheduleHistorySchema } from './RescheduleHistory'
 
 export enum InterviewType {
  MOCK = 'MOCK',
@@ -71,7 +72,11 @@ export const InterviewSchema = z.object({
  convHistory: z.array(ConvHistorySchema).optional(),
  evalResult: z.string().optional(),
  transStatus: z.nativeEnum(TranscriptionStatus).optional(),
- evalStatus: z.nativeEnum(EvaluationStatus).optional()
+ evalStatus: z.nativeEnum(EvaluationStatus).optional(),
+ cancelledReason: z.string().optional(),
+ rescheduleReason: z.string().optional(),
+ rescheduleHistory: z.array(RescheduleHistorySchema).optional(),
+ startTimeUpdatedAt: DateObjOrString.optional()
 })
 
 export const UpdateInterviewSchema = InterviewSchema.omit({
@@ -112,6 +117,10 @@ export interface InterviewInfo {
 
 export const SelfUpdateInterviewSchema = SelfScheduleInterviewSchema.pick({
  scheduleTime: true
-}).strict()
+})
+ .extend({
+  rescheduleReason: z.string().optional()
+ })
+ .strict()
 
 export type SelfUpdateInterview = z.infer<typeof SelfUpdateInterviewSchema>
