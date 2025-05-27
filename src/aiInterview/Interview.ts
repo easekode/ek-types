@@ -39,6 +39,13 @@ export enum EvaluationStatus {
  FAILED = 'FAILED'
 }
 
+export enum VideoStatus {
+ PENDING = 'PENDING',
+ IN_PROGRESS = 'IN_PROGRESS',
+ COMPLETED = 'COMPLETED',
+ FAILED = 'FAILED'
+}
+
 export const InterviewSchema = z.object({
  candidateId: z.union([
   z.instanceof(Types.ObjectId),
@@ -76,7 +83,8 @@ export const InterviewSchema = z.object({
  cancelledReason: z.string().optional(),
  rescheduleReason: z.string().optional(),
  rescheduleHistory: z.array(RescheduleHistorySchema).optional(),
- startTimeUpdatedAt: DateObjOrString.optional()
+ startTimeUpdatedAt: DateObjOrString.optional(),
+ videoStatus: z.nativeEnum(VideoStatus).optional()
 })
 
 export const UpdateInterviewSchema = InterviewSchema.omit({
