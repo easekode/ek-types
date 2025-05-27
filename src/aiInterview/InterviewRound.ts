@@ -1,12 +1,15 @@
 import { z } from 'zod'
 
-   export enum RoundStatus {
-    REJECTED = 'REJECTED',
-    SELECTED = 'SELECTED',    
-   }
-   
-   export const InterviewRoundSchema = z.object({
-    roundType: z.string(),
-    status: z.nativeEnum(RoundStatus),
-    remarks: z.string()
-  });
+export enum RoundStatus {
+ REJECTED = 'REJECTED',
+ SELECTED = 'SELECTED'
+}
+
+export const InterviewRoundSchema = z.object({
+ roundType: z.string(),
+ status: z.nativeEnum(RoundStatus),
+ remarks: z.string().optional()
+})
+
+export type InterviewRound = z.infer<typeof InterviewRoundSchema>
+

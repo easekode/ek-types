@@ -18,7 +18,8 @@ export enum CandidateStatus {
  FOLLOW_UP = 'FOLLOW_UP', // Need additional interview/discussion
  SELECTED = 'SELECTED', // Candidate has been selected
  REJECTED = 'REJECTED', // Candidate was not selected
- ON_HOLD = 'ON_HOLD' // Candidate is on hold for future consideration
+ ON_HOLD = 'ON_HOLD', // Candidate is on hold for future consideration
+ AWAITING_NEXT_ROUND = 'AWAITING_NEXT_ROUND' //only when prev round got selected Waiting for the next round to be scheduled
 }
 
 export const CandidateSchema = z
@@ -49,7 +50,7 @@ export const CandidateSchema = z
   hiringCompany: HiringCompanySchema.optional(),
   jobId: ObjectIdOrStringId.optional(),
   job: JobSchema.optional(),
-  interviewRounds: z.array(InterviewRoundSchema).optional(), 
+  interviewRounds: z.array(InterviewRoundSchema).optional()
  })
  .strict()
 
