@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Types } from 'mongoose'
 import { Bootcamp } from './bootcamp'
 import { Client } from './client'
 import { Image, ImageSchema } from './common'

@@ -1,4 +1,4 @@
-import type { Schema, Model, Types } from 'mongoose'
+import type { Model, Types } from 'mongoose'
 export interface IRole {
  name: string
  description?: string

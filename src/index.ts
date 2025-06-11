@@ -15,7 +15,7 @@ export * from './bootcampCat'
 export * from './address'
 export * from './pricing'
 export * from './exam'
-export * from './questionBank'
+// export * from './questionBank'
 export * from './enrollment'
 // export * from '../../ekr-example/src/rcnode/types/apiResponse';
 export * from './query'

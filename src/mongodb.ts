@@ -21,3 +21,11 @@ export function stringToId(idString?: string): Types.ObjectId {
 export function toId(id: Types.ObjectId): Types.ObjectId {
  return id as unknown as Types.ObjectId
 }
+
+export function getObjectId(): Types.ObjectId {
+    return new Types.ObjectId();
+}
+
+export type MongoObjectId = Types.ObjectId;
+
+
