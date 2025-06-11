@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose'
+import { Types } from 'mongoose'
 import { EventMode, EventPurpose, EventStatus } from './courseBatch'
 
 export interface IEvent extends Document {

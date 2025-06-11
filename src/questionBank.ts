@@ -1,5 +1,5 @@
-import { Schema, Document } from 'mongoose'
-import { ExamType, Level } from './exam'
+// import { Schema, Document } from 'mongoose'
+// import { ExamType, Level } from './exam'
 
 /* export interface NewQuestion {
   type: QuestionType; // Type of question
