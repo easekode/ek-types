@@ -11,6 +11,7 @@ export const createLeadValidator = z.object({
   workEmail: z.string().email(),
   phoneNumber: z.string().min(1),
   statusHistory: z.array(LeadStatusSchema).optional(),
+  source: z.string().optional(),
 });
 
 export const updateLeadValidator = z.object({
@@ -19,6 +20,7 @@ export const updateLeadValidator = z.object({
   workEmail: z.string().email().optional(),
   phoneNumber: z.string().min(1).optional(),
   statusHistory: z.array(LeadStatusSchema).optional(),
+  source: z.string().optional(),
 });
 
 export type CreateLeadInput = z.infer<typeof createLeadValidator>;
