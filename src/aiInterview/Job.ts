@@ -77,3 +77,9 @@ export const SuggestJobDescriptionResSchema = z.object({
 
 export type SuggestJobDescriptionInput = z.infer<typeof SuggestJobDescriptionInputSchema>
 export type SuggestJobDescrptionRes = z.infer<typeof SuggestJobDescriptionResSchema>
+export const JobFilterSchema = JobSchema.pick({
+ status: true,
+ hiringCompanyId: true
+}).strict()
+
+export type JobFilter = z.infer<typeof JobFilterSchema>
