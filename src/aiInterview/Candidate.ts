@@ -102,3 +102,33 @@ export const IsCandidateIvitedSchema = z.object({
 })
 
 export type IsCandidateIvited = z.infer<typeof IsCandidateIvitedSchema>
+
+export const BulkCandidateUploadSchema = z.object({
+ hiringCompanyId: ObjectIdOrStringId,
+ jobId: ObjectIdOrStringId,
+ allowDuplicate: z
+  .union([
+   z.boolean(),
+   z
+    .string()
+    .refine((val) => val === 'true' || val === 'false', {
+     message: "allowDuplicate must be 'true' or 'false' if provided as string"
+    })
+    .transform((val) => val === 'true')
+  ])
+  .transform((val) => Boolean(val)),
+ sendInvite: z
+  .union([
+   z.boolean(),
+   z
+    .string()
+    .refine((val) => val === 'true' || val === 'false', {
+     message: "sendInvite must be 'true' or 'false' if provided as string"
+    })
+    .transform((val) => val === 'true')
+  ])
+  .transform((val) => Boolean(val))
+  .optional()
+})
+
+export type BulkCandidateUpload = z.infer<typeof BulkCandidateUploadSchema>
