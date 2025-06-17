@@ -59,7 +59,11 @@ export const NewCandidateSchema = CandidateSchema.omit({
  companyId: true,
  contactedOn: true,
  callStatus: true
-}).strict()
+})
+ .extend({
+  sendInvite: z.boolean().optional()
+ })
+ .strict()
 
 export const UpdateCandidateSchema = CandidateSchema.partial()
  .omit({
