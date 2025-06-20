@@ -62,6 +62,7 @@ export interface InterviewPanelInfo {
  job?: TransformedJob
  candidate?: Candidate
  interview?: Interview
+ remainingTime?: number
  interviewQuestionInfo?: Pick<InterviewQuestion, 'totalQuestions'>
 }
 
